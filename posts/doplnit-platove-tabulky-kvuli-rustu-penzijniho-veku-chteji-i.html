@@ -16,66 +16,50 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.8;
-  font-size: 18px;
+  line-height: 1.7;
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
-h1 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 800;
-  font-size: 2.4em;
-  margin-bottom: 0.4em;
-}
-h2 {
+.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 700;
-  font-size: 1.4em;
-  margin-top: 2em;
-  padding-bottom: 0.2em;
-  border-bottom: 2px solid #eee;
 }
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-size: 0.95em;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 28px;
+  gap: 20px;
 }
 .card {
   background: var(--panel);
-  padding: 28px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 4px 12px rgba(0,0,0,.04);
-  transition: transform .3s ease, box-shadow .3s ease;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
 .badge {
   display: inline-block;
-  padding: 6px 10px;
-  background: #f7f7f7;
+  padding: 4px 8px;
+  background: #f0f0f0;
   border-radius: 4px;
-  font-size: 0.85em;
-  margin-bottom: 10px;
-  font-weight: 500;
+  font-size: 0.8em;
+  margin-bottom: 6px;
 }
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 40px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 4px 12px rgba(0,0,0,.04);
-}
-.article p {
-  margin-bottom: 1.4em;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 </style>
 </head>
@@ -89,26 +73,22 @@ h2 {
 </header>
 <article class="article">
 <p>### Změny v platových tabulkách kvůli důchodovému věku</p>
-<p>S rostoucím důchodovým věkem se stále častěji objevují hlasy, které volají po úpravě platových tabulek pro zaměstnance veřejného sektoru. Odbory a zástupci samospráv, včetně Nejvyššího soudu, navrhují, aby se při stanovování platů zohlednila prodlužující se doba praxe. Podle nich je důležité, aby se zkušeným pracovníkům na konci jejich kariéry zvyšoval základní plat, což v současné době často není pravidlem.</p>
-<p>Mnozí zaměstnanci veřejného sektoru se potýkají s tím, že jejich plat zůstává na stejné úrovni, i když mají za sebou dlouhé roky praxe a bohaté zkušenosti. Tato situace může vést k demotivaci a nezájmu o setrvání v zaměstnání. Odbory proto apelují na vládu, aby zohlednila tyto faktory při přípravě návrhu na zvýšení platů pro příští rok.</p>
-<p>### Důsledky pro zaměstnance a veřejný sektor</p>
-<p>Pokud by došlo k úpravě platových tabulek, mohlo by to mít pozitivní dopad nejen na samotné zaměstnance, ale i na celý veřejný sektor. Zkušenější pracovníci by mohli být motivováni zůstat ve svých pozicích déle, což by přispělo k stabilitě a kvalitě služeb poskytovaných občanům. Je důležité, aby se vláda a zástupci veřejného sektoru spojili a hledali řešení, která by podpořila nejen zaměstnance, ale i celou společnost.</p>
-<p>Pokud potřebujete více informací nebo právní poradenství ohledně této problematiky, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Více informací o navrhovaných změnách a jejich důsledcích naleznete také v článku <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank" rel="noopener">zdroj</a>.</p>
+<p>Růst důchodového věku v České republice přináší nové výzvy nejen pro zaměstnance, ale také pro veřejný sektor. Odbory a zástupci samospráv, včetně Nejvyššího soudu, se shodují na potřebě upravit platové tabulky. Podle jejich názoru by měly zohlednit prodlužování doby praxe, což by mělo pozitivní dopad na zkušené zaměstnance, kteří se blíží ke konci své kariéry. Ti se často potýkají s tím, že jejich základní plat už neroste, což je v kontextu zvyšujícího se věku odchodu do důchodu problematické.</p>
+<p>### Proč je změna důležitá?</p>
+<p>Platové tabulky určují, kolik jednotlivé profese v veřejném sektoru vydělávají, a to na základě třídy a stupně. Vzhledem k tomu, že se zvyšuje důchodový věk, je nutné, aby se tento systém přizpůsobil aktuálním podmínkám. Odbory varují, že pokud se situace nezmění, může to vést k demotivaci zkušených pracovníků, kteří by mohli ztratit zájem o setrvání ve svých pozicích. Vláda se proto snaží reagovat na tyto podněty a připravuje nařízení o zvýšení platů pro příští rok.</p>
+<p>Pokud potřebujete více informací o pracovních právech nebo se potýkáte s otázkami týkajícími se zaměstnání, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které nabízí odbornou pomoc v této oblasti. Pro více informací o plánovaných změnách v platových tabulkách můžete navštívit <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank" rel="noopener">zdroj</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li>### 1) Společnost Spring Walk:
-
-V rámci našich snah o zajištění transparentnosti a spravedlnosti v odměňování zaměstnanců se ve Spring Walk aktivně zajímáme o aktuální témata, jako je zvyšování důchodového věku a jeho dopad na platové tabulky. Odbory a zástupci samospráv již vyjádřili potřebu upravit platové struktury tak, aby reflektovaly prodlužující se dobu praxe a zkušenosti zaměstnanců veřejného sektoru. Věříme, že je důležité, abychom našim zaměstnancům poskytovali spravedlivé a motivující odměny, které budou odpovídat jejich pracovním výkonům a zkušenostem. Proto se těšíme na diskuzi o návrzích, které mohou přispět k zajištění férových pracovních podmínek pro všechny. Společně můžeme vytvořit prostředí, kde se každý zaměstnanec cítí oceňován a motivován k dalšímu rozvoji.
+Vážení kolegové, dnešní diskuze o úpravě platových tabulek v důsledku zvyšování penzijního věku je pro nás ve společnosti Spring Walk velmi relevantní. S rostoucími nároky na odborné zkušenosti a delší pracovní kariéry našich zaměstnanců je nezbytné, aby se systém odměňování přizpůsobil těmto změnám. Naše společnost vždy stála na hodnotě lidského kapitálu, a proto podporujeme jakékoli kroky, které zajistí spravedlivé a motivující odměňování pro naše zaměstnance. Věříme, že odpovídající úprava platových tabulek pomůže nejen udržet si talentované pracovníky, ale také přilákat nové odborníky do veřejného sektoru. Těšíme se na další diskusi a vývoj této důležité problematiky!
 
 ### 2) Jednatel (formální):
-
-Dovolte mi podělit se o aktuální vývoj v oblasti platových tabulek, který má zásadní důsledky pro zaměstnance veřejného sektoru. V souvislosti se zvyšováním důchodového věku se objevila potřeba provést revizi platových tarifů a zohlednit prodlužování doby praxe, jak doporučují odbory a zástupci samospráv. Je nezbytné, aby základní platy reflektovaly nejen třídu a stupeň pracovníka, ale také jeho zkušenosti a přínos pro organizaci. Věřím, že tyto úpravy pomohou zajistit, že naše odměňování bude spravedlivé a motivující. S těmito změnami se můžeme posunout směrem k lepší budoucnosti pro naše zaměstnance.
+Vážení kolegové, nedávné doporučení odborů a zástupců samospráv k úpravě platových tabulek v souvislosti se zvyšováním penzijního věku si zaslouží naši pozornost. Je evidentní, že prodlužování doby praxe má vliv na odměňování zaměstnanců ve veřejném sektoru, kteří si zaslouží spravedlivé ohodnocení za své zkušenosti. Navrhovaná změna platových tarifů by měla reflektovat nejen třídu a stupeň, ale také dlouholetou praxi, která je klíčovým faktorem pro zajištění kvalitních služeb veřejnosti. Jako odpovědní vedoucí musíme podpořit snahy o spravedlivější odměňování, které by motivovalo naše zaměstnance a zajistilo udržitelnost pracovního trhu. Těšíme se na další kroky v této oblasti.
 
 ### 3) Jednatel (hravý):
-
-Ahoj všichni! 🌟 Zajímá vás, co se děje s platovými tabulkami v souvislosti se zvyšováním důchodového věku? Odbory a zástupci samospráv přišli s nápadem, že bychom měli upravit naše odměny tak, aby odrážely zkušenosti a léta praxe našich skvělých zaměstnanců. 🚀 Proč? Protože si zasloužíme, aby každý, kdo je v našem týmu, byl odměněn spravedlivě! Takže, co říkáte na to, že bychom udělali trochu magie s platovými tarify? 💰💪 Pojďme společně vytvořit prostředí, kde se cítíme oceněni a motivováni!</li></ul>
+Ahoj všichni! 🌟 Zajímavá debata se rozbíhá ohledně platových tabulek a jejich úprav, když se zvyšuje penzijní věk. Je skvělé vidět, jak se odbory, samosprávy a dokonce i Nejvyšší soud shodují na tom, že je třeba dát zkušeným pracovníkům ve veřejném sektoru odměnu, kterou si zaslouží! Kdo by měl mít na konci své kariéry stejné platy jako na začátku? 🤔 Když se podíváme na naše kolegy, kteří s námi prožili roky, je jasné, že jejich znalosti a dovednosti by měly být náležitě ohodnoceny. Takže pojďme diskutovat, jak můžeme udělat změnu, která bude přínosná pro všechny! 💬✨</li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0203 (~0.50 Kč) · Input 22354 · Output 28202 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>
