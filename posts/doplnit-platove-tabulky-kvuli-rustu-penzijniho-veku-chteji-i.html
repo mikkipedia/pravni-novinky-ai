@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,22 +91,22 @@
 
     <article class="article">
       <h2>Změny v platových tabulkách kvůli důchodovému věku</h2>
-  <p>Odbory a zástupci samospráv, včetně Nejvyššího soudu, navrhují úpravy platových tabulek. Tyto změny by měly reflektovat zvyšování důchodového věku a prodlužování doby praxe. V současnosti se ukazuje, že zkušeným zaměstnancům veřejného sektoru, kteří jsou na konci své kariéry, již základ platu neroste. To může mít negativní dopad na motivaci a spokojenost těchto pracovníků.</p>
-  <p>Doporučení se objevila v připomínkách k vládnímu nařízení o zvýšení platů pro příští rok. Platové tabulky určují platový tarif jednotlivých profesí na základě třídy a stupně. Pokud se však důchodový věk zvyšuje, je potřeba zohlednit i to, jak dlouho lidé pracují. V opačném případě by mohlo dojít k nerovnostem v odměňování.</p>
-  <p>Změny v platových tabulkách mohou mít dalekosáhlé důsledky. Je důležité, aby se zaměstnanci veřejného sektoru cítili spravedlivě odměňováni za svou práci. V této souvislosti je vhodné konzultovat možné dopady s odborníky na právní poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Podle dostupných informací se zdá, že úpravy platových tabulek jsou nezbytné. Je důležité, aby se na toto téma vedla diskuse a hledala efektivní řešení. <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank" rel="noopener">zdroj</a></p>
+  <p>Odbory a zástupci samospráv, včetně Nejvyššího soudu, navrhují úpravy platových tabulek. Tyto změny by měly zohlednit zvyšování důchodového věku a prodlužování doby praxe. V současnosti čelí zkušenější zaměstnanci veřejného sektoru situaci, kdy se jejich základní plat v závěru kariéry již nezvyšuje. To může mít negativní dopad na motivaci a spokojenost pracovníků.</p>
+  <h2>Dopady na veřejný sektor</h2>
+  <p>Platové tabulky určují třída a stupeň jednotlivých profesí. Jak se zvyšuje důchodový věk, je důležité, aby se tyto tabulky přizpůsobily aktuálním potřebám trhu práce. Odbory upozorňují, že pokud se nezohlední prodloužení pracovní doby, mohou se problémy ve veřejném sektoru prohlubovat. V takovém případě může být užitečné obrátit se na odborníky, kteří se zabývají právním poradenstvím, jako například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, aby pomohli s orientací v této problematice.</p>
+  <p>Změny v platových tabulkách by mohly přispět k větší spravedlnosti a motivaci zaměstnanců. Je důležité, aby se o těchto otázkách diskutovalo a aby se našla řešení, která budou vyhovovat jak zaměstnancům, tak zaměstnavatelům. Odbory a samosprávy mají jasný zájem na tom, aby se situace zlepšila a aby byl veřejný sektor atraktivnější pro nové pracovníky.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Růst penzijního věku má přímý dopad na platové tabulky v oblasti veřejného sektoru. Zkušenosti a dlouhá praxe by měly být adekvátně ohodnoceny, a to i v době, kdy se blížíme k důchodu.</li>
-      <li><strong>Jednatel (formální):</strong> Odbory a zástupci samospráv vyzývají k úpravě platových tabulek s ohledem na prodlužování doby praxe. Tato změna by mohla přispět k lepší motivaci a udržení zkušených zaměstnanců v sektoru.</li>
-      <li><strong>Jednatel (hravý):</strong> Jak se říká, zkušenosti jsou k nezaplacení! A co když se nám zvýší důchodový věk? Možná je čas přehodnotit platové tabulky a odměnit ty, kteří to s námi táhnou už dlouhá léta.</li>
+      <li><strong>Společnost Spring Walk:</strong> Zvyšování penzijního věku vyžaduje přehodnocení mnoha aspektů pracovního života, včetně platových tabulek. Odbory a zástupci samospráv poukazují na nutnost zohlednit zkušenosti a dlouholetou praxi zaměstnanců veřejného sektoru, kterým se v závěru kariéry často snižují platy. Je důležité, aby platové tarify reflektovaly nejen třídu a stupeň, ale také hodnotu, kterou zkušení pracovníci přinášejí. Jakým způsobem byste vy osobně navrhli upravit platové tabulky, aby byly spravedlivější?</li>
+      <li><strong>Jednatel (formální):</strong> Změny v platových tabulkách jsou nezbytné, aby odpovídaly aktuálním potřebám trhu práce a demografickým změnám. Soud a zástupci krajů vyzdvihují potřebu reflektovat zvyšování důchodového věku a prodlužování pracovní kariéry. To vyžaduje promyšlený přístup k odměňování, který zohlední zkušenosti zaměstnanců ve veřejném sektoru. Jaké konkrétní kroky byste doporučili k dosažení spravedlivějšího odměňování v této oblasti?</li>
+      <li><strong>Jednatel (hravý):</strong> Představte si, že platové tabulky jsou jako puzzle, které se musí neustále přizpůsobovat novým kouskům skládačky, jako je zvyšující se penzijní věk. Odbory a soudy teď volají po úpravách, aby odměny odrážely nejen třídy a stupně, ale také letitou praxi a moudrost našich starších kolegů. Je fascinující, jak se může naše vnímání hodnoty práce měnit s časem, že? Jak byste si představovali ideální tabulku, která by spravedlivě odměňovala všechny generace zaměstnanců?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

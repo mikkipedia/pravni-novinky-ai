@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,22 +91,22 @@
 
     <article class="article">
       <h2>Nové zákony o ochraně osobních údajů na Slovensku</h2>
-  <p>Slovensko se chystá na novou legislativu, která se zaměří na ochranu osobních údajů. Tyto zákony mají za cíl oddělit policejní režim od běžného zpracování dat a omezit duplicity s nařízením GDPR. V důsledku toho by měla být zajištěna lepší ochrana soukromí jednotlivců. Nová pravidla také reagují na moderní hrozby, jako jsou například deepfake technologie, které mohou narušit důvěru v digitální obsah.</p>
-  <h2>Ochrana dat v praxi</h2>
-  <p>Nové zákony přinášejí důležité změny, které by měly zjednodušit procesy spojené s ochranou osobních údajů. Například budou jasně vymezeny povinnosti různých subjektů, které s osobními údaji pracují. To může pomoci firmám a institucím lépe se orientovat v legislativních požadavcích. V případě potřeby právního poradenství je dobré se obrátit na odborníky, kteří mohou poskytnout užitečné informace o tom, jak se na nové zákony připravit.</p>
-  <p>Zavedení těchto změn by mělo přispět k větší transparentnosti a odpovědnosti v oblasti zpracování osobních údajů. Slovensko se tak snaží reagovat na aktuální výzvy a zajistit ochranu svých občanů v digitálním světě. Pro více informací o této problematice můžete navštívit <a href="https://www.pravniprostor.cz/clanky/pravo-it/novy-zakony-o-ochrane-osobnich-udaju-na-slovensku" target="_blank" rel="noopener">zdroj</a>.</p>
+  <p>Slovensko připravuje nové zákony, které se zaměřují na ochranu osobních údajů. Tyto zákony mají za cíl oddělit policejní režim od civilního a zároveň omezit duplicity s evropským nařízením GDPR. Nové předpisy také reagují na moderní hrozby, jako je například deepfake technologie, která může mít závažné důsledky pro soukromí jednotlivců.</p>
+  <p>Jedním z hlavních cílů nových zákonů je zjednodušení legislativního rámce. To by mělo usnadnit dodržování pravidel jak pro jednotlivce, tak pro firmy. Zákony také zahrnují povinnosti pro správce osobních údajů, aby zajistili větší transparentnost v nakládání s daty. Očekává se, že tyto změny přinesou větší ochranu osobních údajů a zároveň posílí důvěru veřejnosti.</p>
+  <p>V souvislosti s novými předpisy se doporučuje, aby organizace prověřily své současné postupy a případně se obrátily na odborníky v oblasti právního poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, aby zajistily, že splňují nové požadavky. Je důležité být proaktivní a přizpůsobit se měnícím se legislativním požadavkům.</p>
+  <p>Tyto změny jsou důležité v kontextu rostoucího významu ochrany osobních údajů v digitálním světě. Nové zákony by měly přinést jasnější pravidla a pomoci chránit jednotlivce před zneužitím jejich osobních informací. Více informací o těchto změnách lze nalézt v článku na <a href="https://www.pravniprostor.cz/clanky/pravo-it/novy-zakony-o-ochrane-osobnich-udaju-na-slovensku" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Na Slovensku se připravují nové zákony o ochraně osobních údajů, které mají za cíl lépe chránit soukromí občanů. Tyto legislativní změny oddělují policejní režim a reagují na hrozby jako jsou deepfake technologie.</li>
-      <li><strong>Jednatel (formální):</strong> Nové zákony o ochraně osobních údajů na Slovensku se zaměřují na zefektivnění právního rámce a snížení duplicit s GDPR. Zohledňují také aktuální hrozby a výzvy, kterým čelíme v digitálním světě, jako jsou manipulativní technologie.</li>
-      <li><strong>Jednatel (hravý):</strong> Slovensko se chystá na změny, které by mohly udělat z osobních údajů zase o něco bezpečnější místo! Nové zákony se budou vyrovnávat s policejními praktikami a dokonce i s hrozbami, jako je deepfake. Kdo říká, že legislativa nemůže být zajímavá?</li>
+      <li><strong>Společnost Spring Walk:</strong> Slovenská legislativa se připravuje na významné změny v oblasti ochrany osobních údajů. Nové zákony mají za cíl oddělit policejní režim a omezit duplicity s GDPR, což je krok správným směrem. Důležité je také reagovat na nové hrozby, jako jsou deepfake technologie, které mohou narušit důvěru v digitální prostředí. Jaké výzvy a příležitosti podle vás tyto změny přinesou pro firmy a jednotlivce?</li>
+      <li><strong>Jednatel (formální):</strong> Nové zákony o ochraně osobních údajů na Slovensku představují důležitou součást modernizace legislativy v této oblasti. Oddělení policejního režimu a snížení duplicit s GDPR napomůže k lepší ochraně soukromí občanů. Vzhledem k rostoucímu výskytu technologií jako deepfake je nezbytné, aby podniky byly připraveny na nové výzvy. Jakým způsobem se vaší firmě daří reagovat na aktuální trendy v ochraně osobních údajů?</li>
+      <li><strong>Jednatel (hravý):</strong> Slovensko se chystá na revoluci v ochraně osobních údajů a my se na to díváme jako na příležitost! Nové zákony, které odliší policejní režim a zbaví nás duplicit s GDPR, jsou jako nový nástroj v našem digitálním arzenálu. A co teprve deepfake? To je jako cyber-pantomima, kterou musíme umět rozpoznat! Co vy na to? Jak se připravujete na tyto technologické výzvy?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

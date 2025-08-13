@@ -1,6 +1,7 @@
 Model: gpt-4o-mini
 Položky: 26 (vybráno 21)
-Input tokens:  27668
-Output tokens: 14559
-Cena (odhad):  $0.0129  (~0.32 Kč při kurzu 24.5)
+Input tokens:  28382
+Output tokens: 19241
+Cena (odhad):  $0.0158  (~0.39 Kč při kurzu 24.5)
 Ceník: input $0.15/1M, output $0.6/1M
+Rozsah dat: 10. 8. 2025 – 13. 8. 2025

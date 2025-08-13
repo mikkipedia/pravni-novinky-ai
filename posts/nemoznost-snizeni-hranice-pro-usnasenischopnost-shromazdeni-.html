@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -91,24 +90,24 @@
     </header>
 
     <article class="article">
-      <h2>Problémy s usnášeníschopností shromáždění</h2>
-  <p>Společenství vlastníků, které má vysoký počet členů, se často setkává s obtížemi při organizaci shromáždění. Pokud má společenství několik desítek nebo dokonce stovek vlastníků, je obtížné zajistit, aby se na shromáždění dostavil potřebný počet lidí. Tento problém ztěžuje rozhodování o důležitých otázkách, jako jsou opravy, údržba nebo rozpočet.</p>
-  <p>Některá společenství se snaží snížit hranici pro usnášeníschopnost, aby usnadnila dosažení potřebného počtu účastníků. Avšak právní úprava to neumožňuje, což může vést k frustraci a nespokojenosti mezi vlastníky. Je důležité si uvědomit, že i když se zdá, že by snížení hranice mohlo být řešením, právní rámec to neumožňuje.</p>
-  <h2>Možná řešení a doporučení</h2>
-  <p>V takových případech je dobré hledat alternativní způsoby, jak zvýšit účast na shromážděních. Například lze zlepšit komunikaci mezi vlastníky a informovat je o důležitosti účasti. Právní poradenství, jako je to, které nabízí <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, může pomoci navrhnout efektivní strategie pro zajištění účasti a zlepšení organizace shromáždění.</p>
-  <p>Celkově je důležité, aby společenství vlastníků hledala cesty, jak překonat tyto výzvy. Bez aktivní účasti členů je obtížné dosáhnout konsenzu a efektivně spravovat společné záležitosti. V případě zájmu o podrobnosti o této problematice se můžete podívat na <a href="https://www.epravo.cz/top/clanky/nemoznost-snizeni-hranice-pro-usnasenischopnost-shromazdeni-vlastniku-aneb-pribeh-zklamaneho-spolecenstvi-119912.html" target="_blank" rel="noopener">zdroj</a>.</p>
+      <h2>Problémy s usnášeníschopností shromáždění vlastníků</h2>
+  <p>Společenství vlastníků, která mají vysoký počet členů, často čelí výzvám při organizaci shromáždění. Když se sejde několik desítek nebo dokonce stovek vlastníků, je obtížné dosáhnout potřebného počtu přítomných pro usnášeníschopnost. Tato situace může vést k frustraci a zklamání, zejména pokud je třeba projednat důležité záležitosti.</p>
+  <p>Jedním z hlavních problémů je, že většina vlastníků se na shromáždění jednoduše nedostaví. Důvody mohou být různé, od časových překážek po nedostatek zájmu o projednávané body. To pak znemožňuje schválení potřebných rozhodnutí, což může mít negativní dopad na fungování celého společenství. Je proto důležité hledat efektivní řešení, jak tuto situaci zlepšit.</p>
+  <h2>Možnosti řešení a doporučení</h2>
+  <p>Jedním z možných řešení je zvažování snížení hranice pro usnášeníschopnost. Bohužel, právní úpravy v této oblasti jsou striktní a neumožňují snadné změny. Společenství tak mohou mít pocit bezradnosti. V takovém případě může být užitečné vyhledat odborné právní poradenství, které pomůže najít alternativní cesty, jak zlepšit účast vlastníků na shromážděních. Například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a> může nabídnout cenné rady a strategie.</p>
+  <p>Celkově je důležité, aby společenství vlastníků aktivně hledala způsoby, jak zvýšit účast na shromážděních a zajistit, že potřebná rozhodnutí budou moci být přijata včas. Více informací o tomto tématu naleznete v článku <a href="https://www.epravo.cz/top/clanky/nemoznost-snizeni-hranice-pro-usnasenischopnost-shromazdeni-vlastniku-aneb-pribeh-zklamaneho-spolecenstvi-119912.html" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Vysoký počet vlastníků v bytových společenstvích může přinášet řadu výzev, zejména pokud jde o dosažení usnášeníschopnosti shromáždění. Často tak dochází k frustraci a zklamání, když se potřebný počet vlastníků nesejde.</li>
-      <li><strong>Jednatel (formální):</strong> Společenství vlastníků s vyšším počtem členů čelí obtížím při organizaci shromáždění, což může vést k neefektivnímu rozhodování. Zajištění účasti většího počtu vlastníků by mělo být prioritou pro každé společenství.</li>
-      <li><strong>Jednatel (hravý):</strong> Když se v bytovém společenství sejde více vlastníků než hráčů na fotbalovém hřišti, je to obvykle úspěch! Ale co dělat, když se na shromáždění sejde méně lidí než na pikniku? Zkuste najít způsob, jak je motivovat, aby dorazili!</li>
+      <li><strong>Společnost Spring Walk:</strong> V mnoha společenstvích vlastníků se stále častěji objevuje problém s nízkou účastí na shromážděních. Při vysokém počtu vlastníků je obtížné dosáhnout potřebné hranice pro usnášeníschopnost, což může vést k frustraci a zklamání. To, že se nesejdou potřební lidé, může brzdit důležitá rozhodnutí, která ovlivňují kvalitu života v daném domě. Jaké alternativy mají společenství k dispozici, aby tento problém vyřešila? Možná by stálo za to zamyslet se nad novými formami komunikace a zapojení vlastníků.</li>
+      <li><strong>Jednatel (formální):</strong> Otázka usnášeníschopnosti shromáždění vlastníků je klíčová pro efektivní správu jakéhokoli společenství. Zkušenosti ukazují, že společenství s více než desítkami či stovkami vlastníků čelí výrazným výzvám. Mnozí vlastníci se z různých důvodů nemohou účastnit, což ztěžuje dosažení potřebného počtu. Jak tedy motivovat vlastníky, aby se aktivně zapojili do rozhodování? Možná by pomohlo zorganizovat virtuální setkání nebo využít hlasovací aplikace.</li>
+      <li><strong>Jednatel (hravý):</strong> Představte si shromáždění s několika desítkami nebo stovkami vlastníků, kde každý má svůj názor, ale na schůzi se sejde jen hrstka z nich. To je realita mnoha společenství a může být příčinou velkého zklamání. Co kdybychom začali uvažovat o alternativních způsobech zapojení? Například, co takhle uspořádat &quot;pohádkové&quot; shromáždění, kde by každý měl možnost vyjádřit svůj názor prostřednictvím krátkých videí? Vytvořili bychom tak prostor, kde by se každý mohl cítit jako součást komunity, i když by se nemohl dostavit osobně.</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

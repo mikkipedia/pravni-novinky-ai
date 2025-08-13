@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,22 +91,21 @@
 
     <article class="article">
       <h2>Incident v zooparku a jeho důsledky</h2>
-  <p>Nedávný incident v Zooparku ve Zvoli u Prahy upozornil na nedostatky v legislativě týkající se chovu nebezpečných zvířat. Lev, který utekl z klece, byl nakonec zastřelen policií. Tato událost vyvolala otázky ohledně bezpečnosti a kontroly chovu takových zvířat. Spolek Svoboda zvířat tvrdí, že situace odhalila mezery v zákonech, které umožňují obcházení předpisů.</p>
-  <p>Ministerstvo zemědělství však situaci hodnotí jinak. Podle jeho představitelů šlo o selhání jednotlivce, nikoli o systémový problém. Úřad považuje současnou legislativu za dostatečnou, přičemž souhlasí s myšlenkou přísnějších postihů pro porušovatele pravidel. Tato reakce vzbuzuje obavy, zda jsou stávající pravidla skutečně efektivní.</p>
-  <p>Důsledky incidentu by mohly mít dalekosáhlé následky. Zvyšující se tlak na úřady může vést k revizi legislativy a přísnějším kontrolám. Je důležité, aby se právní rámec přizpůsobil aktuálním potřebám a zajistil ochranu jak zvířat, tak návštěvníků. V případě nejasností ohledně právních předpisů může pomoci odborné právní poradenství, které poskytuje například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Tento incident ukazuje, jak důležité je mít jasně definovaná pravidla a jejich důslednou kontrolu. Bez toho se mohou podobné situace opakovat, což by mohlo ohrozit nejen zvířata, ale i lidi. Pro více informací o této problematice se můžete podívat na <a href="https://advokatnidenik.cz/2025/08/13/nedostatecne-kontrolovanou-legislativu-odhalil-incident-v-zooparku/" target="_blank" rel="noopener">zdroj</a>.</p>
+  <p>Nedávný incident v Zooparku ve Zvoli u Prahy odhalil závažné nedostatky v legislativě týkající se chovu nebezpečných zvířat. Lev, který utekl z klece, byl nakonec zastřelen policií. Tento případ upozornil na mezery v zákonech, které umožňují obcházení pravidel. Spolek Svoboda zvířat vyjádřil obavy, že současný systém kontroly není dostatečný.</p>
+  <p>Ministerstvo zemědělství se k situaci postavilo s názorem, že šlo o selhání jedince. Podle úřadu je stávající legislativa dostatečná a nevyžaduje zásadní změny. Nicméně se shoduje na potřebě důslednějších postihů pro chovatele, kteří nedodržují stanovené normy. Tato situace vyvolává otázky o tom, jak efektivně jsou pravidla prosazována a jaká je odpovědnost chovatelů.</p>
+  <p>Je důležité, aby se veřejnost a odborníci zabývali tímto tématem. Kromě legislativních změn může být užitečné vyhledat odborné <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které může pomoci chovatelům lépe porozumět svým povinnostem a zajistit bezpečnost jak zvířat, tak návštěvníků.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Incident v Zooparku ve Zvoli nám jasně ukazuje, jak důležité je mít efektivní legislativu pro chov nebezpečných zvířat. Je alarmující, že se stále objevují mezery, které mohou ohrozit nejen zvířata, ale i lidi.</li>
-      <li><strong>Jednatel (formální):</strong> Nedávný útěk lva z klece v Zooparku ve Zvoli odhalil vážné nedostatky v legislativě týkající se chovu nebezpečných zvířat. Je nezbytné, aby se úřady zaměřily na důslednější prosazování a kontrolu pravidel, aby se předešlo podobným incidentům v budoucnu.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že lev v zooparku může udělat takovou nečekanou &quot;exkurzi&quot;? Tento incident nám ukazuje, že je čas zamyslet se nad tím, jak chráníme nejen zvířata, ale i nás samotné. Jaké další „únikové plány“ by nás mohly překvapit?</li>
+      <li><strong>Společnost Spring Walk:</strong> Incident v Zooparku ve Zvoli opět upozornil na nedostatečnou kontrolu legislativy týkající se chovu nebezpečných zvířat. Uteklý lev, který musel být zastřelen, je tragickým důsledkem mezer v pravidlech, jež by měla zajišťovat bezpečnost nejen pro zvířata, ale i pro návštěvníky. Ministerstvo zemědělství se sice brání tvrzením, že jde o selhání jedince, ale je zásadní ptát se, zda je systém dostatečně robustní. Jaké kroky bychom měli podniknout, aby se podobné incidenty neopakovaly? Věřím, že diskuse o zlepšení legislativy a jejím důslednějším prosazování by měla být na pořadu dne.</li>
+      <li><strong>Jednatel (formální):</strong> Nedávný incident v zooparku nám znovu připomíná, jak důležité je mít dobře fungující legislativu v oblasti chovu nebezpečných zvířat. Zatímco ministerstvo považuje stávající pravidla za dostatečná, je jasné, že existují mezery, které mohou vést k nebezpečným situacím. Je na čase se zamyslet nad tím, jak můžeme zlepšit kontrolní mechanismy a zajistit, aby byl chov zvířat bezpečný a etický. Jaké jsou vaše názory na současnou legislativu? Je potřeba ji zásadně přepracovat, nebo stačí důslednější vymáhání stávajících pravidel?</li>
+      <li><strong>Jednatel (hravý):</strong> Zvířata v zoo by měla být pod ochranou, ne na útěku! To, co se stalo v Zooparku ve Zvoli, je jako scénář z hororu – lev utekl a musel být zastřelen. Zatímco ministerstvo se tváří, že je vše v pořádku, my víme, že to tak není. Otázka zní, jak můžeme ochránit jak zvířata, tak lidi? Pojďme se zamyslet nad tím, jaké inovace a nápady by mohly přispět k bezpečnějšímu chovu zvířat – co byste navrhli vy?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

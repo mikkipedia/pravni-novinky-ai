@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,21 +91,21 @@
 
     <article class="article">
       <h2>Nová metodika pro krizové situace</h2>
-  <p>Zodpovědnost za reakci na násilné útoky a krizové situace leží většinou na institucích a firmách. Ministerstvo vnitra proto vytvořilo novou metodiku, která má pomoci provozovatelům takzvaných měkkých cílů. Tento dokument je zaměřen na přípravu na možné hrozby a na to, jak efektivně reagovat v krizových chvílích.</p>
-  <p>Cílem metodiky je minimalizovat ztráty na životech, majetku a také na reputaci institucí. Dokument poskytuje konkrétní doporučení, jak se vyrovnat se závažnými situacemi. Instituce by měly mít připravené plány a postupy, které jim pomohou rychle a účinně reagovat na útoky nebo jiné krizové události. V případě potřeby mohou instituce využít i odborné právní poradenství, které jim pomůže lépe porozumět svým povinnostem a právům v těchto situacích.</p>
-  <p>Je důležité, aby si každá instituce uvědomila, že příprava na krizové situace je klíčová. Včasná a správná reakce může zachránit životy a ochránit majetek. Nová metodika je tedy krokem správným směrem, který by měl pomoci zlepšit bezpečnostní standardy v České republice. Více informací o metodice najdete v článku <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">zdroj</a>.</p>
+  <p>Zodpovědnost za reakci na násilné útoky a jiné krizové situace leží především na institucích a firmách. Ministerstvo vnitra proto vypracovalo novou metodiku, která má pomoci provozovatelům takzvaných měkkých cílů, jako jsou školy, nemocnice nebo obchodní centra, lépe se připravit na možné hrozby. Cílem dokumentu je minimalizovat ztráty na životech, majetku, ale také na reputaci a důvěře veřejnosti.</p>
+  <p>Metodika obsahuje konkrétní doporučení, jak by měly instituce reagovat v případě útoku. Zaměřuje se na prevenci, včasné rozpoznání hrozeb a efektivní komunikaci během krize. Je důležité, aby každá instituce měla připravený plán, který zahrnuje školení zaměstnanců a simulace krizových situací. Právní poradenství může také sehrát klíčovou roli při přípravě těchto plánů.</p>
+  <p>Důležitost této metodiky nelze podceňovat. V dnešní době, kdy se rizika a hrozby neustále vyvíjejí, je nutné, aby se instituce aktivně připravovaly na možné scénáře. Více informací o této problematice a metodice najdete v článku na <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">zdroji</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Nová metodika od Ministerstva vnitra přináší důležitý návod pro instituce a firmy, jak efektivně reagovat na krizové situace. Tímto krokem se posiluje jejich schopnost ochránit nejen lidské životy, ale i majetek a důvěru veřejnosti.</li>
-      <li><strong>Jednatel (formální):</strong> Zodpovědnost institucí v případě násilných útoků a krizí je zásadní. Nová metodika, kterou připravilo Ministerstvo vnitra, je klíčovým nástrojem pro zajištění bezpečnosti a minimalizaci škod.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by chtěl čelit krizovým situacím bez pořádného plánu? Nová metodika od Ministerstva vnitra nás učí, jak být připraveni a zvládnout nečekané situace jako profíci. Bezpečnost je totiž na prvním místě!</li>
+      <li><strong>Společnost Spring Walk:</strong> V dnešní době je příprava na krizové situace nezbytností pro každou instituci. Nová metodika, kterou představilo Ministerstvo vnitra, se zaměřuje na provozovatele měkkých cílů a nabízí konkrétní kroky, jak reagovat na potenciální hrozby. Její cílem je minimalizovat ztráty na životech, majetku i reputaci. Věřím, že implementace této metodiky přispěje k větší bezpečnosti a důvěře v naše instituce. Jaké opatření považujete za nezbytná ve vašem oboru?</li>
+      <li><strong>Jednatel (formální):</strong> Ministerstvo vnitra zavedlo novou metodiku, která je zaměřena na zlepšení reakce institucí na násilné útoky a krize. Tato metodika by měla sloužit jako návod pro provozovatele měkkých cílů, jak se efektivně připravit na možné hrozby a jak zvládat krizové situace s minimálními následky. Je zásadní, aby se všechny instituce aktivně zapojily do její implementace a přizpůsobily své krizové plány. Co si myslíte o důležitosti pravidelných školení pro zaměstnance v této oblasti?</li>
+      <li><strong>Jednatel (hravý):</strong> Představte si, že jste na palubě lodi a náhle se objeví bouře. Co byste dělali? Nová metodika od Ministerstva vnitra je jako kompas, který nám ukazuje, jak se vyhnout úskalím krizových situací. Pomůže institucím lépe reagovat na útoky a krize, aby se minimalizovaly ztráty na životech a majetku. Je důležité, abychom se na takové situace připravovali, stejně jako se připravujeme na výlet na moře. Jaké strategie byste doporučili pro zlepšení krizového řízení?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

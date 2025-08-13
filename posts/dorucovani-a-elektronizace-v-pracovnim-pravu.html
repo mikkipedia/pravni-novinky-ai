@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,22 +91,22 @@
 
     <article class="article">
       <h2>Historie doručování v pracovním právu</h2>
-  <p>Doručování dokumentů má v pracovním právu dlouhou historii. V minulosti se dokumenty předávaly osobně, často za použití pěstního klínu jako symbolu. Tento způsob byl však nepraktický a časově náročný. S rozvojem technologií se způsoby doručování změnily. Dnes se čím dál více přechází na elektronické formy, které usnadňují komunikaci mezi zaměstnavateli a zaměstnanci.</p>
+  <p>Doručování dokumentů v pracovním právu má dlouhou historii. V minulosti se často využívaly tradiční metody, jako je osobní doručení nebo zaslání poštou. Tyto způsoby byly časově náročné a často vedly k problémům s dokazováním doručení. V posledních letech však došlo k výrazné změně, kdy se začalo více využívat elektronických metod.</p>
   <h2>Elektronizace a její výhody</h2>
-  <p>Elektronizace doručování přináší řadu výhod. Umožňuje rychlejší a efektivnější výměnu informací. Důležité dokumenty, jako jsou pracovní smlouvy nebo výpovědi, mohou být zasílány okamžitě a se zaručenou právní platností. Elektronický podpis zajišťuje, že dokumenty jsou autentické a nebyly pozměněny. Pro firmy je to nejen úspora času, ale i nákladů na papír a poštovné. V případě nejasností ohledně právních aspektů elektronizace se doporučuje vyhledat odborné právní poradenství, například od <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>.</p>
-  <p>Důležité je také zmínit, že elektronizace doručování se stává standardem. V současnosti se stále více zaměstnavatelů a zaměstnanců adaptuje na tyto moderní metody. V budoucnu můžeme očekávat další zjednodušení a zefektivnění procesů v pracovním právu. Pro více informací o aktuálních trendech v této oblasti se můžete podívat na <a href="https://www.pravniprostor.cz/clanky/pracovni-pravo/dorucovani-elektronizace-v-pracovnim-pravu" target="_blank" rel="noopener">zdroj</a>.</p>
+  <p>Dnes je elektronické doručování běžnou praxí. Díky elektronickému podpisu mohou zaměstnavatelé a zaměstnanci snadno a rychle komunikovat. Tato metoda je nejen efektivní, ale také bezpečná. Umožňuje snadné sledování doručení a zjednodušuje administrativní procesy. Pro firmy, které chtějí optimalizovat své pracovní postupy, může být užitečné zvážit odborné <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které může poskytnout cenné rady ohledně implementace těchto nových technologií.</p>
+  <p>Doručování se tak posunulo od pěstního klínu k modernímu elektronickému podpisu, což usnadňuje život všem zúčastněným. Pro více informací o této problematice se můžete podívat na <a href="https://www.pravniprostor.cz/clanky/pracovni-pravo/dorucovani-elektronizace-v-pracovnim-pravu" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Doručování a elektronizace v pracovním právu prošly významnými změnami. Od tradičního doručování osobně až po moderní elektronické podpisy – tento vývoj usnadňuje komunikaci mezi zaměstnavateli a zaměstnanci.</li>
-      <li><strong>Jednatel (formální):</strong> V oblasti pracovního práva se posunujeme od archaických metod doručování k efektivním elektronickým řešením. Význam elektronizace je nezpochybnitelný a přináší mnohé výhody pro všechny zúčastněné strany.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že pěstní klín a papírové zásilky jednou nahradí elektronické podpisy? Doručování v pracovním právu si prošlo skutečnou revolucí – od pravěku až po digitální věk!</li>
+      <li><strong>Společnost Spring Walk:</strong> Doručování v pracovním právu prošlo v posledních desetiletích fascinující transformací. Od archaických metod, jakými byly osobní doručení a dokonce i pěstní klíny, jsme se dostali k moderním technologiím, které usnadňují komunikaci a zajišťují právní platnost dokumentů. Elektronické podpisy se stávají standardem, a proto je důležité, abychom se s těmito změnami seznámili a adaptovali na ně. Jaké zkušenosti máte s elektronizací ve své praxi?</li>
+      <li><strong>Jednatel (formální):</strong> V oblasti pracovního práva hraje doručování klíčovou roli v zajištění právní jistoty pro obě strany. Není to tak dávno, co jsme se setkávali s klasickými metodami doručení, které měly svá úskalí. Dnes, s rozvojem elektronických nástrojů, se můžeme spolehnout na efektivní a bezpečné způsoby, jak doručit důležité dokumenty. Jakým způsobem zajišťujete správnost a platnost doručení v rámci svého týmu?</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že doručování v pracovním právu projde takovou revolucí? Od pěstního klínu až po elektronické podpisy je to jako z pohádky! Dnes máme možnost posílat dokumenty na jeden klik, což šetří čas a nervy. Jaké kuriózní situace jste zažili při doručování dokumentů?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

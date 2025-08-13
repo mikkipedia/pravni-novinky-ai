@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -91,23 +90,23 @@
     </header>
 
     <article class="article">
-      <h2>Právo pozůstalých na informace</h2>
-  <p>Ústavní soud rozhodl, že pozůstalí po obětech střelby na Filozofické fakultě Univerzity Karlovy mají právo na informace z vyšetřování, které provádí Generální inspekce bezpečnostních sborů (GIBS). Tento nález, zveřejněný 12. srpna, se týká dodatečného vyšetřování, které má zajistit, že všechny okolnosti tragédie budou řádně prozkoumány.</p>
-  <p>Rodiče obětí se dlouhodobě snažili získat informace o možném pochybení ze strany bezpečnostních sborů. Jejich žádosti však byly původně zamítnuty. Nyní se situace změnila a pozůstalí mají právo být informováni o výsledcích vyšetřování. Tímto rozhodnutím Ústavní soud posiluje práva obětí a jejich rodin v těžkých životních situacích.</p>
-  <p>Je důležité, aby pozůstalí věděli, jak mohou svá práva uplatnit. V některých případech může být užitečné vyhledat odborné právní poradenství, například od organizace, která se specializuje na pomoc v podobných situacích, jako je <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Toto rozhodnutí je významným krokem v oblasti ochrany práv pozůstalých a ukazuje, jak důležité je transparentní vyšetřování tragických událostí. Pozůstalí mají nyní možnost lépe porozumět okolnostem, které vedly k jejich ztrátě, a hledat spravedlnost.</p>
+      <h2>Práva pozůstalých po obětech střelby</h2>
+  <p>Ústavní soud České republiky nedávno rozhodl, že pozůstalí po obětech střelby na Filozofické fakultě Univerzity Karlovy mají právo na informace z vyšetřování, které provádí Generální inspekce bezpečnostních sborů (GIBS). Tento nález, zveřejněný 12. srpna, se týká dodatečného vyšetřování a podtrhuje důležitost transparentnosti v takových citlivých případech.</p>
+  <p>Rodiče obětí požadovali informace o možném pochybení inspekce, avšak jejich žádosti byly dříve zamítnuty. Ústavní soud nyní potvrdil, že pozůstalí mají právo být informováni o průběhu vyšetřování a jeho výsledcích. Tímto rozhodnutím se otevírá cesta k větší odpovědnosti a důvěře v bezpečnostní složky.</p>
+  <p>Je důležité, aby pozůstalí věděli, jaké mají možnosti a práva. V takových situacích může být užitečné vyhledat odborné právní poradenství, jako je například to, které nabízí <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Pomoc odborníků může usnadnit orientaci v právních otázkách a zajistit, že budou dodržena všechna práva pozůstalých.</p>
+  <p>Tento nález Ústavního soudu je významným krokem k zajištění transparentnosti a odpovědnosti v případech, které se týkají ztráty lidského života. Pozůstalí nyní mají jasnější cestu, jak se domáhat svých práv a informací, které jsou pro ně zásadní. Více informací o tomto rozhodnutí najdete v článku na <a href="https://advokatnidenik.cz/2025/08/12/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informace-z-setreni-gibs/" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Ústavní soud potvrdil právo pozůstalých po obětech střelby na Filozofické fakultě UK na informace z vyšetřování GIBS. Tento nález zdůrazňuje důležitost transparentnosti a odpovědnosti v případech, které se dotýkají lidských životů.</li>
-      <li><strong>Jednatel (formální):</strong> Nález Ústavního soudu sp. zn. II. ÚS 470/25 přináší důležité poselství o právu pozůstalých na informace. Je nezbytné, aby vyšetřovací orgány fungovaly efektivně a poskytovaly potřebné informace těm, kteří byli zasaženi tragédií.</li>
-      <li><strong>Jednatel (hravý):</strong> Když se právo setkává s realitou, vznikají důležité příběhy. Nález Ústavního soudu ukazuje, že i v těžkých chvílích mají pozůstalí právo na odpovědi a to je něco, co si zasloužíme všichni.</li>
+      <li><strong>Společnost Spring Walk:</strong> Nález Ústavního soudu, který přiznává pozůstalým po obětech střelby na Filozofické fakultě UK právo na informace z šetření GIBS, je důležitým krokem směrem k transparentnosti a spravedlnosti. Tento případ ukazuje, jak klíčové je, aby rodiny obětí měly přístup k relevantním informacím, které mohou objasnit okolnosti tragédie. Otevřenost ve vyšetřování takových událostí může přispět nejen k uzavření smutných kapitol, ale i k prevenci budoucích incidentů. Jaké další kroky by mohl stát učinit, aby zajistil, že podobné situace se v budoucnu nebudou opakovat?</li>
+      <li><strong>Jednatel (formální):</strong> Dnešní rozhodnutí Ústavního soudu je důkazem, že právo na informace a spravedlnost je fundamentální hodnotou naší společnosti. Pozůstalí po obětech tragédií by měli mít možnost se dozvědět, co se skutečně stalo, a jak byla situace řešena. Zajištění transparentnosti v těchto záležitostech nejen posiluje důvěru veřejnosti v instituce, ale také poskytuje důležité poznatky pro budoucí zlepšení bezpečnostních postupů. Jaký význam má pro vás transparentnost v podobných případech?</li>
+      <li><strong>Jednatel (hravý):</strong> Když se mluví o spravedlnosti a právech pozůstalých, je to jako složitý puzzle, kde každý kousek hraje důležitou roli. Nález Ústavního soudu ukazuje, že rodiny obětí si zaslouží mít všechny kousky na stole, aby si mohly poskládat obraz situace, která je zasáhla. Informace z vyšetřování GIBS nejsou jen teoretickým právem, ale konkrétním krokem k uzavření jedné z nejtemnějších kapitol jejich života. Jak si myslíte, že by měly být takové informace sdělovány, aby byly co nejcitlivější?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

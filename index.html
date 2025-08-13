@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,15 +76,18 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>Právní novinky – AI generované články</h1>
-      <div class="meta">Poslední aktualizace: 13. 8. 2025 20:52</div>
+      <div class="meta">Poslední aktualizace: 13. 8. 2025 21:12</div>
+      <div class="meta">Časový rozsah načtených novinek: 10. 8. 2025 – 13. 8. 2025</div>
+      <div class="meta">Načteno: 26 položek · Vybráno: 21 článků</div>
     </header>
 
     <div class="grid">
@@ -163,7 +164,7 @@
   <a class="card" href="posts/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu.html">
       <div class="meta">Advokátní deník · 12. 8. 2025 07:30</div>
       <h2>Unie státních zástupců usiluje o doplacení loňských platů</h2>
-      <div class="meta">Poutavost: <strong>4/5</strong></div>
+      <div class="meta">Poutavost: <strong>3/5</strong></div>
     </a>
   <a class="card" href="posts/fashion-upcycling-non-merci-vzkazuje-herm-s.html">
       <div class="meta">epravo.cz - Články · 12. 8. 2025 02:10</div>
@@ -197,7 +198,7 @@
     </a>
     </div>
 
-    <div class="footer">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

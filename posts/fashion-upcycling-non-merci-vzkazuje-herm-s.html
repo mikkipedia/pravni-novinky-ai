@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -91,23 +90,23 @@
     </header>
 
     <article class="article">
-      <h2>Co je fashion upcycling?</h2>
-  <p>Fashion upcycling je trend, který spočívá v přetváření starších oděvů na nové módní kousky. V poslední době se těší velké popularitě, zejména v souvislosti s udržitelností. Mnoho lidí se snaží snížit svůj ekologický otisk tím, že dávají starým věcem nový život. Tento proces může zahrnovat různé techniky, jako je šití, barvení nebo kombinování různých materiálů.</p>
-  <h2>Kde je hranice mezi kreativitou a právem?</h2>
-  <p>Zní to lákavě, ale co se stane, když do upcyclingu zapojíte luxusní značkový produkt? Například, pokud vezmete šátek od známé značky Hermès, rozstříháte ho a přišijete na džínovou bundu, může to mít právní důsledky. Takový krok může být považován za porušení autorských práv, což by mohlo vést k právním sporům. I když výsledek může vypadat stylově a originálně, je důležité si uvědomit, že hranice mezi kreativitou a porušením práv je tenká. V případě pochybností je dobré se obrátit na odborníky na právní poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Značka Hermès se k tomuto tématu vyjádřila jasně: fashion upcycling, který zahrnuje jejich produkty, není vítán. To posílá důležitou zprávu o ochraně duševního vlastnictví v módním průmyslu. Udržitelnost je důležitá, ale je nutné respektovat práva tvůrců a značek.</p>
+      <h2>Udržitelnost a módní upcycling</h2>
+  <p>V posledních letech se stále více mluví o udržitelnosti v módním průmyslu. Jedním z trendů je fashion upcycling, což znamená přetváření starších oděvů na nové módní kousky. Tento proces může zahrnovat různé techniky, jako je například kombinování různých materiálů nebo úprava stávajících kousků. Mnozí lidé to považují za kreativní způsob, jak snížit odpad a podpořit ekologické myšlení.</p>
+  <h2>Právní nástrahy módního upcyclingu</h2>
+  <p>Nicméně, i když se upcycling může zdát jako nevinná kreativní činnost, může se snadno dostat do konfliktu se zákonem. Představte si, že vezmete luxusní značkový šátek, rozstříháte ho a přišijete na džínovou bundu, kterou pak prodáte. Výsledkem může být stylový a originální kousek, ale zároveň to může být považováno za porušení autorských práv. Značky jako Hermès jasně dávají najevo, že na takové praktiky pohlížejí negativně. Je tedy důležité mít na paměti právní aspekty, které s upcyclingem souvisejí, a v případě nejistoty se obrátit na odborníky v oblasti právního poradenství, například na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <p>Vzhledem k tomu, že kreativita a právo se mohou snadno střetnout, je dobré být obezřetný. Udržitelnost by neměla být na úkor dodržování právních předpisů. V konečném důsledku je důležité najít rovnováhu mezi inovací a respektem k právům ostatních. V módním světě, kde se trendy rychle mění, je vhodné mít na paměti, jaké důsledky mohou mít naše kreativní nápady.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Fashion upcycling se stává trendy, ale co když kreativita překročí zákon? Luxusem nabité značky, jako je Hermès, chrání své designy a autorská práva. Tenká hranice mezi uměním a legislativou nás nutí zamyslet se nad tím, kde leží etika v módním průmyslu.</li>
-      <li><strong>Jednatel (formální):</strong> V oblasti módy se stále více diskutuje o udržitelnosti a kreativitě. Avšak, případy jako rozstříhání luxusního šátku Hermès ukazují, jak snadno lze překročit hranici mezi inovací a porušením práv. Je důležité najít rovnováhu mezi osobním vyjádřením a respektem k duševnímu vlastnictví.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by nechtěl mít originální kousek ze starého šátku? Ale pozor, když se kreativita potká s módním zákonem, může to skončit jako v módní pohádce s nešťastným koncem! Tak si dejme pozor, abychom se v našem upcyclingovém dobrodružství nezapletli do právních sítí!</li>
+      <li><strong>Společnost Spring Walk:</strong> Fashion upcycling se zdá být ideálním způsobem, jak spojit udržitelnost s kreativitou. Přetváření starších oděvů na nové kousky je trend, který si získává srdce mnoha módních nadšenců. Nicméně, když do této hry vstoupí luxusní značky jako Hermès, situace se komplikuje. Transformace značkového šátku na originální módní kousek může sice vypadat jako skvělý nápad, ale může se jednat o porušení autorských práv. Jaké máme možnosti, pokud chceme být kreativní a zároveň respektovat práva tvůrců?</li>
+      <li><strong>Jednatel (formální):</strong> V posledních letech se upcycling stal symbolem udržitelnosti v módním průmyslu. Avšak případ Hermès nám ukazuje, že hranice mezi kreativním vyjádřením a porušením práv je velmi tenká. Když transformujeme luxusní kousek na nový výrobek, musíme si být vědomi právních důsledků. Udržitelnost by neměla být na úkor respektu k původním tvůrcům. Jak můžeme jako společnost podpořit kreativitu a zároveň chránit práva designérů?</li>
+      <li><strong>Jednatel (hravý):</strong> Móda je umění, ale co se stane, když se umění dostane do konfliktu se zákonem? Když vezmete šátek od Hermès, rozstřiháte ho a přišijete na džíny, vytvoříte něco unikátního a stylového. Ale pozor! Může to být nejen originální kousek, ale i právní problém. Takže co s tím? Můžeme experimentovat a tvořit, ale pojďme si také položit otázku: Jak můžeme být kreativní a zároveň ctít práva autorů?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

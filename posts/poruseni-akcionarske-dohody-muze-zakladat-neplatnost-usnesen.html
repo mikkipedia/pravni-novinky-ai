@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -91,23 +90,23 @@
     </header>
 
     <article class="article">
-      <h2>Neplatnost usnesení valné hromady</h2>
-  <p>Vrchní soud v Praze se nedávno zabýval důležitým tématem, které se týká akcionářských dohod a usnesení valných hromad. V případu sp. zn. 7 Cmo 23/2025 soud rozhodoval o návrhu na vyslovení neplatnosti usnesení dozorčí rady akciové společnosti. Ta v rozporu s akcionářskou dohodou odvolala člena představenstva, kterého nominoval menšinový akcionář. Tento krok vzbudil otázky o platnosti takového rozhodnutí.</p>
-  <p>Soud dospěl k závěru, že porušení akcionářské dohody může skutečně vést k neplatnosti usnesení, ale pouze za určitých podmínek. Klíčové je, aby se strany akcionářské dohody účastnily hlasování o daném usnesení. Pokud se tak nestane, porušení dohody samo o sobě nemusí mít za následek neplatnost. To znamená, že je důležité, jak je akcionářská dohoda formulována a jaké má konkrétní ustanovení.</p>
-  <p>Pro firmy je důležité mít dobře sepsané akcionářské dohody, které jasně vymezují práva a povinnosti akcionářů. Pokud máte otázky týkající se akcionářských dohod nebo jejich dopadů, může být užitečné vyhledat odborné právní poradenství, například od <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>. Správně formulovaná dohoda může předejít mnoha problémům a sporům v budoucnu.</p>
-  <p>Toto rozhodnutí Vrchního soudu podtrhuje důležitost dodržování akcionářských dohod a ukazuje, jak mohou ovlivnit rozhodování v rámci společnosti. Akcionáři by měli být obezřetní a dbát na to, aby jejich dohody byly jasné a srozumitelné.</p>
+      <h2>Porušení akcionářské dohody a neplatnost usnesení</h2>
+  <p>Vrchní soud v Praze se nedávno zabýval důležitou otázkou ohledně akcionářských dohod a jejich vlivu na usnesení valné hromady. V usnesení sp. zn. 7 Cmo 23/2025, ze dne 20. června 2025, soud posuzoval případ, kdy dozorčí rada akciové společnosti odvolala člena představenstva, který byl nominován menšinovým akcionářem. Tento krok byl v rozporu s akcionářskou dohodou.</p>
+  <p>Soud dospěl k zásadnímu závěru. Porušení akcionářské dohody může vést k neplatnosti usnesení, ale pouze v případě, že se strany dohody podílely na hlasování o daném rozhodnutí. Jinými slovy, pokud se akcionáři, jejichž práva byla porušena, nezúčastnili hlasování, nemohou se domáhat neplatnosti usnesení. Tento princip je klíčový pro korporační praxi a měl by být brán v úvahu při sepisování akcionářských dohod.</p>
+  <p>Je také důležité, aby akcionářské dohody byly jasně formulovány. Nejasnosti v dohodě mohou vést k problémům a sporům. Proto je vhodné obrátit se na odborníky na právní poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kteří mohou pomoci s přípravou a revizí těchto dokumentů.</p>
+  <p>Celkově je důležité mít na paměti, že akcionářské dohody hrají klíčovou roli v řízení společnosti. Jejich dodržování může mít zásadní dopad na stabilitu a fungování firmy. <a href="https://www.epravo.cz/top/clanky/poruseni-akcionarske-dohody-muze-zakladat-neplatnost-usneseni-valne-hromady-musi-byt-vsak-dobre-napsana-119925.html" target="_blank" rel="noopener">zdroj</a></p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Vrchní soud v Praze potvrdil důležitost akcionářských dohod v korporační praxi. Porušení těchto dohod může vést k neplatnosti usnesení valné hromady, ale jen za určitých podmínek.</li>
-      <li><strong>Jednatel (formální):</strong> Rozhodnutí Vrchního soudu v Praze přináší cenné poznatky pro akcionáře a korporátní právníky. Je klíčové mít akcionářskou dohodu pečlivě formulovanou, aby byla v případě potřeby právně vymahatelná.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že akcionářské dohody mohou mít takovou moc? Pokud se rozhodování ve firmě ocitne v „rozporu“, může to znamenat, že usnesení valné hromady je jen papírem bez váhy!</li>
+      <li><strong>Společnost Spring Walk:</strong> V nedávném rozhodnutí Vrchního soudu v Praze se objevil klíčový princip, který ovlivňuje korporační praxi. Porušení akcionářské dohody může vést k neplatnosti usnesení valné hromady, ale je důležité, aby to bylo správně podloženo. Tento závěr zdůrazňuje význam pečlivého formulování akcionářských dohod a jejich dodržování. Jaké máte zkušenosti s uplatňováním akcionářských dohod ve vaší společnosti?</li>
+      <li><strong>Jednatel (formální):</strong> Nedávné usnesení Vrchního soudu v Praze, sp. zn. 7 Cmo 23/2025, přináší důležité poučení pro všechny akciové společnosti. Soud zdůrazňuje, že porušení akcionářské dohody může mít vážné právní důsledky, avšak pouze v případech, kdy se dotčené strany na rozhodnutí podílely. Je zásadní, aby společnosti měly jasně definované a dobře napsané akcionářské dohody, které chrání práva všech akcionářů. Jakým způsobem zabezpečujete dodržování akcionářských dohod ve své organizaci?</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by řekl, že akcionářské dohody mohou mít tak velký dopad na rozhodování ve firmách? Nedávné rozhodnutí Vrchního soudu v Praze ukazuje, že pokud se někdo rozhodne ignorovat tyto dohody, může to skončit na soudu. Vytvoření silné akcionářské dohody, která je jasně napsána a pochopena všemi stranami, je klíčové. Což mě přivádí k otázce: Jaké opatření byste doporučili, aby se předešlo sporům mezi akcionáři?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

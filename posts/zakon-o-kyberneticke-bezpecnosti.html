@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -92,23 +91,23 @@
 
     <article class="article">
       <h2>Nový zákon o kybernetické bezpečnosti</h2>
-  <p>Dne 1. listopadu 2025 začne platit nový zákon o kybernetické bezpečnosti. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 264/2025 Sb., přináší důležité změny pro ochranu dat a informačních systémů. Cílem je zvýšit úroveň kybernetické bezpečnosti v České republice a posílit ochranu před kybernetickými hrozbami.</p>
-  <p>Zákon se zaměřuje na povinnosti různých subjektů, které se podílejí na zpracování citlivých dat. Mezi nimi jsou například státní instituce, ale také soukromé firmy, které mají ve svém portfoliu důležitou infrastrukturu. Tyto subjekty budou muset přijmout adekvátní opatření, aby zajistily bezpečnost svých systémů a dat. Nezbytné bude také pravidelné školení zaměstnanců a testování bezpečnostních opatření.</p>
-  <h2>Důsledky a doporučení</h2>
-  <p>Nový zákon přináší také povinnost hlásit kybernetické incidenty. Subjekty, které se na něm podílejí, musí být připraveny na rychlou reakci v případě útoku. Je důležité, aby se firmy na tyto změny připravily včas. Mnohé z nich mohou zvážit využití odborného právního poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, aby získaly potřebné informace a doporučení, jak se s novými povinnostmi vypořádat.</p>
-  <p>Zákon o kybernetické bezpečnosti je důležitým krokem k ochraně našich dat a systémů. Je nezbytné, aby se všechny zúčastněné strany na jeho implementaci aktivně podílely a zajistily tak bezpečnější digitální prostředí.</p>
+  <p>Dne 1. listopadu 2025 začne platit nový zákon o kybernetické bezpečnosti. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 264/2025 Sb., přináší důležité změny v oblasti ochrany dat a kybernetických hrozeb. Cílem je zlepšit ochranu citlivých informací a posílit odpovědnost organizací za zabezpečení svých systémů.</p>
+  <p>Zákon se zaměřuje na povinnosti různých subjektů, včetně státních institucí a soukromých firem. Tyto subjekty budou muset zavést opatření na ochranu proti kybernetickým útokům a pravidelně provádět audity svých bezpečnostních systémů. Důležitou součástí zákona jsou také sankce za nedodržení stanovených povinností, což má motivovat organizace k aktivnímu přístupu k ochraně svých dat.</p>
+  <h2>Dopady na organizace</h2>
+  <p>Nový zákon se dotkne mnoha firem a institucí. Ty budou muset investovat do technologií a školení zaměstnanců, aby splnily nové požadavky. Je dobré mít na paměti, že právní poradenství, například od <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, může pomoci při adaptaci na tyto změny a zajistit, že organizace bude v souladu s novými předpisy.</p>
+  <p>Vzhledem k rostoucímu počtu kybernetických útoků je tento zákon důležitým krokem směrem k větší ochraně dat a zajištění bezpečnosti v digitálním prostředí. Organizace by měly začít plánovat, jak se s novými povinnostmi vyrovnat, aby se vyhnuly možným sankcím a ochránily své informace.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Dne 1. 11. 2025 začne platit nový zákon o kybernetické bezpečnosti, který přinese důležité změny pro všechny subjekty v této oblasti. Je klíčové sledovat, jaké povinnosti a opatření bude třeba implementovat pro ochranu dat.</li>
-      <li><strong>Jednatel (formální):</strong> Nový zákon o kybernetické bezpečnosti, publikovaný pod č. 264/2025 Sb., vstoupí v účinnost 1. 11. 2025. Je nezbytné, aby společnosti začaly včas připravovat své procesy a technologie na splnění nových legislativních požadavků.</li>
-      <li><strong>Jednatel (hravý):</strong> Pozor, pozor! Od 1. 11. 2025 nám nový zákon o kybernetické bezpečnosti přinese nejen nové povinnosti, ale i příležitosti k inovacím. Je čas naladit se na kybernetické vlny a připravit se na ochranu našich dat jako profesionálové!</li>
+      <li><strong>Společnost Spring Walk:</strong> Dne 1. 11. 2025 vstoupí v platnost nový zákon o kybernetické bezpečnosti, který přináší zásadní změny pro všechny subjekty působící na českém trhu. Tento zákon stanovuje nové povinnosti v oblasti ochrany dat a zabezpečení informačních systémů. Je důležité, aby se firmy na tuto změnu připravily již nyní, protože nedodržení předpisů může mít vážné důsledky. Měli bychom se zamyslet, jaké kroky můžeme podniknout k zajištění souladu s tímto zákonem, ať už se jedná o školení zaměstnanců nebo aktualizaci technologií.</li>
+      <li><strong>Jednatel (formální):</strong> Nový zákon o kybernetické bezpečnosti, publikovaný ve Sbírce zákonů pod č. 264/2025 Sb., přináší povinnosti nejen pro velké podniky, ale také pro malé a střední firmy. Zajištění kybernetické bezpečnosti se stává klíčovým prvkem strategií podniků, které chtějí chránit jak své informace, tak i důvěru svých zákazníků. Je nezbytné, aby podniky začaly analyzovat své stávající procesy a technologie a identifikovaly potenciální slabiny. Jakým způsobem hodláte ve své organizaci reagovat na tuto legislativní změnu?</li>
+      <li><strong>Jednatel (hravý):</strong> Ať už se vám to líbí nebo ne, kybernetická bezpečnost se stává novým králem v našem digitálním světě, a to už od 1. 11. 2025! Zákon o kybernetické bezpečnosti, který byl nedávno přijat, nás nutí přehodnotit, jak chráníme naše cenné informace. Je to jako mít superhrdinu, který chrání naše data před zlými hackery, a my musíme být připraveni mu pomoci. Jaké supersíly byste chtěli svému týmu dát, aby zvládal všechny nové výzvy, které tento zákon přináší?</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>

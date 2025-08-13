@@ -11,9 +11,7 @@
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -31,17 +29,17 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -78,8 +76,9 @@
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 </style>
 </head>
 <body>
@@ -91,23 +90,23 @@
     </header>
 
     <article class="article">
-      <h2>Nový zákon a jeho dopady</h2>
-  <p>Český červený kříž získal nová práva díky novele zákona, která vstoupila v účinnost ve středu. Tato změna mu umožní zajišťovat pátrací službu. Úřady budou povinny spolupracovat a poskytovat potřebné informace, včetně osobních údajů. Cílem této služby je hledání nezvěstných členů rodin a objasňování jejich osudů. Novela také přispěje k předcházení rozdělování rodin a ztrátě jejich členů.</p>
-  <h2>Jak to funguje?</h2>
-  <p>Pátrací služba bude mít za úkol spojit rodiny, které byly rozděleny, a pomoci najít jejich blízké. To může být důležité nejen v případě ztráty kontaktu, ale také v situacích, kdy lidé zmizí v důsledku krizových událostí. Díky spolupráci s úřady a využívání dostupných informací se zvyšuje šance na úspěšné nalezení nezvěstných. Pro jednotlivce i rodiny, které se ocitly v těžké situaci, může být užitečné vyhledat odborné <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které pomůže orientovat se v nových možnostech a právech.</p>
-  <p>Tato změna v legislativě je důležitým krokem směrem k větší podpoře rodin v krizových situacích. Zajištění pátrací služby Červeným křížem posílí důvěru občanů v pomoc, kterou mohou v těžkých chvílích očekávat.</p>
+      <h2>Nový zákon a pátrací služba Červeného kříže</h2>
+  <p>Český červený kříž získal novou pravomoc. Od středy může zajišťovat pátrací službu. Tato změna přichází v důsledku novely zákona, která mu umožňuje spolupracovat s úřady. Ty budou povinny poskytovat Červenému kříži potřebné informace, včetně osobních údajů. Cílem této služby je hledání nezvěstných členů rodin a objasňování jejich osudů.</p>
+  <p>Pátrací služba bude mít zásadní význam pro prevenci rozdělování rodin. V situacích, kdy se členové rodiny ztratí, může Červený kříž sehrát klíčovou roli. Jeho odborníci budou moci efektivněji vyhledávat a poskytovat potřebnou podporu. Tímto způsobem se zlepší šance na opětovné shledání rodin.</p>
+  <p>V souvislosti s novou právní úpravou je důležité mít na paměti i otázky týkající se ochrany osobních údajů. V případě potřeby se můžete obrátit na odborníky v oblasti právního poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kteří vám mohou poskytnout cenné informace o tom, jak se chránit.</p>
+  <p>Tento krok je vítaným posunem v pomoci rodinám v těžkých situacích. Červený kříž tak posílí svou roli v české společnosti a nabídne cennou pomoc tam, kde je to nejvíce potřeba. Více informací o této změně můžete najít v článku na <a href="https://advokatnidenik.cz/2025/08/12/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu/" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
       <hr />
       <h2>Tipy na příspěvky na LinkedIn</h2>
       <ul>
-      <li><strong>Společnost Spring Walk:</strong> Novela zákona, která umožní Českému červenému kříži zajišťovat pátrací službu, přináší důležitý krok k podpoře rodin v těžkých chvílích. Spolupráce úřadů s touto organizací je klíčová pro rychlé a efektivní vyhledávání nezvěstných členů rodin.</li>
-      <li><strong>Jednatel (formální):</strong> Implementace nového zákona o pátrací službě Červeného kříže představuje zásadní změnu v oblasti ochrany a podpory rodin. Tato spolupráce s úřady zajistí, že potřebné informace budou dostupné, což může výrazně urychlit proces hledání nezvěstných.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že Červený kříž bude mít novou „super schopnost“? Díky novému zákonu se stává pátrací službou, která spojí rodiny a pomůže odhalit osudy těch, kteří se ztratili. Spolupráce s úřady bude novým dobrodružstvím!</li>
+      <li><strong>Společnost Spring Walk:</strong> Novela zákona, která umožňuje Českému červenému kříži zajišťovat pátrací službu, je krokem vpřed v oblasti ochrany rodin a jejich blízkých. Tato změna právních předpisů posílí spolupráci mezi úřady a Červeným křížem, což povede k efektivnějšímu hledání nezvěstných osob. Důležitost této služby je neocenitelná, neboť pomáhá nejen vyhledávat ztracené členy rodin, ale také předcházet traumatům spojeným s rozdělením rodin. Jaký máte názor na spolupráci mezi neziskovými organizacemi a státními institucemi?</li>
+      <li><strong>Jednatel (formální):</strong> Nový zákon, který dává Českému červenému kříži právo na zajištění pátrací služby, představuje významný posun v přístupu k problematice nezvěstných osob. Spolupráce s úřady, která nyní bude povinná, zajistí, že potřebné informace, včetně osobních údajů, budou dostupné pro efektivní pátrání. Tento krok nejen posiluje roli Červeného kříže v naší společnosti, ale také ukazuje, jak důležité je mít systém, který reaguje na potřeby lidí v krizových situacích. Jaké další oblasti by podle vás měly být posíleny v rámci spolupráce mezi státem a neziskovým sektorem?</li>
+      <li><strong>Jednatel (hravý):</strong> Novela, která umožňuje Červenému kříži pátrací službu, je jako dar z nebes pro rodiny v nouzi! Teď už se nemusíme bát, že bychom ztratili někoho blízkého, protože můžeme spolehnout na pomoc, která je tu pro nás. Zlepšená spolupráce s úřady je klíčem k úspěšnému hledání nezvěstných, a to je přece skvělá zpráva! Jaké máte zkušenosti s pomocí v těžkých chvílích? Sdílejte své příběhy!</li>
       </ul>
     </article>
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
   </div>
 </body>
 </html>
