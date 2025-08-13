@@ -1,111 +1,110 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Spotřebitelské právo v éře umělé inteligence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Spotřebitelské právo v éře umělé inteligence</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Spotřebitelské právo v éře umělé inteligence</h1>
-      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://www.pravniprostor.cz/clanky/obcanske-pravo/spotrebitelske-pravo-v-ere-umele-inteligence" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 08:15</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Články</div>
+  <h1>Spotřebitelské právo v éře umělé inteligence</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.pravniprostor.cz/clanky/obcanske-pravo/spotrebitelske-pravo-v-ere-umele-inteligence" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 08:15</div>
+</header>
+<article class="article">
+<p>### Spotřebitelské právo v digitálním světě</p>
+<p>S rozvojem umělé inteligence a algoritmického zpracování dat se mění i způsob, jakým se uzavírají spotřebitelské smlouvy. Dříve byly podmínky pro nákup zboží nebo služeb standardizované a většinou stejné pro všechny zákazníky. Dnes se však setkáváme s masivní personalizací nabídek, cen a smluvních podmínek, což může mít vliv na ochranu spotřebitelů. Tato změna přináší nejen nové možnosti, ale také výzvy, které je třeba řešit.</p>
+<p>### Nové výzvy pro spotřebitele</p>
+<p>V digitálním prostředí e-commerce se často stává, že spotřebitelé nejsou plně informováni o podmínkách, za kterých nakupují. Algoritmy, které analyzují chování uživatelů, mohou vytvářet nabídky na míru, ale zároveň ztěžují orientaci v tom, co je pro zákazníka skutečně výhodné. Mnozí si ani neuvědomují, že se na ně vztahují odlišné podmínky, než jaké platí pro ostatní. Tato situace může vést k nerovnosti v přístupu k informacím a k nerovným podmínkám v obchodních vztazích.</p>
+<p>Pokud se ocitnete v situaci, kdy potřebujete poradit ohledně vašich práv jako spotřebitele, neváhejte se obrátit na odborníky. Právní poradenství Spring Walk vám může poskytnout cenné informace a pomoc při řešení problémů spojených se spotřebitelským právem. Více informací najdete na jejich stránkách <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">zde</a>.</p>
+<p>Pro více informací o tom, jak umělá inteligence ovlivňuje spotřebitelské právo, doporučujeme přečíst si článek na <a href="https://www.pravniprostor.cz/clanky/obcanske-pravo/spotrebitelske-pravo-v-ere-umele-inteligence" target="_blank" rel="noopener">Právním prostoru</a>. Je důležité být informován a chránit svá práva v této rychle se měnící digitální době.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>**1) Společnost Spring Walk:**
 
-    <article class="article">
-      <h2>Změny ve spotřebitelském právu</h2>
-  <p>Rozvoj umělé inteligence a algoritmů zásadně mění způsob, jakým fungují spotřebitelské smlouvy. Dříve platilo, že spotřebitelské vztahy byly standardizované a přístupné pro všechny. Dnes, v době e-commerce, se situace komplikuje. Personalizace nabídek a cen je stále běžnější, ale často se děje bez vědomí spotřebitelů. Mnozí lidé ani netuší, jaké podmínky a ceny jsou jim nabízeny.</p>
-  <h2>Nepřehlednost a nedostatek transparentnosti</h2>
-  <p>V digitálním světě se stává, že spotřebitelé dostávají nabídky, které jsou přizpůsobeny jejich předchozímu chování. To může vést k tomu, že lidé platí různé ceny za stejné zboží. Tento nedostatek transparentnosti může být pro spotřebitele matoucí a znepokojivý. V takovém případě může být užitečné vyhledat odborné právní poradenství, které pomůže lépe porozumět těmto změnám a jejich dopadům na spotřebitelská práva <a href="https://www.pravniprostor.cz/clanky/obcanske-pravo/spotrebitelske-pravo-v-ere-umele-inteligence" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Spotřebitelé by měli být obezřetní a informovaní. Je důležité vědět, jaké mají práva a jak mohou chránit své zájmy v této nové digitální éře. Zpracováno z veřejných zdrojů.</p>
+V Spring Walk se věnujeme inovativnímu přístupu k právnímu poradenství a aktivně sledujeme vývoj v oblasti spotřebitelského práva, zejména v souvislosti s rychlým rozvojem umělé inteligence. Věříme, že adaptace na nové technologie je klíčem k poskytování kvalitních služeb našim klientům. Dnešní spotřebitelé čelí stále složitějším smluvním podmínkám, které se mění v závislosti na algoritmických rozhodnutích. Jsme odhodláni podporovat transparentnost a spravedlnost v obchodních praktikách, abychom zajistili rovný přístup pro všechny. Společně můžeme vytvořit prostředí, kde jsou práva spotřebitelů respektována a chráněna i v digitálním světě.</li><li>**2) Jednatel (formální):**
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> V posledních letech zažíváme revoluci v oblasti spotřebitelského práva, kterou určuje rychlý rozvoj umělé inteligence. Algoritmy nám poskytují personalizované nabídky a přizpůsobují ceny na základě našich preferencí a chování, což může mít dalekosáhlé důsledky pro ochranu spotřebitelů. Místo standardizovaných smluvních podmínek se setkáváme s komplexními a často nejednoznačnými ujednáními. Jak můžeme jako spotřebitelé zajistit, abychom neztratili kontrolu nad svými právy? Je dobré pravidelně se vzdělávat o svých právech a sledovat, jaké podmínky podepisujeme.</li>
-      <li><strong>Jednatel (formální):</strong> Umělá inteligence transformuje nejen způsob, jakým nakupujeme, ale i rámec, ve kterém se spotřebitelské právo uplatňuje. Zatímco dříve bylo možné snadno porovnávat nabídky a vyhodnocovat smluvní podmínky, dnes se setkáváme s tzv. &quot;dynamickým cenotvorbou&quot;, která může být pro spotřebitele matoucí. Kde je tedy hranice mezi spravedlivou cenou a cenou, která je nastavena na základě prediktivních modelů? Je na nás, abychom se aktivně zajímali o to, jaké podmínky jsou nám nabízeny, a abychom se ptali na nejasnosti. Pravidelná analýza a porovnávání nabídek by se měly stát samozřejmostí.</li>
-      <li><strong>Jednatel (hravý):</strong> Zamyslete se, jaké by to bylo, kdyby vás vaše oblíbené e-shopové aplikace znaly tak dobře, že by vám nabízely zboží přesně podle vašeho vkusu – a to bez vás o to požádat! Zní to jako sci-fi, ale s umělou inteligencí se to stává realitou. Také to však přináší otázky ohledně spravedlnosti a transparentnosti smluvních podmínek. Jak se jako spotřebitelé vyrovnat s touto novou realitou? Možná bychom měli začít víc diskutovat o tom, co nám algoritmy nabízejí, a jak to ovlivňuje naše rozhodování. Co si o tom myslíte?</li>
-      </ul>
-    </article>
+Vážení kolegové a partneři, téma spotřebitelského práva v kontextu umělé inteligence nabývá na významu a zasluhuje si naši pozornost. Jak ukazuje aktuální článek, personalizace nabídek a smluvních podmínek může vést k nejasnostem a nedostatečné transparentnosti, což je pro spotřebitele značně problematické. Jako jednatel společnosti Spring Walk se zavazuji k tomu, abychom se aktivně podíleli na diskusi o tom, jak zajistit spravedlivé a transparentní obchodní praktiky v této dynamicky se měnící oblasti. Naším cílem je nejen chránit práva spotřebitelů, ale také přispět k vytvoření etického rámce pro používání technologií v podnikání. Těším se na vaše názory a podněty k této důležité problematice.</li><li>**3) Jednatel (hravý):**
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+Ahojte, LinkedIn přátelé! 🚀 Pojďme se na chvíli zastavit a zamyslet nad tím, jak umělá inteligence mění svět spotřebitelského práva. Pamatujete si časy, kdy jste si mohli být jisti, co podepisujete? Dnes se zdá, že všechno je personalizováno až do posledního písmene – a to nejen v reklamách, ale i ve smlouvách! 🤖💼 Jako jednatel Spring Walk se snažím, aby naše právní poradenství bylo stejně inovativní jako technologie, které používáme. Pojďme společně zajistit, aby se naši spotřebitelé cítili v digitálním světě bezpečně a informovaně. Co si o tom myslíte? 👇</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

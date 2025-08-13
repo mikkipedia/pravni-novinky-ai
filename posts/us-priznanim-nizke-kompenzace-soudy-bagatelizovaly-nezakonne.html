@@ -1,112 +1,106 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>ÚS: Přiznáním nízké kompenzace soudy bagatelizovaly nezákonné trestní stíhání</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>ÚS: Přiznáním nízké kompenzace soudy bagatelizovaly nezákonné trestní stíhání</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>ÚS: Přiznáním nízké kompenzace soudy bagatelizovaly nezákonné trestní stíhání</h1>
-      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 09:59</div>
-    </header>
-
-    <article class="article">
-      <h2>Ústavní soud a nízké kompenzace</h2>
-  <p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů, které se týkalo nároku akademika na náhradu nemajetkové újmy. Tento stěžovatel byl téměř deset let trestně stíhán pro daňovou trestnou činnost, přičemž nakonec byl zproštěn obvinění. Soudy však nedostatečně zhodnotily specifické okolnosti jeho případu. Přiznaná kompenzace ve výši 85 000 Kč byla podle Ústavního soudu neústavní a představovala bagatelizaci nezákonného stíhání.</p>
-  <h2>Důsledky pro oběti trestního stíhání</h2>
-  <p>Tento případ ukazuje, jak důležité je adekvátní vyrovnání za způsobenou újmu. Oběti nezákonného stíhání by měly mít možnost získat spravedlivou kompenzaci. Nejenže takové situace narušují životy jednotlivců, ale také podkopávají důvěru veřejnosti v právní systém. Právní poradenství může být v takových případech klíčové pro zajištění spravedlivého postupu a ochrany práv obětí.</p>
-  <p>Ústavní soud tímto rozhodnutím posílil význam spravedlnosti v trestním řízení a připomněl, že každý má právo na ochranu před nezákonnými zásahy do jeho života. Více informací o tomto rozhodnutí lze nalézt v článku <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
-
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Ústavní soud nedávno zrušil rozhodnutí obecných soudů ohledně náhrady nemajetkové újmy pro akademika, který byl téměř dekádu stíhán pro daňovou trestnou činnost. Tento případ vyvolává otázku, jak je možné, že soudy nedokázaly adekvátně zohlednit specifika situace, ve které se stěžovatel nacházel. Přiznaná kompenzace ve výši 85 000 Kč byla považována za bagatelizaci závažnosti nezákonného stíhání. Je důležité, aby soudy přistupovaly k podobným případům se zvýšenou citlivostí, zvláště když se jedná o profesní reputaci a psychickou újmu. Jaké máte zkušenosti s podobnými situacemi v právní praxi?</li>
-      <li><strong>Jednatel (formální):</strong> Rozhodnutí Ústavního soudu o zrušení kompenzace pro stěžovatele ukazuje na klíčovou roli soudního systému v ochraně jednotlivců před nezákonnými praktikami. Trestní stíhání, které trvalo téměř deset let, mělo významný dopad na život a kariéru akademika. Soudy by měly být opatrné při hodnocení takových případů a zajistit, aby přiznané náhrady odpovídaly skutečné škodě. Je nezbytné, aby došlo k přehodnocení přístupu k odškodnění v případech, kde byla porušena práva jednotlivce. Jak byste vy navrhli zlepšit tento proces?</li>
-      <li><strong>Jednatel (hravý):</strong> Představte si, že jste desítky let pod drobnohledem kvůli něčemu, co jste nikdy nespáchali. To je přesně to, co se stalo jednomu akademikovi, který byl nakonec zproštěn obvinění, ale jen s kompenzací, která se zdá být spíše vtipem než spravedlností. Ústavní soud teď řekl dost! Je fascinující, jak se právní systém vyvíjí a jak se snaží reagovat na takové nespravedlnosti. Jak byste se cítili na místě stěžovatele? Co byste udělali jinak?</li>
-      </ul>
-    </article>
-
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Judikatura</div>
+  <h1>ÚS: Přiznáním nízké kompenzace soudy bagatelizovaly nezákonné trestní stíhání</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank">odkaz</a> · Publikováno: 13. 8. 2025 09:59</div>
+</header>
+<article class="article">
+<p>### Ústavní soud se postavil proti bagatelizaci nezákonného stíhání</p>
+<p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů, které se týkalo nároku akademika a vědce na náhradu nemajetkové újmy. Tento případ se vztahoval k téměř desetiletému trestnímu stíhání pro daňovou trestnou činnost, které nakonec skončilo zproštěním stěžovatele. Soudy v tomto případě nedostatečně zohlednily specifické okolnosti a přiznaly stěžovateli pouze 85 000 Kč jako zadostiučinění za nemateriální újmu. Ústavní soud však tento přístup označil za neústavní a bagatelizující závažnost celého případu.</p>
+<p>### Důsledky nezákonného stíhání</p>
+<p>Rozhodnutí Ústavního soudu poukazuje na důležitost spravedlnosti a adekvátního odškodnění pro oběti nezákonného trestního stíhání. Případ stěžovatele ukazuje, jak může dlouhodobé a neodůvodněné stíhání negativně ovlivnit život jednotlivce. Trestní stíhání, které se ukáže jako neoprávněné, může mít dalekosáhlé důsledky pro osobní i profesní život oběti. Odkaz na tento případ je důležitý nejen pro právníky, ale i pro širokou veřejnost, která by měla být informována o svých právech a možnostech, jak se bránit proti nezákonným praktikám.</p>
+<p>Pokud se i vy ocitnete v podobné situaci nebo potřebujete právní poradenství, neváhejte se obrátit na odborníky. <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Právní poradenství Spring Walk</a> vám může poskytnout potřebnou podporu a pomoc. Pro více informací o tomto případu navštivte <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">zdroj</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
+🔍 **Věříme v spravedlnost a rovnost!** Dnes bychom rádi upozornili na nedávné rozhodnutí Ústavního soudu, které se týká přiznání nízké kompenzace v případu nezákonného trestního stíhání. Tento krok je klíčový nejen pro dotčeného akademika a vědce, ale také pro celou naši právní kulturu. Naše společnost, Spring Walk, se snaží podporovat transparentnost a ochranu práv jednotlivců. Případy, jako je tento, nám připomínají, jak důležité je, abychom se postavili za spravedlnost a zajistili, že každému bude poskytnuta adekvátní náhrada za utrpení, které zažil. 💪 #Spravedlnost #RovnostPráv</li><li>### Příspěvek 2: Jednatel (formální)
+Vážení kolegové, chtěl bych vás informovat o významném rozhodnutí Ústavního soudu, které se vztahuje k náhradě nemajetkové újmy v případě nezákonného trestního stíhání. Soud zrušil rozhodnutí obecných soudů, které považovalo přiznanou částku 85 000 Kč za adekvátní, a označil ji jako bagatelizaci závažnosti situace. Tato skutečnost ukazuje na důležitost pečlivého zvažování okolností každého případu a potřebnost adekvátní kompenzace za utrpěnou újmu. V naší právní praxi bychom měli mít na paměti, že spravedlnost není pouze o číslech, ale především o uznání utrpení jednotlivce. #Právo #Spravedlnost</li><li>### Příspěvek 3: Jednatel (hravý)
+🐾 **Když se právníci rozhodnou hrát na spravedlnost!** Dnes se na nás usmívá Ústavní soud, který přišel s důležitým rozhodnutím o nízké kompenzaci za nezákonné trestní stíhání. 85 000 Kč? To je jako když vám někdo za rozbitou hračku dá pětikorunu! 😅 Vážně, máme tu příležitost posunout naši právní kulturu vpřed a ukázat, že spravedlnost by měla být férová a odpovídající. Každý z nás zaslouží uznání za to, co si prošel. Tak pojďme společně bojovat za to, aby se podobné situace už neopakovaly! #SpravedlnostSÚsměvem #PrávoSrdcem</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

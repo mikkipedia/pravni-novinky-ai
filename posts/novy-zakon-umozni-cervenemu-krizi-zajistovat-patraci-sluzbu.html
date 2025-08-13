@@ -1,112 +1,113 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</h1>
-      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 08:26</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Legislativa</div>
+  <h1>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 08:26</div>
+</header>
+<article class="article">
+<p>### Nový zákon posiluje roli Červeného kříže v pátrací službě</p>
+<p>V České republice vstoupila v platnost novela zákona, která umožňuje Českému červenému kříži zajišťovat pátrací službu. Tento krok je důležitým milníkem v oblasti pomoci lidem, kteří se ocitli v krizové situaci a hledají své blízké. Červený kříž nyní získává právo spolupracovat s úřady, které mu budou povinny poskytovat potřebné informace, včetně osobních údajů. Tato změna má za cíl zjednodušit a urychlit proces hledání nezvěstných členů rodin a objasňování jejich osudů.</p>
+<p>### Jak bude pátrací služba fungovat?</p>
+<p>Pátrací služba se zaměří na prevenci rozdělování rodin a ztrát jejich členů. V případě, že se někdo ocitne v těžké situaci, jako je například přírodní katastrofa nebo jiná krizová událost, bude Červený kříž schopný efektivně reagovat a pomoci rodinám se spojit. Tato nová legislativa posílí důvěru v humanitární pomoc a umožní rychlejší a efektivnější reakci na potřeby lidí v nouzi.</p>
+<p>Pokud máte otázky ohledně právních aspektů této novely nebo potřebujete právní poradenství, můžete se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>. Pro více informací o novém zákonu si můžete přečíst také článek na <a href="https://advokatnidenik.cz/2025/08/12/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu/" target="_blank" rel="noopener">advokatnidenik.cz</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### 1) Společnost Spring Walk:
 
-    <article class="article">
-      <h2>Nový zákon a pátrací služba Červeného kříže</h2>
-  <p>Český červený kříž získal novou pravomoc. Od středy může zajišťovat pátrací službu. Tato změna přichází v důsledku novely zákona, která mu umožňuje spolupracovat s úřady. Ty budou povinny poskytovat Červenému kříži potřebné informace, včetně osobních údajů. Cílem této služby je hledání nezvěstných členů rodin a objasňování jejich osudů.</p>
-  <p>Pátrací služba bude mít zásadní význam pro prevenci rozdělování rodin. V situacích, kdy se členové rodiny ztratí, může Červený kříž sehrát klíčovou roli. Jeho odborníci budou moci efektivněji vyhledávat a poskytovat potřebnou podporu. Tímto způsobem se zlepší šance na opětovné shledání rodin.</p>
-  <p>V souvislosti s novou právní úpravou je důležité mít na paměti i otázky týkající se ochrany osobních údajů. V případě potřeby se můžete obrátit na odborníky v oblasti právního poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kteří vám mohou poskytnout cenné informace o tom, jak se chránit.</p>
-  <p>Tento krok je vítaným posunem v pomoci rodinám v těžkých situacích. Červený kříž tak posílí svou roli v české společnosti a nabídne cennou pomoc tam, kde je to nejvíce potřeba. Více informací o této změně můžete najít v článku na <a href="https://advokatnidenik.cz/2025/08/12/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu/" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+S potěšením sledujeme, jak se Český červený kříž stává klíčovým hráčem v oblasti pátracích služeb díky novému zákonu, který mu umožňuje efektivněji pomáhat lidem v nouzi. Tento krok nejenže posiluje význam humanitární pomoci, ale také zajišťuje, že osoby, které se ocitly v těžkých situacích, dostanou potřebnou podporu. Spolupráce s úřady a přístup k potřebným informacím jsou klíčovými prvky pro úspěšné fungování této služby. Věříme, že s tímto novým právem se Červený kříž stane ještě silnějším nástrojem v boji proti ztrátě rodinných vazeb a obnově důvěry mezi lidmi. Jsme hrdí na to, že můžeme být součástí této důležité změny.
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Novela zákona, která umožňuje Českému červenému kříži zajišťovat pátrací službu, je krokem vpřed v oblasti ochrany rodin a jejich blízkých. Tato změna právních předpisů posílí spolupráci mezi úřady a Červeným křížem, což povede k efektivnějšímu hledání nezvěstných osob. Důležitost této služby je neocenitelná, neboť pomáhá nejen vyhledávat ztracené členy rodin, ale také předcházet traumatům spojeným s rozdělením rodin. Jaký máte názor na spolupráci mezi neziskovými organizacemi a státními institucemi?</li>
-      <li><strong>Jednatel (formální):</strong> Nový zákon, který dává Českému červenému kříži právo na zajištění pátrací služby, představuje významný posun v přístupu k problematice nezvěstných osob. Spolupráce s úřady, která nyní bude povinná, zajistí, že potřebné informace, včetně osobních údajů, budou dostupné pro efektivní pátrání. Tento krok nejen posiluje roli Červeného kříže v naší společnosti, ale také ukazuje, jak důležité je mít systém, který reaguje na potřeby lidí v krizových situacích. Jaké další oblasti by podle vás měly být posíleny v rámci spolupráce mezi státem a neziskovým sektorem?</li>
-      <li><strong>Jednatel (hravý):</strong> Novela, která umožňuje Červenému kříži pátrací službu, je jako dar z nebes pro rodiny v nouzi! Teď už se nemusíme bát, že bychom ztratili někoho blízkého, protože můžeme spolehnout na pomoc, která je tu pro nás. Zlepšená spolupráce s úřady je klíčem k úspěšnému hledání nezvěstných, a to je přece skvělá zpráva! Jaké máte zkušenosti s pomocí v těžkých chvílích? Sdílejte své příběhy!</li>
-      </ul>
-    </article>
+### 2) Jednatel (formální):
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+Dnes je významný den pro Český červený kříž, neboť vstupuje v účinnost novela zákona, která mu dává právo zajišťovat pátrací službu. To znamená, že úřady budou mít povinnost spolupracovat a poskytovat Červenému kříži potřebné informace, včetně osobních údajů, což je klíčové pro úspěšné pátrání po nezvěstných osobách. Tato iniciativa nejen posílí ochranu rodin, ale rovněž přispěje k prevenci rozdělování rodin v krizových situacích. Jsme přesvědčeni, že tato změna přinese pozitivní dopad na společnost a pomůže mnoha lidem najít své blízké. Těšíme se na budoucí spolupráci s Červeným křížem v této oblasti.
+
+### 3) Jednatel (hravý):
+
+Dnes máme důvod k oslavě! 🎉 Český červený kříž dostal od zákonodárců super schopnost – právo zajišťovat pátrací službu! To znamená, že teď budou mít možnost hledat nezvěstné členy rodin a spojit je znovu dohromady – a to s pomocí úřadů, které jim budou předávat důležité informace. Je to jako když hrajete detektivku, ale s reálnými emocemi a opravdovými příběhy. 🕵️‍♂️❤️ Těšíme se, jak tato nová služba pomůže mnoha lidem nalézt své blízké a utužit rodinné vazby. Společně dáváme naději tam, kde je to nejvíce potřeba!</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

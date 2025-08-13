@@ -1,112 +1,111 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</h1>
-      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://www.epravo.cz/top/clanky/fashion-upcycling-non-merci-vzkazuje-herms-119888.html" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 02:10</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Články, obchodní právo, Články</div>
+  <h1>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/fashion-upcycling-non-merci-vzkazuje-herms-119888.html" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 02:10</div>
+</header>
+<article class="article">
+<p>### Fashion Upcycling: Kreativita versus Práva</p>
+<p>V posledních letech se stále více lidí zajímá o udržitelnost a ekologické přístupy v módním průmyslu. Jedním z trendů, který se v této oblasti rozvíjí, je fashion upcycling. Tento proces zahrnuje přetváření starších oděvů na nové módní kousky. Mnozí lidé vidí v upcyclingu skvělou příležitost, jak dát nový život starým kouskům a zároveň přispět k ochraně životního prostředí. Nicméně, jak ukazuje případ značky Hermès, může se tento kreativní proces snadno dostat do konfliktu s právními normami.</p>
+<p>Pokud například vezmete luxusní šátek od Hermès, rozstříháte ho a přišijete na džínovou bundu, můžete vytvořit stylový a originální kousek. Avšak tento čin může být považován za porušení autorských práv. Značky jako Hermès chrání své designy a logo, a proto je důležité mít na paměti, že hranice mezi kreativitou a porušením práv je velmi tenká. V případě, že byste se rozhodli takový kousek prodat, mohli byste se dostat do právních problémů.</p>
+<p>### Udržitelnost a Právní Rámec</p>
+<p>Udržitelnost je bezesporu důležitým tématem, ale je třeba si uvědomit, že i v kreativním světě módy existují pravidla, která je nutné dodržovat. Pokud máte zájem o fashion upcycling, doporučujeme se nejprve seznámit s právními aspekty tohoto procesu. Právní poradenství může být užitečné, abyste se vyhnuli nechtěným problémům. Společnost <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a> nabízí odborné poradenství, které vám pomůže orientovat se v této oblasti a vyjasnit si, co je a co není legální.</p>
+<p>Závěrem lze říci, že fashion upcycling je skvělý způsob, jak podpořit udržitelnost a kreativitu, ale je důležité mít na paměti právní aspekty. Pokud se rozhodnete pro tento trend, buďte si vědomi rizik a nezapomeňte se informovat o tom, jak můžete tvořit s respektem k autorským právům. Více o tomto tématu se dozvíte v článku <a href="https://www.epravo.cz/top/clanky/fashion-upcycling-non-merci-vzkazuje-herms-119888.html" target="_blank" rel="noopener">zdroj</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>1) **Společnost Spring Walk:**
+V dnešní době, kdy se stále více hovoří o udržitelnosti a odpovědnosti v módním průmyslu, je důležité se zaměřit na to, jakým způsobem přistupujeme k módě a jejímu vlivu na životní prostředí. Společnost Spring Walk se snaží inspirovat ostatní k tomu, aby se podívali na fashion upcycling jako na cestu k inovaci a kreativnímu vyjádření. Naše motto &quot;Méně je více&quot; se odráží v každém kousku, který nabízíme, a věříme, že i malé změny mohou mít velký dopad. V článku „Non, merci“ od Hermès se ukazuje, jak tenká je hranice mezi uměním a právem. Připojte se k nám a vytvořme společně udržitelnější módní budoucnost!
 
-    <article class="article">
-      <h2>Udržitelnost a módní upcycling</h2>
-  <p>V posledních letech se stále více mluví o udržitelnosti v módním průmyslu. Jedním z trendů je fashion upcycling, což znamená přetváření starších oděvů na nové módní kousky. Tento proces může zahrnovat různé techniky, jako je například kombinování různých materiálů nebo úprava stávajících kousků. Mnozí lidé to považují za kreativní způsob, jak snížit odpad a podpořit ekologické myšlení.</p>
-  <h2>Právní nástrahy módního upcyclingu</h2>
-  <p>Nicméně, i když se upcycling může zdát jako nevinná kreativní činnost, může se snadno dostat do konfliktu se zákonem. Představte si, že vezmete luxusní značkový šátek, rozstříháte ho a přišijete na džínovou bundu, kterou pak prodáte. Výsledkem může být stylový a originální kousek, ale zároveň to může být považováno za porušení autorských práv. Značky jako Hermès jasně dávají najevo, že na takové praktiky pohlížejí negativně. Je tedy důležité mít na paměti právní aspekty, které s upcyclingem souvisejí, a v případě nejistoty se obrátit na odborníky v oblasti právního poradenství, například na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Vzhledem k tomu, že kreativita a právo se mohou snadno střetnout, je dobré být obezřetný. Udržitelnost by neměla být na úkor dodržování právních předpisů. V konečném důsledku je důležité najít rovnováhu mezi inovací a respektem k právům ostatních. V módním světě, kde se trendy rychle mění, je vhodné mít na paměti, jaké důsledky mohou mít naše kreativní nápady.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+2) **Jednatel (formální):**
+Vážení kolegové, chtěl bych vás upozornit na zajímavý článek, který znovu otevírá diskusi o fashion upcyclingu a jeho právních aspektech. Jak je uvedeno v textu „Non, merci“ od značky Hermès, kreativita v módě může snadno narazit na mantinely práv duševního vlastnictví. Udržitelnost v módním průmyslu je pro nás výzvou, ale také příležitostí. Je důležité, abychom jako profesionálové v oboru dodržovali etické normy a zároveň podporovali inovaci. Věřím, že diskuze o správném vyvážení mezi kreativitou a právními předpisy je klíčová pro budoucnost našeho odvětví.
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Fashion upcycling se zdá být ideálním způsobem, jak spojit udržitelnost s kreativitou. Přetváření starších oděvů na nové kousky je trend, který si získává srdce mnoha módních nadšenců. Nicméně, když do této hry vstoupí luxusní značky jako Hermès, situace se komplikuje. Transformace značkového šátku na originální módní kousek může sice vypadat jako skvělý nápad, ale může se jednat o porušení autorských práv. Jaké máme možnosti, pokud chceme být kreativní a zároveň respektovat práva tvůrců?</li>
-      <li><strong>Jednatel (formální):</strong> V posledních letech se upcycling stal symbolem udržitelnosti v módním průmyslu. Avšak případ Hermès nám ukazuje, že hranice mezi kreativním vyjádřením a porušením práv je velmi tenká. Když transformujeme luxusní kousek na nový výrobek, musíme si být vědomi právních důsledků. Udržitelnost by neměla být na úkor respektu k původním tvůrcům. Jak můžeme jako společnost podpořit kreativitu a zároveň chránit práva designérů?</li>
-      <li><strong>Jednatel (hravý):</strong> Móda je umění, ale co se stane, když se umění dostane do konfliktu se zákonem? Když vezmete šátek od Hermès, rozstřiháte ho a přišijete na džíny, vytvoříte něco unikátního a stylového. Ale pozor! Může to být nejen originální kousek, ale i právní problém. Takže co s tím? Můžeme experimentovat a tvořit, ale pojďme si také položit otázku: Jak můžeme být kreativní a zároveň ctít práva autorů?</li>
-      </ul>
-    </article>
-
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+3) **Jednatel (hravý):**
+Zdravím všechny módní nadšence! 🌟 Četli jste už článek „Non, merci“ od Hermès? Připravte se na pořádnou diskuzi o fashion upcyclingu! Co se stane, když vezmete luxusní šátek, rozstříháte ho a přidáte na džínovou bundu? Stylový kousek, originální a… nezákonný? 🤔 Je to jako tanec na tenké hraně mezi kreativitou a právem! Pojďme se společně zamyslet nad tím, jak si užít módní svobodu, aniž bychom narazili na právní překážky. Co si o tom myslíte? 🌈</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

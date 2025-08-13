@@ -1,113 +1,110 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</h1>
-      <div class="meta">Poutavost: <strong>5/5</strong> · Zdroj: <a href="https://www.epravo.cz/top/clanky/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-ochrance-prav-119889.html" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 02:10</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Články, občanské právo, Články</div>
+  <h1>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-ochrance-prav-119889.html" target="_blank">odkaz</a> · Publikováno: 13. 8. 2025 02:10</div>
+</header>
+<article class="article">
+<p>### Děti mají svého ochránce práv</p>
+<p>V České republice byla nedávno schválena novela zákona, která přináší významnou změnu v ochraně práv dětí. Od 1. července 2025 bude mít naše země svého dětského ombudsmana, neboli dětského ochránce práv. Tento nový úřad bude mít za úkol naslouchat mladé generaci a zprostředkovávat jejich názory institucím, které se o děti starají. Je to důležitý krok směrem k tomu, aby se zajistila práva dětí v souladu s Úmluvou o právech dítěte a dalšími mezinárodními smlouvami.</p>
+<p>### Nové možnosti pro děti a jejich rodiny</p>
+<p>Dětský ombudsman bude mít široké pravomoci, které zahrnují prověřování postupu různých úřadů, zařízení a institucí, kde děti žijí a tráví čas. Jeho úkolem bude také sledovat dodržování práv dětí se zdravotním postižením, což je oblast, která často vyžaduje zvláštní pozornost. Tento nový úřad by měl přispět k tomu, aby se děti cítily bezpečně a jejich názory a potřeby byly brány v potaz.</p>
+<p>Zavedení dětského ochránce práv je důležitým krokem k zajištění lepší budoucnosti pro naše děti. Rodiče, kteří potřebují právní poradenství, mohou využít služby <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>, které jim mohou pomoci orientovat se v nových možnostech a právech, které novela přináší. Pro více informací o této novince můžete navštívit <a href="https://www.epravo.cz/top/clanky/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-ochrance-prav-119889.html" target="_blank" rel="noopener">zdroj</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
+Jsme nadšeni, že se v našem právním systému udála tak zásadní změna! Novela zákona o veřejném ochránci práv přináší důležitou novinku – zřízení úřadu dětského ombudsmana, který se zaměří na ochranu práv dětí. Tato iniciativa má potenciál zásadně ovlivnit životy mladých lidí, neboť bude zprostředkovávat jejich názory institucím a zajistí, že budou jejich práva respektována. V Spring Walk věříme, že naslouchání dětem a sledování dodržování jejich práv je klíčové pro budoucnost naší společnosti. Těšíme se na spolupráci s tímto novým úřadem a na to, jak společně budeme vytvářet lepší podmínky pro naše děti!
 
-    <article class="article">
-      <h2>Nový úřad pro ochranu práv dětí</h2>
-  <p>Od 1. července 2025 bude v České republice fungovat nový úřad dětského ombudsmana. Tento úřad má za úkol hájit práva dětí a zajišťovat, aby jejich hlasy byly slyšeny. Novela zákona č. 349/1999 Sb. přináší důležitou změnu v přístupu k dětem a jejich potřebám.</p>
-  <p>Dětský ombudsman se zaměří na sledování dodržování práv dětí podle Úmluvy o právech dítěte. Bude prověřovat, jak úřady a instituce, kde děti žijí nebo tráví čas, plní své povinnosti. To zahrnuje i děti se zdravotním postižením, jejichž potřeby často zůstávají opomíjeny. Ombudsman bude také zprostředkovávat názory dětí institucím, aby se zajistilo, že budou brány v potaz.</p>
-  <h2>Důsledky pro praxi</h2>
-  <p>Zřízení úřadu dětského ombudsmana přinese změny v mnoha oblastech. Například úřady budou muset více dbát na práva dětí a jejich zájmy. To může mít vliv na rozhodování v oblasti sociálních služeb či vzdělávání. V případě nejasností ohledně práv dětí se mohou rodiče a pečovatelé obrátit na odborníky, kteří poskytují právní poradenství, jako je například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Nový úřad by měl přispět k celkovému zlepšení situace dětí v naší společnosti. Jeho činnost by měla zajistit, že se děti stanou aktivními účastníky v otázkách, které se jich týkají. Více informací o této důležité změně najdete v článku <a href="https://www.epravo.cz/top/clanky/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-ochrance-prav-119889.html" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+### Příspěvek 2: Jednatel (formální)
+Vážení kolegové, s potěšením oznamuji, že novelizace zákona č. 349/1999 Sb. přináší významnou změnu v ochraně práv dětí, a to zřízením úřadu dětského ombudsmana. Tento úřad bude mít za úkol sledovat dodržování práv dětí, prověřovat postupy institucí a zprostředkovávat názory dětí v rámci rozhodovacích procesů. Je zásadní, aby byl hlas mladé generace slyšen a aby jejich práva byla chráněna podle mezinárodních standardů. Jsem přesvědčen, že tato změna posílí důvěru společnosti v instituce a přispěje k lepšímu životnímu prostředí pro naše děti. Těším se na další diskusi o tom, jak můžeme tuto iniciativu podpořit.
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Zřízení úřadu dětského ochránce práv je významným krokem k posílení hlasu mladé generace ve společnosti. Novela zákona č. 349/1999 Sb. přináší systémové sledování práv dětí a jejich prosazování v praxi, což je klíčové pro zajištění jejich ochrany. Tento úřad bude mít na starosti nejen prověřování institucí, ale také monitorování dodržování práv dětí se zdravotním postižením. Jakou roli by podle vás měli hrát rodiče a učitelé v podpoře této iniciativy?</li>
-      <li><strong>Jednatel (formální):</strong> Novela zákona, která zřizuje úřad dětského ombudsmana, představuje zásadní posun v ochraně práv dětí v České republice. Tento úřad má za úkol nejen zprostředkovávat názory dětí, ale také aktivně sledovat a hodnotit činnost různých institucí, které se o děti starají. Protože děti jsou naší budoucností, je nezbytné, abychom zajistili, že jejich práva budou chráněna a prosazována. Jaké další kroky byste doporučili k posílení ochrany práv dětí v naší společnosti?</li>
-      <li><strong>Jednatel (hravý):</strong> Je to tady! Děti získaly svého ochránce práv, což je skvělá zpráva pro všechny z nás, kdo máme rádi malé dobrodruhy a jejich názory! Nově zřízený úřad dětského ombudsmana se postará o to, aby byly hlasy našich ratolestí slyšet a aby jejich práva byla dodržována. Je fascinující, jak se mění pohled na práva dětí a jak moc důležité je, aby i ty nejmenší měly možnost vyjádřit se. Jaké neobyčejné nápady byste přivedli na stůl, aby děti mohly aktivně přispět k budování lepší společnosti?</li>
-      </ul>
-    </article>
-
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+### Příspěvek 3: Jednatel (hravý)
+Drazí přátelé, mám skvělou zprávu - děti mají nového superhrdinu! Novela zákona přináší úřad dětského ombudsmana, který se postará o to, aby se hlasy našich nejmenších dostaly tam, kde je to potřeba. Představte si, že teď bude mít některé děti možnost být “advokáty” svých vlastních práv a my jako společnost budeme mít šanci je podpořit! Společně můžeme zajistit, aby se všechny děti cítily v bezpečí a měly právo na šťastné dětství. Těším se na to, jak se s touto novinkou pustíme do práce a uděláme svět pro děti ještě lepším místem! 🌈✨</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

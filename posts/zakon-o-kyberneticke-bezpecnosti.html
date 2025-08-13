@@ -1,113 +1,112 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Zákon o kybernetické bezpečnosti</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Zákon o kybernetické bezpečnosti</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Zákon o kybernetické bezpečnosti</h1>
-      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/zakon-o-kyberneticke-bezpecnosti2" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 10:35</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Změny v legislativě</div>
+  <h1>Zákon o kybernetické bezpečnosti</h1>
+  <div class="meta">Poutavost: 3/5 · Zdroj: <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/zakon-o-kyberneticke-bezpecnosti2" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 10:35</div>
+</header>
+<article class="article">
+<h2>Nový zákon o kybernetické bezpečnosti</h2>
+<p>Dne 1. listopadu 2025 vstoupí v platnost nový zákon o kybernetické bezpečnosti, který byl zveřejněn ve Sbírce zákonů pod číslem 264/2025 Sb. Tento zákon má za cíl posílit ochranu citlivých dat a informačních systémů v České republice. Vzhledem k rostoucímu počtu kybernetických útoků a hrozeb je důležité, aby firmy i jednotlivci byli lépe připraveni na možné rizika.</p>
+<p>Zákon stanovuje jasné povinnosti pro subjekty, které spravují důležitou infrastrukturu nebo citlivé informace. Tyto subjekty budou muset implementovat adekvátní bezpečnostní opatření a pravidelně provádět audity svých systémů. Cílem je zajistit, aby byly informace chráněny před neoprávněným přístupem a zneužitím. Nová legislativa také zavádí sankce pro ty, kteří nebudou dodržovat stanovené normy.</p>
+<h2>Důležitost kybernetické bezpečnosti</h2>
+<p>Kybernetická bezpečnost se stává stále důležitější součástí našeho každodenního života. S rostoucím počtem digitálních služeb a online transakcí je ochrana osobních údajů a firemních informací klíčová. Nový zákon by měl pomoci vytvořit bezpečnější digitální prostředí pro všechny uživatele. Je důležité, aby se firmy a jednotlivci seznámili s novými povinnostmi a připravili se na nadcházející změny.</p>
+<p>Pokud máte otázky ohledně nového zákona nebo potřebujete právní poradenství, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Další informace o zákonu o kybernetické bezpečnosti najdete také na <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/zakon-o-kyberneticke-bezpecnosti2" target="_blank" rel="noopener">původním zdroji</a>. Je důležité být informován a připraven na změny, které nám nová legislativa přinese.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
+🌐 V dnešním digitálním světě je kybernetická bezpečnost klíčovým tématem pro každou moderní organizaci. S příchodem nového zákona o kybernetické bezpečnosti, který nabývá účinnosti 1. 11. 2025, je pro nás ve společnosti Spring Walk prioritou se na tuto výzvu připravit. Naším cílem je nejen splnit všechny legislativní požadavky, ale také posílit důvěru našich klientů a partnerů v naše služby. Kybernetická bezpečnost není pouze o dodržování předpisů, ale především o ochraně hodnot a dat našich zákazníků. Připojte se k nám na cestě k bezpečnější digitální budoucnosti! 🔐 #KybernetickáBezpečnost #SpringWalk
 
-    <article class="article">
-      <h2>Nový zákon o kybernetické bezpečnosti</h2>
-  <p>Dne 1. listopadu 2025 začne platit nový zákon o kybernetické bezpečnosti. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 264/2025 Sb., přináší důležité změny v oblasti ochrany dat a kybernetických hrozeb. Cílem je zlepšit ochranu citlivých informací a posílit odpovědnost organizací za zabezpečení svých systémů.</p>
-  <p>Zákon se zaměřuje na povinnosti různých subjektů, včetně státních institucí a soukromých firem. Tyto subjekty budou muset zavést opatření na ochranu proti kybernetickým útokům a pravidelně provádět audity svých bezpečnostních systémů. Důležitou součástí zákona jsou také sankce za nedodržení stanovených povinností, což má motivovat organizace k aktivnímu přístupu k ochraně svých dat.</p>
-  <h2>Dopady na organizace</h2>
-  <p>Nový zákon se dotkne mnoha firem a institucí. Ty budou muset investovat do technologií a školení zaměstnanců, aby splnily nové požadavky. Je dobré mít na paměti, že právní poradenství, například od <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, může pomoci při adaptaci na tyto změny a zajistit, že organizace bude v souladu s novými předpisy.</p>
-  <p>Vzhledem k rostoucímu počtu kybernetických útoků je tento zákon důležitým krokem směrem k větší ochraně dat a zajištění bezpečnosti v digitálním prostředí. Organizace by měly začít plánovat, jak se s novými povinnostmi vyrovnat, aby se vyhnuly možným sankcím a ochránily své informace.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+### Příspěvek 2: Jednatel (formální)
+Vážení kolegové,  
+s radostí vám oznamuji, že 1. 11. 2025 vstoupí v platnost nový zákon o kybernetické bezpečnosti, publikovaný pod č. 264/2025 Sb. Tento legislativní krok představuje zásadní změnu v přístupu k ochraně dat a informací v digitálním prostředí. Naše společnost se plně zavazuje dodržovat nové normy a implementovat potřebná opatření, abychom zajistili maximální bezpečnost našich systémů a dat našich klientů. Věříme, že tímto krokem posílíme naši pozici na trhu a přispějeme k celkovému zlepšení kybernetického prostředí v naší zemi. #KybernetickáBezpečnost #Zákon2642025
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Dne 1. 11. 2025 vstoupí v platnost nový zákon o kybernetické bezpečnosti, který přináší zásadní změny pro všechny subjekty působící na českém trhu. Tento zákon stanovuje nové povinnosti v oblasti ochrany dat a zabezpečení informačních systémů. Je důležité, aby se firmy na tuto změnu připravily již nyní, protože nedodržení předpisů může mít vážné důsledky. Měli bychom se zamyslet, jaké kroky můžeme podniknout k zajištění souladu s tímto zákonem, ať už se jedná o školení zaměstnanců nebo aktualizaci technologií.</li>
-      <li><strong>Jednatel (formální):</strong> Nový zákon o kybernetické bezpečnosti, publikovaný ve Sbírce zákonů pod č. 264/2025 Sb., přináší povinnosti nejen pro velké podniky, ale také pro malé a střední firmy. Zajištění kybernetické bezpečnosti se stává klíčovým prvkem strategií podniků, které chtějí chránit jak své informace, tak i důvěru svých zákazníků. Je nezbytné, aby podniky začaly analyzovat své stávající procesy a technologie a identifikovaly potenciální slabiny. Jakým způsobem hodláte ve své organizaci reagovat na tuto legislativní změnu?</li>
-      <li><strong>Jednatel (hravý):</strong> Ať už se vám to líbí nebo ne, kybernetická bezpečnost se stává novým králem v našem digitálním světě, a to už od 1. 11. 2025! Zákon o kybernetické bezpečnosti, který byl nedávno přijat, nás nutí přehodnotit, jak chráníme naše cenné informace. Je to jako mít superhrdinu, který chrání naše data před zlými hackery, a my musíme být připraveni mu pomoci. Jaké supersíly byste chtěli svému týmu dát, aby zvládal všechny nové výzvy, které tento zákon přináší?</li>
-      </ul>
-    </article>
-
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+### Příspěvek 3: Jednatel (hravý)
+🚀 Ahojte všichni! Připravte se na kybernetickou revoluci! Od 1. 11. 2025 nám nový zákon o kybernetické bezpečnosti otevře zcela nové obzory. Je to jako dostat superhrdinské schopnosti – musíme být připraveni chránit nejen naši firmu, ale i naše milované klienty před kybernetickými zlými silami! 💪💻 V Spring Walk se na to těšíme jako na nový level v oblíbené hře. Připravujeme pro vás skvělá školení a inovativní řešení, která nám pomohou být o krok napřed. Takže se na nás nezapomeňte obrátit, ať jsme všichni společně v bezpečí! 🦸‍♂️ #KybernetickáBezpečnost #HrajemeBezpečně</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

@@ -1,112 +1,113 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Novela trestního zákoníku</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Novela trestního zákoníku</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Novela trestního zákoníku</h1>
-      <div class="meta">Poutavost: <strong>5/5</strong> · Zdroj: <a href="https://www.epravo.cz/top/clanky/novela-trestniho-zakoniku-119853.html" target="_blank" rel="noopener">odkaz</a> · Publikováno: 11. 8. 2025 02:10</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Články, trestní právo, Články</div>
+  <h1>Novela trestního zákoníku</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/novela-trestniho-zakoniku-119853.html" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 02:10</div>
+</header>
+<article class="article">
+<p>### Novela trestního zákoníku: Krok směrem k modernizaci trestního práva</p>
+<p>Počátkem července 2025 byla schválena novela trestního zákoníku, která přináší jednu z nejvýznamnějších revizí trestního práva v posledních letech. Tento krok, který byl podpořen jak Poslaneckou sněmovnou, tak Senátem, se zaměřuje na modernizaci systému trestání v České republice. Novela by měla začít platit od 1. ledna 2026 a jejím hlavním cílem je důraz na alternativní tresty, které by měly nahradit některé tradiční formy trestání.</p>
+<p>### Alternativní tresty jako nová cesta</p>
+<p>Jedním z klíčových aspektů novely je snaha o větší využívání alternativních trestů. Tyto tresty by měly umožnit efektivnější rehabilitaci pachatelů a zároveň snížit zátěž vězeňského systému. Cílem je, aby trestní právo nebylo pouze o odplatě, ale také o prevenci a nápravě. Modernizace trestního zákoníku tak reflektuje současné trendy v oblasti trestního práva, které se snaží o větší humanizaci a individualizaci trestání.</p>
+<p>Pokud se chcete dozvědět více o této novele a jejích dopadech, doporučujeme navštívit <a href="https://www.epravo.cz/top/clanky/novela-trestniho-zakoniku-119853.html" target="_blank" rel="noopener">zdroj</a>. V případě, že potřebujete právní poradenství k této problematice, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které vám poskytne odbornou pomoc a podporu.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
 
-    <article class="article">
-      <h2>Novela trestního zákoníku</h2>
-  <p>Novela trestního zákoníku, která byla schválena v červenci 2025, přináší zásadní změny do českého trestního práva. Hlavním cílem této revize je modernizace systému trestání. Důraz je kladen na využívání alternativních trestů, což má vést k efektivnějšímu a spravedlivějšímu přístupu k pachatelskému chování. Novela by měla vstoupit v platnost od 1. ledna 2026.</p>
-  <p>Mezi hlavní změny patří rozšíření možností pro alternativní tresty. Tyto tresty by měly nahradit tradiční odnětí svobody v případech, kde to bude možné. Tím se má snížit počet lidí ve vězení a podpořit jejich reintegraci do společnosti. Je důležité, aby se jednotlivci, kteří se dopustili trestné činnosti, měli možnost napravit a vrátit se k normálnímu životu.</p>
-  <p>Při aplikaci těchto změn je dobré mít na paměti možné právní důsledky. V případě potřeby je vhodné vyhledat odborné právní poradenství, například od <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>, které může pomoci s orientací v nových pravidlech a jejich dopadech. Novela také zdůrazňuje důležitost prevence a vzdělávání, což by mělo přispět k celkové bezpečnosti společnosti.</p>
-  <p>Pro více informací o této novele můžete navštívit <a href="https://www.epravo.cz/top/clanky/novela-trestniho-zakoniku-119853.html" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+🌟 V Spring Walk se neustále zaměřujeme na to, jak přispět k pozitivním změnám ve společnosti. Novela trestního zákoníku, která byla nedávno schválena, je krokem správným směrem k modernizaci našeho právního systému. Zajímá nás, jak alternativní tresty mohou přispět k rehabilitaci pachatelů a snížení recidivy. Jsme přesvědčeni, že společenská odpovědnost a inovace jdou ruku v ruce a těšíme se na to, jak tyto změny ovlivní naši komunitu. Věříme, že každý má šanci na nový začátek a my jsme tu, abychom pomohli tuto vizi naplnit.
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Novela trestního zákoníku, která byla schválena v červenci 2025, přináší zásadní změny do českého trestního práva. Jedním z hlavních cílů je modernizace systému trestání, s důrazem na alternativní tresty, které mohou být efektivnější než tradiční přístup. Tyto změny by měly přispět k rehabilitaci pachatelů a snížení recidivy. Jaké máte zkušenosti s alternativními tresty ve vaší praxi? Je to krok správným směrem?</li>
-      <li><strong>Jednatel (formální):</strong> Novela trestního zákoníku, která vstoupí v platnost od 1. ledna 2026, představuje významný posun v přístupu k trestání. Důraz na alternativní tresty je vítanou změnou, která by mohla vést k efektivnějšímu využívání soudního systému. Tímto krokem se Česká republika snaží přizpůsobit moderním trestněprávním trendům. Jak vnímáte tuto změnu a její potenciální dopady na justiční systém?</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že novela trestního zákoníku může být tak zajímavá? Od ledna 2026 se chystá revoluce v trestání, a to s důrazem na alternativní tresty! Místo vězení se budeme více soustředit na rehabilitaci a znovu začlenění do společnosti. To zní jako skvělá příležitost pro všechny, kdo se chtějí vyhnout recidivě. Jaké alternativy byste navrhli vy, kdybyste měli možnost?</li>
-      </ul>
-    </article>
+### Příspěvek 2: Jednatel (formální)
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+Vážení kolegové, rád bych vás informoval o nedávné novele trestního zákoníku, která byla schválena a vstoupí v platnost od 1. ledna 2026. Tato revize přináší zásadní změny, které se zaměřují na modernizaci trestního systému a podporu alternativních trestů. Je nezbytné, aby se naše společnost připravila na tyto změny a zohlednila je ve svých praktikách. Věřím, že tímto krokem se posílí nejen ochrana společnosti, ale také rehabilitace pachatelů a jejich reintegrace do společnosti. Rád bych vyzval všechny, aby se aktivně zapojili do diskuse o těchto důležitých tématech.
+
+### Příspěvek 3: Jednatel (hravý)
+
+🚀 Novela trestního zákoníku, která byla nedávno schválena, je jako nový level v hře na modernizaci našeho právního systému! Od 1. ledna 2026 se můžeme těšit na alternativní tresty, které mají potenciál změnit životy mnoha lidí. Představte si, že místo tradičních trestů dostanou pachatelé šanci na restart – a my můžeme být součástí této transformace! 💡 Jaké inovace a nápady byste v této oblasti uvítali? Pojďme společně brainstormovat a přispět k tomu, aby se naše společnost stala místem, kde každý má šanci na nový začátek!</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

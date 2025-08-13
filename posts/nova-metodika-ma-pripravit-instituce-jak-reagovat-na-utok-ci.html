@@ -1,111 +1,113 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nová metodika má připravit instituce, jak reagovat na útok či krizi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Nová metodika má připravit instituce, jak reagovat na útok či krizi</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h1>
-      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 08:00</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Svět práva</div>
+  <h1>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 08:00</div>
+</header>
+<article class="article">
+<p>### Jak se připravit na krizové situace</p>
+<p>V dnešní době se instituce a firmy potýkají s různými hrozbami, od násilných útoků po jiné krizové situace. Zodpovědnost za to, jak na tyto události reagují, leží převážně na nich samotných. Aby se lépe připravily na možné nebezpečí, Ministerstvo vnitra České republiky vypracovalo novou metodiku, která má pomoci provozovatelům takzvaných měkkých cílů. Tato metodika poskytuje konkrétní návod, jak se vyrovnat s krizovými situacemi a minimalizovat ztráty na životech, majetku, ale i na reputaci a důvěře veřejnosti.</p>
+<p>### Klíčové prvky metodiky</p>
+<p>Nová metodika se zaměřuje na několik klíčových oblastí. Především se snaží vybudovat efektivní systém včasného varování, který by institucím umožnil rychle reagovat na vznikající hrozby. Dále se soustředí na školení zaměstnanců a zajištění potřebných zdrojů a vybavení, které mohou být v krizové situaci zásadní. Celkovým cílem je posílení připravenosti a schopnosti institucí reagovat na nepředvídatelné události, což může v konečném důsledku zachránit životy a snížit škody.</p>
+<p>Pokud se vaše instituce nebo firma potýká s otázkami právní odpovědnosti v souvislosti s krizovými situacemi, je dobré se obrátit na odborníky. Právní poradenství <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a> může poskytnout cenné rady a pomoc při implementaci doporučení z nové metodiky. Více informací o metodice a jejím využití naleznete v článku na <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">Advokátním deníku</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
 
-    <article class="article">
-      <h2>Nová metodika pro krizové situace</h2>
-  <p>Zodpovědnost za reakci na násilné útoky a jiné krizové situace leží především na institucích a firmách. Ministerstvo vnitra proto vypracovalo novou metodiku, která má pomoci provozovatelům takzvaných měkkých cílů, jako jsou školy, nemocnice nebo obchodní centra, lépe se připravit na možné hrozby. Cílem dokumentu je minimalizovat ztráty na životech, majetku, ale také na reputaci a důvěře veřejnosti.</p>
-  <p>Metodika obsahuje konkrétní doporučení, jak by měly instituce reagovat v případě útoku. Zaměřuje se na prevenci, včasné rozpoznání hrozeb a efektivní komunikaci během krize. Je důležité, aby každá instituce měla připravený plán, který zahrnuje školení zaměstnanců a simulace krizových situací. Právní poradenství může také sehrát klíčovou roli při přípravě těchto plánů.</p>
-  <p>Důležitost této metodiky nelze podceňovat. V dnešní době, kdy se rizika a hrozby neustále vyvíjejí, je nutné, aby se instituce aktivně připravovaly na možné scénáře. Více informací o této problematice a metodice najdete v článku na <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">zdroji</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+🌟 V dnešní době, kdy jsou instituce a firmy čelí stále složitějším výzvám, je důležité mít na paměti, jak reagovat na krizové situace. Naše společnost Spring Walk se zabývá nejen inovacemi v oblasti technologií, ale také se zaměřujeme na prevenci a reakci na potenciální hrozby. S novou metodikou, kterou připravilo Ministerstvo vnitra, můžeme poskytnout našim klientům cenné nástroje pro ochranu jak jejich zaměstnanců, tak i jejich reputace. Společně můžeme vytvořit bezpečnější prostředí, které minimalizuje rizika a zvyšuje důvěru. Těšíme se na spolupráci s institucemi, které chtějí být připravené na jakoukoli situaci! 💪🔍</li><li>### Příspěvek 2: Jednatel (formální)
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> V dnešní době je příprava na krizové situace nezbytností pro každou instituci. Nová metodika, kterou představilo Ministerstvo vnitra, se zaměřuje na provozovatele měkkých cílů a nabízí konkrétní kroky, jak reagovat na potenciální hrozby. Její cílem je minimalizovat ztráty na životech, majetku i reputaci. Věřím, že implementace této metodiky přispěje k větší bezpečnosti a důvěře v naše instituce. Jaké opatření považujete za nezbytná ve vašem oboru?</li>
-      <li><strong>Jednatel (formální):</strong> Ministerstvo vnitra zavedlo novou metodiku, která je zaměřena na zlepšení reakce institucí na násilné útoky a krize. Tato metodika by měla sloužit jako návod pro provozovatele měkkých cílů, jak se efektivně připravit na možné hrozby a jak zvládat krizové situace s minimálními následky. Je zásadní, aby se všechny instituce aktivně zapojily do její implementace a přizpůsobily své krizové plány. Co si myslíte o důležitosti pravidelných školení pro zaměstnance v této oblasti?</li>
-      <li><strong>Jednatel (hravý):</strong> Představte si, že jste na palubě lodi a náhle se objeví bouře. Co byste dělali? Nová metodika od Ministerstva vnitra je jako kompas, který nám ukazuje, jak se vyhnout úskalím krizových situací. Pomůže institucím lépe reagovat na útoky a krize, aby se minimalizovaly ztráty na životech a majetku. Je důležité, abychom se na takové situace připravovali, stejně jako se připravujeme na výlet na moře. Jaké strategie byste doporučili pro zlepšení krizového řízení?</li>
-      </ul>
-    </article>
+Vážení kolegové, 
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+s potěšením bych chtěl upozornit na nový dokument, který byl nedávno představen Ministerstvem vnitra. Tato metodika má za cíl připravit instituce a firmy na možné krizové situace, včetně násilných útoků. Zodpovědnost za reakci na takové události leží především na nás, a proto je klíčové, abychom se na tyto situace důkladně připravili. Zavedení této metodiky nám dává příležitost snížit rizika a minimalizovat ztráty na životech, majetku a reputaci. Věřím, že tímto způsobem můžeme společně přispět k bezpečnějšímu prostředí pro všechny. 
+
+S pozdravem, [Jméno]</li><li>### Příspěvek 3: Jednatel (hravý)
+
+🚀 Krizové situace? Ne, děkujeme! Chceme se bavit o tom, jak je důležité být připraven! 🛡️ Naše instituce a firmy mají nyní k dispozici nový super nástroj – metodiku od Ministerstva vnitra! Tato metodika nám pomůže připravit se na nečekané situace, jako jsou útoky nebo krize, a to s co nejmenšími ztrátami. Je to jako mít kouzelnou hůlku, která dokáže odvrátit neštěstí! 🌈 Pojďme společně udělat krok k bezpečnějšímu světu a přispět k důvěře a ochraně našich komunit. Co na to říkáte? 🤔💬</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>

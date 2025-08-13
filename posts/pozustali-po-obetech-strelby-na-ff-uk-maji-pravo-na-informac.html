@@ -1,112 +1,113 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #151a21;
-    --text: #e6e6e6;
-    --muted: #a8b0bb;
-    --accent: #8ab4f8;
-    --radius: 0px; /* hranaté dlaždice */
-    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
-    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    line-height: 1.65;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 24px; }
-  h1, h2, h3 {
-    letter-spacing: .01em;  /* bez kapitálek */
-    font-weight: 800;
-    text-transform: none;
-  }
-  h1 { font-size: 28px; margin: 0 0 10px; }
-  h2 { font-size: 18px; margin: 22px 0 8px; }
-  h3 { font-size: 16px; margin: 18px 0 6px; }
-  .meta {
-    color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
-    font-style: italic; /* kurzíva */
-    font-size: .95rem;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    transform: translateY(0);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(255,255,255,.12);
-  }
-  .pill {
-    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
-    border-radius:999px; font-size:.8rem; color:var(--muted);
-  }
-  .footer { margin-top: 28px; color: var(--muted); }
-  .article {
-    background-color: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 22px;
-  }
-  .article p { margin: 12px 0; }
-  .article ul { margin: 10px 0 0 22px; }
-  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
-  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+<meta charset="UTF-8">
+<title>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #0056b3;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  font-size: 18px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
+h1 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #eee;
+}
+.meta {
+  color: var(--muted);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.article {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--panel);
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+.article p {
+  margin-bottom: 1.4em;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="pill" href="../index.html">← Přehled</a>
-      <h1>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</h1>
-      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informace-z-setreni-gibs/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 10:45</div>
-    </header>
+<div class="wrap">
+<header>
+  <a href="../index.html">← Přehled</a>
+  <div class="badge">Judikatura</div>
+  <h1>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</h1>
+  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informace-z-setreni-gibs/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 10:45</div>
+</header>
+<article class="article">
+<p>### Právo pozůstalých na informace</p>
+<p>Ústavní soud nedávno zveřejnil důležitý nález, který se týká pozůstalých po obětech tragické střelby na Filozofické fakultě Univerzity Karlovy. Podle rozhodnutí soudu mají rodiče obětí právo na informace z vyšetřování, které provádí Generální inspekce bezpečnostních sborů (GIBS). Tento krok je zásadní pro zajištění transparentnosti a důvěry v práci bezpečnostních složek. Pozůstalí tak mohou lépe porozumět okolnostem, které vedly k této tragédii, a zajištění odpovědnosti těch, kteří byli za situaci zodpovědní.</p>
+<p>### Důsledky pro vyšetřování</p>
+<p>Nález Ústavního soudu se zaměřuje na dodatečné účinné vyšetřování, což znamená, že GIBS má povinnost informovat pozůstalé o výsledcích svého šetření. Rodiče obětí se totiž snažili získat informace o možném pochybení, které mohlo přispět k tragédii, avšak jejich žádosti byly dosud neúspěšné. Tento nový vývoj může přispět k větší odpovědnosti a transparentnosti v rámci vyšetřovacích procesů, což je zásadní pro důvěru veřejnosti v instituce.</p>
+<p>Pokud se nacházíte v podobné situaci a potřebujete právní poradenství, doporučujeme obrátit se na odborníky, jako je <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kteří vám mohou poskytnout potřebnou podporu a informace. Pro více informací o rozhodnutí Ústavního soudu si můžete přečíst článek na <a href="https://advokatnidenik.cz/2025/08/12/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informace-z-setreni-gibs/" target="_blank" rel="noopener">zdroji</a>.</p>
+<hr>
+<h2>Tipy na LinkedIn</h2>
+<ul><li>### Příspěvek 1: Společnost Spring Walk
 
-    <article class="article">
-      <h2>Práva pozůstalých po obětech střelby</h2>
-  <p>Ústavní soud České republiky nedávno rozhodl, že pozůstalí po obětech střelby na Filozofické fakultě Univerzity Karlovy mají právo na informace z vyšetřování, které provádí Generální inspekce bezpečnostních sborů (GIBS). Tento nález, zveřejněný 12. srpna, se týká dodatečného vyšetřování a podtrhuje důležitost transparentnosti v takových citlivých případech.</p>
-  <p>Rodiče obětí požadovali informace o možném pochybení inspekce, avšak jejich žádosti byly dříve zamítnuty. Ústavní soud nyní potvrdil, že pozůstalí mají právo být informováni o průběhu vyšetřování a jeho výsledcích. Tímto rozhodnutím se otevírá cesta k větší odpovědnosti a důvěře v bezpečnostní složky.</p>
-  <p>Je důležité, aby pozůstalí věděli, jaké mají možnosti a práva. V takových situacích může být užitečné vyhledat odborné právní poradenství, jako je například to, které nabízí <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Pomoc odborníků může usnadnit orientaci v právních otázkách a zajistit, že budou dodržena všechna práva pozůstalých.</p>
-  <p>Tento nález Ústavního soudu je významným krokem k zajištění transparentnosti a odpovědnosti v případech, které se týkají ztráty lidského života. Pozůstalí nyní mají jasnější cestu, jak se domáhat svých práv a informací, které jsou pro ně zásadní. Více informací o tomto rozhodnutí najdete v článku na <a href="https://advokatnidenik.cz/2025/08/12/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informace-z-setreni-gibs/" target="_blank" rel="noopener">zdroj</a>.</p>
-  <p>Zpracováno z veřejných zdrojů.</p>
+Vážení kolegové, dnes bych se rád podělil o důležitou informaci, která se týká nedávného rozhodnutí Ústavního soudu. Nález, který potvrzuje právo pozůstalých po obětech tragické střelby na Filozofické fakultě UK na informace z vyšetřování GIBS, je krokem směrem k transparentnosti a odpovědnosti. Je zásadní, aby rodiny obětí měly přístup k informacím, které mohou osvětlit okolnosti tragédie a přispět k uzavření této těžké kapitoly. Jako společnost, která se snaží o podporu a ochranu práv jednotlivců, vnímáme tento nález jako důležitý signál pro celou společnost. Doufáme, že takovéto rozhodnutí povzbudí další instituce k větší otevřenosti a komunikaci s veřejností.
 
-      <hr />
-      <h2>Tipy na příspěvky na LinkedIn</h2>
-      <ul>
-      <li><strong>Společnost Spring Walk:</strong> Nález Ústavního soudu, který přiznává pozůstalým po obětech střelby na Filozofické fakultě UK právo na informace z šetření GIBS, je důležitým krokem směrem k transparentnosti a spravedlnosti. Tento případ ukazuje, jak klíčové je, aby rodiny obětí měly přístup k relevantním informacím, které mohou objasnit okolnosti tragédie. Otevřenost ve vyšetřování takových událostí může přispět nejen k uzavření smutných kapitol, ale i k prevenci budoucích incidentů. Jaké další kroky by mohl stát učinit, aby zajistil, že podobné situace se v budoucnu nebudou opakovat?</li>
-      <li><strong>Jednatel (formální):</strong> Dnešní rozhodnutí Ústavního soudu je důkazem, že právo na informace a spravedlnost je fundamentální hodnotou naší společnosti. Pozůstalí po obětech tragédií by měli mít možnost se dozvědět, co se skutečně stalo, a jak byla situace řešena. Zajištění transparentnosti v těchto záležitostech nejen posiluje důvěru veřejnosti v instituce, ale také poskytuje důležité poznatky pro budoucí zlepšení bezpečnostních postupů. Jaký význam má pro vás transparentnost v podobných případech?</li>
-      <li><strong>Jednatel (hravý):</strong> Když se mluví o spravedlnosti a právech pozůstalých, je to jako složitý puzzle, kde každý kousek hraje důležitou roli. Nález Ústavního soudu ukazuje, že rodiny obětí si zaslouží mít všechny kousky na stole, aby si mohly poskládat obraz situace, která je zasáhla. Informace z vyšetřování GIBS nejsou jen teoretickým právem, ale konkrétním krokem k uzavření jedné z nejtemnějších kapitol jejich života. Jak si myslíte, že by měly být takové informace sdělovány, aby byly co nejcitlivější?</li>
-      </ul>
-    </article>
+### Příspěvek 2: Jednatel (formální)
 
-    <div class="footer meta">Odhad nákladů posledního běhu: $0.0158 (~0.39 Kč) · input 28382 tok., output 19241 tok., model gpt-4o-mini</div>
-  </div>
+Dovolte mi, abych upozornil na významné rozhodnutí Ústavního soudu, které se týká práv pozůstalých po obětech střelby na Filozofické fakultě UK. Soud v nálezu sp. zn. II. ÚS 470/25 konstatoval, že pozůstalí mají právo na informace z vyšetřování prováděného Generální inspekcí bezpečnostních sborů (GIBS). Toto rozhodnutí zdůrazňuje zásady transparentnosti a spravedlnosti v procesu vyšetřování, které jsou klíčové pro důvěru veřejnosti v právní systém. Je nezbytné, aby rodiny obětí měly možnost se informovat o postupu vyšetřování a vyjasnit si tak okolnosti tragédie. Tento krok by mohl mít dalekosáhlé důsledky pro budoucí vyšetřování a ochranu práv obětí.
+
+### Příspěvek 3: Jednatel (hravý)
+
+Ahoj všichni! Dneska mám pro vás jednu zajímavou novinku, která se mi dostala pod ruku. Ústavní soud nám ukázal, že i v těžkých chvílích může být spravedlnost na dosah ruky – pozůstalí po obětech střelby na Filozofické fakultě UK mají nyní právo na informace z vyšetřování GIBS! 🎉 Je to jako kdyby se otevřely dveře do světa, kde se můžeme ptát, hledat odpovědi a snažit se porozumět tomu, co se vlastně stalo. Doufám, že tohle rozhodnutí povzbudí další, aby byli odvážní a nebáli se hledat pravdu. Každý z nás si zaslouží vědět, co se děje, a tohle je skvělý krok tím správným směrem!</li></ul>
+</article>
+<div class="meta">Odhad nákladů: $0.0205 (~0.50 Kč) · Input 22354 · Output 28506 · Model gpt-4o-mini</div>
+</div>
 </body>
 </html>
