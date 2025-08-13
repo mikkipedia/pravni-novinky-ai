@@ -173,69 +173,52 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.8;
-  font-size: 18px;
+  line-height: 1.7;
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px 64px; }
-h1 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 800;
-  font-size: 2.4em;
-  margin-bottom: 0.4em;
-}
-h2 {
+.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 700;
-  font-size: 1.4em;
-  margin-top: 2em;
-  padding-bottom: 0.2em;
-  border-bottom: 2px solid #eee;
 }
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-size: 0.95em;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 28px;
+  gap: 20px;
 }
 .card {
   background: var(--panel);
-  padding: 28px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 4px 12px rgba(0,0,0,.04);
-  transition: transform .3s ease, box-shadow .3s ease;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
 .badge {
   display: inline-block;
-  padding: 6px 10px;
-  background: #f7f7f7;
+  padding: 4px 8px;
+  background: #f0f0f0;
   border-radius: 4px;
-  font-size: 0.85em;
-  margin-bottom: 10px;
-  font-weight: 500;
+  font-size: 0.8em;
+  margin-bottom: 6px;
 }
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 40px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 4px 12px rgba(0,0,0,.04);
-}
-.article p {
-  margin-bottom: 1.4em;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 """
-
 
 # ===== HTML =====
 def render_post_html(title, article_html, posts, rating, source_url, pub_date_str, topic, cost_line=""):
