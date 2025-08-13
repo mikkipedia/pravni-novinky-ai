@@ -1,11 +1,11 @@
 # scripts/generate.py
 # -----------------------------------------
-# Právní novinky – RSS -> LLM -> statický web (dark, card design)
+# Právní novinky – RSS -> LLM -> statický web (dark, tile design)
 # - stáhne články z RSS (posledních N dní)
 # - ohodnotí poutavost 1–5 (LLM)
-# - pro 3–5 vygeneruje článek + 3 LinkedIn posty
+# - pro 3–5 vygeneruje článek + 3 LinkedIn posty (delší)
 # - zapíše cost.txt + cost.json (tokeny + odhad ceny v USD i CZK)
-# - zapíše posts/*.html + index.html (dark theme + cards + cost line)
+# - zapíše posts/*.html + index.html (dark theme + tiles + přehled rozsahu a počtů)
 # -----------------------------------------
 
 import os
@@ -16,7 +16,7 @@ import feedparser
 from datetime import datetime, timedelta
 from dateutil import tz
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 # --- OpenAI oficiální knihovna (v1.x) ---
 from openai import OpenAI
@@ -68,6 +68,12 @@ def to_cz_date(dt: datetime) -> str:
     if not dt:
         return "neznámo"
     return dt.astimezone(tz.gettz("Europe/Prague")).strftime("%-d. %-m. %Y %H:%M")
+
+def to_cz_day(dt: datetime) -> str:
+    """Pouze datum (dd. mm. YYYY) v Europe/Prague."""
+    if dt and dt.tzinfo is None:
+        dt = dt.replace(tzinfo=tz.UTC)
+    return dt.astimezone(tz.gettz("Europe/Prague")).strftime("%-d. %-m. %Y")
 
 def parse_pubdate(entry) -> datetime | None:
     """Vrátí datetime z RSS položky (published/updated) v UTC, jinak None."""
@@ -167,7 +173,7 @@ Styl: jasný, kratší věty, bez žargonu, bez reklamy a bez výzev „kontaktu
 POVINNÉ:
 - Použij 1–2 mezititulky (Markdown „## “).
 - V textu přirozeně uveď 1× odkaz na původní zdroj ve formátu [zdroj]({source_url}).
-- VLOŽ nenásilně a pouze 1× **kontextový** odkaz na [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/). Zasaď ho do věty tak, aby působil organicky (např. při vysvětlení dopadů nebo doporučení, bez prodejních frází).
+- VLOŽ nenásilně a pouze 1× kontextový odkaz na [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/). Zasaď ho do věty tak, aby působil organicky (např. při vysvětlení dopadů nebo doporučení, bez prodejních frází).
 - Drž se faktů z podkladu, nic si nevymýšlej.
 
 Podklad:
@@ -184,22 +190,22 @@ Na úplný konec přidej větu: „Zpracováno z veřejných zdrojů.“
             {"role": "user", "content": user}
         ],
         temperature=0.5,
-        max_tokens=1200,
+        max_tokens=1200,  # delší článek (dle tvého nastavení)
     )
     add_usage(resp)
     return (resp.choices[0].message.content or "").strip()
 
 def llm_generate_linkedin_posts(title: str, summary: str) -> List[str]:
     """
-    Vrátí 3 varianty krátkých postů (2–3 věty) s hlavičkou „od koho je“:
+    Vrátí 3 varianty delších postů (4–6 vět) s hlavičkou „od koho je“:
     1) Společnost Spring Walk
     2) Jednatel (formální)
     3) Jednatel (hravý)
     """
     user = f"""
-Vytvoř 3 různé krátké příspěvky na LinkedIn (česky), každý 2–3 věty, k tématu níže.
+Vytvoř 3 různé delší příspěvky na LinkedIn (česky), každý 4–6 vět, k tématu níže.
 Každý blok začni NADPISEM „Společnost Spring Walk:“ / „Jednatel (formální):“ / „Jednatel (hravý):“ (v tomto přesném znění), poté text.
-Bez reklamy a bez výzev „kontaktujte nás“.
+Bez reklamy a bez výzev „kontaktujte nás“. Piš čitelně, plynule, s jednou konkrétní myšlenkou navíc (např. doporučení k praxi nebo otázka pro čtenáře).
 
 Podklad:
 Titulek: {title}
@@ -208,13 +214,13 @@ Anotace/Perex: {summary or "(bez anotace)"}
 Formát výstupu:
 ---
 Společnost Spring Walk:
-<2–3 věty>
+<4–6 vět>
 ---
 Jednatel (formální):
-<2–3 věty>
+<4–6 vět>
 ---
 Jednatel (hravý):
-<2–3 věty>
+<4–6 vět>
 ---
     """.strip()
 
@@ -225,12 +231,12 @@ Jednatel (hravý):
             {"role": "user", "content": user}
         ],
         temperature=0.7,
-        max_tokens=600,
+        max_tokens=900,  # zvýšeno kvůli dvojnásobné délce
     )
     add_usage(resp)
     raw = (resp.choices[0].message.content or "").strip()
 
-    # Rozdělit podle '---' bloků a sestavit HTML s tučnou hlavičkou
+    # Rozdělit podle '---' bloků a sestavit HTML s tučnou hlavičkou + mezerami
     blocks = [b.strip() for b in re.split(r'\n?---\n?', raw) if b.strip()]
     posts: List[str] = []
     for b in blocks:
@@ -246,7 +252,7 @@ Jednatel (hravý):
         return posts + [""] * (3 - len(posts))
     return ["", "", ""]
 
-# ====== HTML šablony (dark theme) ======
+# ====== HTML šablony (dark theme, hranaté dlaždice) ======
 BASE_CSS = """
   :root {
     --bg: #0b0f14;
@@ -254,9 +260,7 @@ BASE_CSS = """
     --text: #e6e6e6;
     --muted: #a8b0bb;
     --accent: #8ab4f8;
-    --success: #7dd3a7;
-    --danger: #ff6b6b;
-    --radius: 16px;
+    --radius: 0px; /* hranaté dlaždice */
     --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
     --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
   }
@@ -274,17 +278,17 @@ BASE_CSS = """
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
   header { margin-bottom: 24px; }
   h1, h2, h3 {
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .01em;  /* bez kapitálek */
     font-weight: 800;
+    text-transform: none;
   }
   h1 { font-size: 28px; margin: 0 0 10px; }
   h2 { font-size: 18px; margin: 22px 0 8px; }
   h3 { font-size: 16px; margin: 18px 0 6px; }
   .meta {
     color: var(--muted);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; /* patkové písmo */
+    font-style: italic; /* kurzíva */
     font-size: .95rem;
   }
   .grid {
@@ -321,8 +325,9 @@ BASE_CSS = """
     padding: 22px 22px;
   }
   .article p { margin: 12px 0; }
+  .article ul { margin: 10px 0 0 22px; }
+  .article ul li { margin-bottom: 14px; } /* větší mezera mezi LI v detailu */
   hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
-  ul { margin: 10px 0 0 20px; }
 """
 
 def render_post_html(
@@ -370,10 +375,17 @@ def render_post_html(
 </html>
 """
 
-def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
+def render_index_html(
+    items: List[Dict[str, Any]],
+    cost_line: str = "",
+    range_line: str = "",
+    counts_line: str = ""
+) -> str:
     """
     items: list dicts {title, href, rating, source, pub_date_str}
-    cost_line: volitelný řádek s náklady (vloží se do patičky)
+    cost_line: řádek s náklady
+    range_line: časový rozsah (od–do)
+    counts_line: počty (načteno / vybráno)
     """
     cards = []
     for it in items:
@@ -385,6 +397,8 @@ def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
     grid = "\n".join(cards) if cards else '<div class="meta">Zatím nic k zobrazení.</div>'
     footer = f'<div class="footer">{escape_html(cost_line)}</div>' if cost_line else ""
     updated = to_cz_date(datetime.now(tz.UTC))
+    range_html = f'<div class="meta">{escape_html(range_line)}</div>' if range_line else ""
+    counts_html = f'<div class="meta">{escape_html(counts_line)}</div>' if counts_line else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -398,6 +412,8 @@ def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
     <header>
       <h1>Právní novinky – AI generované články</h1>
       <div class="meta">Poslední aktualizace: {escape_html(updated)}</div>
+      {range_html}
+      {counts_html}
     </header>
 
     <div class="grid">
@@ -412,7 +428,8 @@ def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
 
 # ====== Hlavní běh ======
 def main():
-    cutoff = datetime.now(tz.UTC) - timedelta(days=DAYS_BACK)
+    now_utc = datetime.now(tz.UTC)
+    cutoff = now_utc - timedelta(days=DAYS_BACK)
     seen_links = set()
     collected: List[Dict[str, Any]] = []
 
@@ -460,7 +477,7 @@ def main():
         link = item["link"]
         rating = item["rating"]
         pub_dt = item["pub_dt"]
-        pub_date_str = to_cz_date(pub_dt)
+        pub_date_str = to_cz_date(pub_dt) if pub_dt else "neznámo"
 
         article_md = llm_generate_article(title, summary, link)
         article_html = md_to_html(article_md)
@@ -499,7 +516,7 @@ def main():
     cost_czk = cost_usd * USD_TO_CZK
 
     cost_info = {
-        "timestamp": datetime.now(tz.UTC).isoformat(),
+        "timestamp": now_utc.isoformat(),
         "model": OPENAI_MODEL,
         "days_back": DAYS_BACK,
         "feeds": FEEDS,
@@ -512,6 +529,8 @@ def main():
         "cost_usd": round(cost_usd, 6),
         "cost_czk": round(cost_czk, 4),
         "usd_to_czk_rate": USD_TO_CZK,
+        "range_from": to_cz_day(cutoff),
+        "range_to": to_cz_day(now_utc),
     }
     (OUTPUT_DIR / "cost.json").write_text(json.dumps(cost_info, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUTPUT_DIR / "cost.txt").write_text(
@@ -522,6 +541,7 @@ def main():
             f"Output tokens: {output_tokens}\n"
             f"Cena (odhad):  ${cost_usd:.4f}  (~{cost_czk:.2f} Kč při kurzu {USD_TO_CZK})\n"
             f"Ceník: input ${INPUT_PRICE_PER_MTOK}/1M, output ${OUTPUT_PRICE_PER_MTOK}/1M\n"
+            f"Rozsah dat: {to_cz_day(cutoff)} – {to_cz_day(now_utc)}\n"
         ),
         encoding="utf-8"
     )
@@ -540,8 +560,10 @@ def main():
         )
         it["filepath"].write_text(html_out, encoding="utf-8")
 
-    # 6) Index s cost_line
-    index_html = render_index_html(index_items, cost_line=cost_line)
+    # 6) Index s cost_line + rozsah + počty
+    range_line = f"Časový rozsah načtených novinek: {to_cz_day(cutoff)} – {to_cz_day(now_utc)}"
+    counts_line = f"Načteno: {len(collected)} položek · Vybráno: {len(selected)} článků"
+    index_html = render_index_html(index_items, cost_line=cost_line, range_line=range_line, counts_line=counts_line)
     (OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
 
 if __name__ == "__main__":
