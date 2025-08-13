@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-08-13T18:08:18.668920+00:00",
+  "model": "gpt-4o-mini",
+  "days_back": 3,
+  "feeds": [
+    "https://www.epravo.cz/rss.php",
+    "https://advokatnidenik.cz/feed/",
+    "https://www.pravniprostor.cz/rss/aktuality"
+  ],
+  "items_collected": 26,
+  "items_selected": 21,
+  "input_tokens": 26954,
+  "output_tokens": 13606,
+  "input_price_usd_per_mtok": 0.15,
+  "output_price_usd_per_mtok": 0.6,
+  "cost_usd": 0.012207
+}
