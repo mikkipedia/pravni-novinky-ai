@@ -4,12 +4,14 @@
 # - stáhne články z RSS (posledních N dní)
 # - ohodnotí poutavost 1–5 (LLM)
 # - pro 3–5 vygeneruje článek + 3 LinkedIn posty
-# - zapíše posts/*.html + index.html
+# - zapíše cost.txt + cost.json (tokeny + odhad ceny)
+# - zapíše posts/*.html + index.html (s řádkem o nákladech)
 # -----------------------------------------
 
 import os
 import re
 import html
+import json
 import feedparser
 from datetime import datetime, timedelta
 from dateutil import tz
@@ -29,6 +31,10 @@ FEEDS = [
 OPENAI_MODEL = os.getenv("MODEL_NAME", "gpt-4o-mini")
 DAYS_BACK = int(os.getenv("DAYS_BACK", "30"))
 
+# Cena (USD za 1M tokenů) – lze přepsat ve workflow env
+INPUT_PRICE_PER_MTOK = float(os.getenv("INPUT_PRICE_USD_PER_MTOK", "0.15"))
+OUTPUT_PRICE_PER_MTOK = float(os.getenv("OUTPUT_PRICE_USD_PER_MTOK", "0.60"))
+
 OUTPUT_DIR = Path(".")
 POSTS_DIR = OUTPUT_DIR / "posts"
 POSTS_DIR.mkdir(exist_ok=True)
@@ -38,6 +44,20 @@ if not API_KEY:
     raise RuntimeError("Chybí OPENAI_API_KEY v env. Přidej secret do GitHubu (Settings → Secrets → Actions).")
 
 client = OpenAI(api_key=API_KEY)
+
+# ====== Token/metrika ======
+TOK_IN = 0
+TOK_OUT = 0
+
+def add_usage(resp):
+    """Sečte usage tokeny z response (bezpečně)."""
+    global TOK_IN, TOK_OUT
+    try:
+        u = resp.usage
+        TOK_IN += int(getattr(u, "prompt_tokens", getattr(u, "input_tokens", 0)) or 0)
+        TOK_OUT += int(getattr(u, "completion_tokens", getattr(u, "output_tokens", 0)) or 0)
+    except Exception:
+        pass
 
 # ====== Utility ======
 def to_cz_date(dt: datetime) -> str:
@@ -126,6 +146,7 @@ Anotace: {summary or "(bez anotace)"}
         ],
         temperature=0.0,
     )
+    add_usage(resp)
     text = (resp.choices[0].message.content or "").strip()
     try:
         n = int(re.findall(r"[1-5]", text)[0])
@@ -164,6 +185,7 @@ Na úplný konec přidej větu: „Zpracováno z veřejných zdrojů.“
         temperature=0.5,
         max_tokens=900,
     )
+    add_usage(resp)
     return (resp.choices[0].message.content or "").strip()
 
 def llm_generate_linkedin_posts(title: str, summary: str) -> List[str]:
@@ -204,6 +226,7 @@ Jednatel (hravý):
         temperature=0.7,
         max_tokens=600,
     )
+    add_usage(resp)
     raw = (resp.choices[0].message.content or "").strip()
 
     # Rozdělit podle '---' bloků a sestavit HTML s tučnou hlavičkou
@@ -224,10 +247,19 @@ Jednatel (hravý):
     return ["", "", ""]
 
 # ====== HTML šablony ======
-def render_post_html(title: str, article_html: str, posts: List[str], rating: int, source_url: str, pub_date_str: str) -> str:
+def render_post_html(
+    title: str,
+    article_html: str,
+    posts: List[str],
+    rating: int,
+    source_url: str,
+    pub_date_str: str,
+    cost_line: str = ""
+) -> str:
     esc_title = escape_html(title)
     esc_url = escape_html(source_url or "#")
     items = "\n".join(f"      <li>{p}</li>" for p in posts)  # posts už obsahují <strong> + escapovaný text
+    footer = f'<p class="meta">{escape_html(cost_line)}</p>' if cost_line else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -261,14 +293,16 @@ def render_post_html(title: str, article_html: str, posts: List[str], rating: in
 {items}
   </ul>
 
+  {footer}
   <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
 </body>
 </html>
 """
 
-def render_index_html(items: List[Dict[str, Any]]) -> str:
+def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
     """
     items: list dicts {title, href, rating, source, pub_date_str}
+    cost_line: volitelný řádek s náklady (vloží se do patičky)
     """
     li = []
     for it in items:
@@ -278,6 +312,7 @@ def render_index_html(items: List[Dict[str, Any]]) -> str:
     </li>''')
     lis = "\n".join(li) if li else "    <li>Zatím nic k zobrazení.</li>"
     updated = to_cz_date(datetime.now(tz.UTC))
+    footer = f'<p class="meta">{escape_html(cost_line)}</p>' if cost_line else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -303,6 +338,8 @@ def render_index_html(items: List[Dict[str, Any]]) -> str:
   <ul class="posts">
 {lis}
   </ul>
+
+  {footer}
 </body>
 </html>
 """
@@ -347,8 +384,10 @@ def main():
         if rating >= 3:
             selected.append(item)
 
-    # 3) Generování článků + LinkedIn postů
+    # 3) Generování článků + LinkedIn postů (zatím jen do paměti)
+    render_queue = []  # fronta pro odložený zápis po výpočtu nákladů
     index_items: List[Dict[str, Any]] = []
+
     for item in selected:
         title = item["title"]
         summary = item["summary"]
@@ -363,8 +402,16 @@ def main():
 
         slug = slugify(title)[:60]
         fn = POSTS_DIR / f"{slug}.html"
-        html_out = render_post_html(title, article_html, posts, rating, link, pub_date_str)
-        fn.write_text(html_out, encoding="utf-8")
+
+        render_queue.append({
+            "filepath": fn,
+            "title": title,
+            "article_html": article_html,
+            "posts": posts,
+            "rating": rating,
+            "link": link,
+            "pub_date_str": pub_date_str,
+        })
 
         index_items.append({
             "title": title,
@@ -377,7 +424,54 @@ def main():
 
     # 4) Index – novější nahoře
     index_items.sort(key=lambda x: x["pub_date"], reverse=True)
-    index_html = render_index_html(index_items)
+
+    # 5) Náklady: spočítat a zapsat cost.txt + cost.json
+    input_tokens = TOK_IN
+    output_tokens = TOK_OUT
+    cost_usd = (input_tokens * (INPUT_PRICE_PER_MTOK / 1_000_000.0)) + \
+               (output_tokens * (OUTPUT_PRICE_PER_MTOK / 1_000_000.0))
+    cost_info = {
+        "timestamp": datetime.now(tz.UTC).isoformat(),
+        "model": OPENAI_MODEL,
+        "days_back": DAYS_BACK,
+        "feeds": FEEDS,
+        "items_collected": len(collected),
+        "items_selected": len(selected),
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "input_price_usd_per_mtok": INPUT_PRICE_PER_MTOK,
+        "output_price_usd_per_mtok": OUTPUT_PRICE_PER_MTOK,
+        "cost_usd": round(cost_usd, 6),
+    }
+    (OUTPUT_DIR / "cost.json").write_text(json.dumps(cost_info, ensure_ascii=False, indent=2), encoding="utf-8")
+    (OUTPUT_DIR / "cost.txt").write_text(
+        (
+            f"Model: {OPENAI_MODEL}\n"
+            f"Položky: {len(collected)} (vybráno {len(selected)})\n"
+            f"Input tokens:  {input_tokens}\n"
+            f"Output tokens: {output_tokens}\n"
+            f"Cena (odhad):  ${cost_usd:.4f}\n"
+            f"Ceník: input ${INPUT_PRICE_PER_MTOK}/1M, output ${OUTPUT_PRICE_PER_MTOK}/1M\n"
+        ),
+        encoding="utf-8"
+    )
+    cost_line = f"Odhad nákladů posledního běhu: ${cost_usd:.4f} (input {input_tokens} tok., output {output_tokens} tok., model {OPENAI_MODEL})"
+
+    # 5b) Zapiš jednotlivé články s patičkou (cost_line)
+    for it in render_queue:
+        html_out = render_post_html(
+            it["title"],
+            it["article_html"],
+            it["posts"],
+            it["rating"],
+            it["link"],
+            it["pub_date_str"],
+            cost_line=cost_line
+        )
+        it["filepath"].write_text(html_out, encoding="utf-8")
+
+    # 6) Index s cost_line
+    index_html = render_index_html(index_items, cost_line=cost_line)
     (OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
 
 if __name__ == "__main__":
