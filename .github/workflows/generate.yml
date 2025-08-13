@@ -1,1 +1,38 @@
+name: Generovat články z RSS
+
+on:
+  schedule:
+    - cron: '0 6 * * *'     # denně v 06:00 UTC (8:00 CET/CEST)
+  workflow_dispatch:        # ruční spuštění
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate site
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODEL_NAME: gpt-4o-mini
+          DAYS_BACK: '30'
+        run: python scripts/generate.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Auto-update articles [skip ci]" || exit 0
+          git push
 
