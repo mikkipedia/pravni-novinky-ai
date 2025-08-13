@@ -184,7 +184,7 @@ Na úplný konec přidej větu: „Zpracováno z veřejných zdrojů.“
             {"role": "user", "content": user}
         ],
         temperature=0.5,
-        max_tokens=900,
+        max_tokens=1200,
     )
     add_usage(resp)
     return (resp.choices[0].message.content or "").strip()
