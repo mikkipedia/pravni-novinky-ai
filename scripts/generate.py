@@ -1,11 +1,11 @@
 # scripts/generate.py
 # -----------------------------------------
-# Právní novinky – RSS -> LLM -> statický web
+# Právní novinky – RSS -> LLM -> statický web (dark, card design)
 # - stáhne články z RSS (posledních N dní)
 # - ohodnotí poutavost 1–5 (LLM)
 # - pro 3–5 vygeneruje článek + 3 LinkedIn posty
-# - zapíše cost.txt + cost.json (tokeny + odhad ceny)
-# - zapíše posts/*.html + index.html (s řádkem o nákladech)
+# - zapíše cost.txt + cost.json (tokeny + odhad ceny v USD i CZK)
+# - zapíše posts/*.html + index.html (dark theme + cards + cost line)
 # -----------------------------------------
 
 import os
@@ -34,6 +34,7 @@ DAYS_BACK = int(os.getenv("DAYS_BACK", "30"))
 # Cena (USD za 1M tokenů) – lze přepsat ve workflow env
 INPUT_PRICE_PER_MTOK = float(os.getenv("INPUT_PRICE_USD_PER_MTOK", "0.15"))
 OUTPUT_PRICE_PER_MTOK = float(os.getenv("OUTPUT_PRICE_USD_PER_MTOK", "0.60"))
+USD_TO_CZK = float(os.getenv("USD_TO_CZK", "24.5"))  # kurz pro převod na Kč
 
 OUTPUT_DIR = Path(".")
 POSTS_DIR = OUTPUT_DIR / "posts"
@@ -62,8 +63,10 @@ def add_usage(resp):
 # ====== Utility ======
 def to_cz_date(dt: datetime) -> str:
     """Formátování na Europe/Prague (dd. mm. YYYY HH:MM)."""
-    if dt.tzinfo is None:
+    if dt and dt.tzinfo is None:
         dt = dt.replace(tzinfo=tz.UTC)
+    if not dt:
+        return "neznámo"
     return dt.astimezone(tz.gettz("Europe/Prague")).strftime("%-d. %-m. %Y %H:%M")
 
 def parse_pubdate(entry) -> datetime | None:
@@ -121,9 +124,7 @@ def md_to_html(txt: str) -> str:
 
 # ====== LLM volání ======
 def llm_classify_relevance(title: str, summary: str) -> int:
-    """
-    Vrátí integer 1–5 (1 = nezajímavé, 5 = průlomové).
-    """
+    """Vrátí integer 1–5 (1 = nezajímavé, 5 = průlomové)."""
     prompt = f"""
 Jsi právní analytik. Ohodnoť POUTAVOST pro odborný právnický blog na škále 1–5:
 1 = drobná aktualita bez významu,
@@ -157,7 +158,7 @@ Anotace: {summary or "(bez anotace)"}
 def llm_generate_article(title: str, summary: str, source_url: str) -> str:
     """
     Vygeneruje 3–5 odstavců srozumitelného článku pro širokou veřejnost,
-    s 1× odkazem na zdroj a 1× odkazem na Spring Walk poradenství.
+    s 1× odkazem na zdroj a 1× nenásilným kontextovým odkazem na Spring Walk poradenství.
     """
     user = f"""
 Napiš česky srozumitelný a snadno čitelný článek pro širokou veřejnost (3–5 odstavců).
@@ -166,7 +167,7 @@ Styl: jasný, kratší věty, bez žargonu, bez reklamy a bez výzev „kontaktu
 POVINNÉ:
 - Použij 1–2 mezititulky (Markdown „## “).
 - V textu přirozeně uveď 1× odkaz na původní zdroj ve formátu [zdroj]({source_url}).
-- V závěru nebo v části „Co z toho plyne“ uveď 1× odkaz na [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/).
+- VLOŽ nenásilně a pouze 1× **kontextový** odkaz na [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/). Zasaď ho do věty tak, aby působil organicky (např. při vysvětlení dopadů nebo doporučení, bez prodejních frází).
 - Drž se faktů z podkladu, nic si nevymýšlej.
 
 Podklad:
@@ -239,14 +240,91 @@ Jednatel (hravý):
         heading = lines[0]
         body = " ".join(lines[1:]) if len(lines) > 1 else ""
         posts.append(f"<strong>{escape_html(heading)}</strong> {escape_html(body)}")
-    # jistota, že jsou přesně 3
     if len(posts) >= 3:
         return posts[:3]
     if posts:
         return posts + [""] * (3 - len(posts))
     return ["", "", ""]
 
-# ====== HTML šablony ======
+# ====== HTML šablony (dark theme) ======
+BASE_CSS = """
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+"""
+
 def render_post_html(
     title: str,
     article_html: str,
@@ -259,42 +337,35 @@ def render_post_html(
     esc_title = escape_html(title)
     esc_url = escape_html(source_url or "#")
     items = "\n".join(f"      <li>{p}</li>" for p in posts)  # posts už obsahují <strong> + escapovaný text
-    footer = f'<p class="meta">{escape_html(cost_line)}</p>' if cost_line else ""
+    footer = f'<div class="footer meta">{escape_html(cost_line)}</div>' if cost_line else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <title>{esc_title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }}
-    h1 {{ line-height: 1.2; }}
-    h2 {{ margin-top: 1.5rem; }}
-    .meta {{ color:#666; font-size: 0.9rem; margin-bottom: 1rem; }}
-    .back {{ margin-top: 2rem; }}
-    ul {{ padding-left: 1.2rem; }}
-    .pill {{ display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }}
-    hr {{ border:none; border-top:1px solid #eee; margin:1.5rem 0; }}
-    a {{ color:#0b57d0; text-decoration:none; }}
-    a:hover {{ text-decoration:underline; }}
-  </style>
+  <style>{BASE_CSS}</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>{esc_title}</h1>
-  <div class="meta">
-    Poutavost: <strong>{rating}/5</strong> &nbsp;|&nbsp; Zdroj: <a href="{esc_url}" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: {escape_html(pub_date_str)}
-  </div>
-  {article_html}
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>{esc_title}</h1>
+      <div class="meta">Poutavost: <strong>{rating}/5</strong> · Zdroj: <a href="{esc_url}" target="_blank" rel="noopener">odkaz</a> · Publikováno: {escape_html(pub_date_str)}</div>
+    </header>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
+    <article class="article">
+      {article_html}
+
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
 {items}
-  </ul>
+      </ul>
+    </article>
 
-  {footer}
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    {footer}
+  </div>
 </body>
 </html>
 """
@@ -304,42 +375,37 @@ def render_index_html(items: List[Dict[str, Any]], cost_line: str = "") -> str:
     items: list dicts {title, href, rating, source, pub_date_str}
     cost_line: volitelný řádek s náklady (vloží se do patičky)
     """
-    li = []
+    cards = []
     for it in items:
-        li.append(f'''    <li>
-      <a href="{escape_html(it["href"])}">{escape_html(it["title"])}</a>
-      <div class="meta">Poutavost: <strong>{it["rating"]}/5</strong> &nbsp;|&nbsp; Zdroj: {escape_html(it["source"])} &nbsp;|&nbsp; Publikováno: {escape_html(it["pub_date_str"])}</div>
-    </li>''')
-    lis = "\n".join(li) if li else "    <li>Zatím nic k zobrazení.</li>"
+        cards.append(f'''  <a class="card" href="{escape_html(it["href"])}">
+      <div class="meta">{escape_html(it["source"])} · {escape_html(it["pub_date_str"])}</div>
+      <h2>{escape_html(it["title"])}</h2>
+      <div class="meta">Poutavost: <strong>{it["rating"]}/5</strong></div>
+    </a>''')
+    grid = "\n".join(cards) if cards else '<div class="meta">Zatím nic k zobrazení.</div>'
+    footer = f'<div class="footer">{escape_html(cost_line)}</div>' if cost_line else ""
     updated = to_cz_date(datetime.now(tz.UTC))
-    footer = f'<p class="meta">{escape_html(cost_line)}</p>' if cost_line else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <title>Právní novinky – AI generátor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }}
-    h1 {{ line-height: 1.2; }}
-    .meta {{ color:#666; font-size: 0.9rem; }}
-    ul.posts {{ list-style: none; padding-left: 0; }}
-    ul.posts > li {{ margin: 1rem 0 1.25rem; }}
-    a {{ color:#0b57d0; text-decoration:none; }}
-    a:hover {{ text-decoration:underline; }}
-  </style>
+  <style>{BASE_CSS}</style>
 </head>
 <body>
-  <h1>Právní novinky – AI generované články</h1>
-  <p>Tento web automaticky sbírá české právní novinky (posledních {DAYS_BACK} dní), hodnotí jejich poutavost (1–5) a pro relevantní témata (3–5) generuje stručné články a 3 tipy na příspěvky na LinkedIn. Bez reklamy, pouze informativní publicita.</p>
-  <p class="meta">Poslední aktualizace: {escape_html(updated)}</p>
+  <div class="wrap">
+    <header>
+      <h1>Právní novinky – AI generované články</h1>
+      <div class="meta">Poslední aktualizace: {escape_html(updated)}</div>
+    </header>
 
-  <h2>Seznam článků</h2>
-  <ul class="posts">
-{lis}
-  </ul>
+    <div class="grid">
+{grid}
+    </div>
 
-  {footer}
+    {footer}
+  </div>
 </body>
 </html>
 """
@@ -385,7 +451,7 @@ def main():
             selected.append(item)
 
     # 3) Generování článků + LinkedIn postů (zatím jen do paměti)
-    render_queue = []  # fronta pro odložený zápis po výpočtu nákladů
+    render_queue = []
     index_items: List[Dict[str, Any]] = []
 
     for item in selected:
@@ -394,7 +460,7 @@ def main():
         link = item["link"]
         rating = item["rating"]
         pub_dt = item["pub_dt"]
-        pub_date_str = to_cz_date(pub_dt) if pub_dt else "neznámo"
+        pub_date_str = to_cz_date(pub_dt)
 
         article_md = llm_generate_article(title, summary, link)
         article_html = md_to_html(article_md)
@@ -425,11 +491,13 @@ def main():
     # 4) Index – novější nahoře
     index_items.sort(key=lambda x: x["pub_date"], reverse=True)
 
-    # 5) Náklady: spočítat a zapsat cost.txt + cost.json
+    # 5) Náklady: spočítat a zapsat cost.txt + cost.json (USD i CZK)
     input_tokens = TOK_IN
     output_tokens = TOK_OUT
     cost_usd = (input_tokens * (INPUT_PRICE_PER_MTOK / 1_000_000.0)) + \
                (output_tokens * (OUTPUT_PRICE_PER_MTOK / 1_000_000.0))
+    cost_czk = cost_usd * USD_TO_CZK
+
     cost_info = {
         "timestamp": datetime.now(tz.UTC).isoformat(),
         "model": OPENAI_MODEL,
@@ -442,6 +510,8 @@ def main():
         "input_price_usd_per_mtok": INPUT_PRICE_PER_MTOK,
         "output_price_usd_per_mtok": OUTPUT_PRICE_PER_MTOK,
         "cost_usd": round(cost_usd, 6),
+        "cost_czk": round(cost_czk, 4),
+        "usd_to_czk_rate": USD_TO_CZK,
     }
     (OUTPUT_DIR / "cost.json").write_text(json.dumps(cost_info, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUTPUT_DIR / "cost.txt").write_text(
@@ -450,12 +520,12 @@ def main():
             f"Položky: {len(collected)} (vybráno {len(selected)})\n"
             f"Input tokens:  {input_tokens}\n"
             f"Output tokens: {output_tokens}\n"
-            f"Cena (odhad):  ${cost_usd:.4f}\n"
+            f"Cena (odhad):  ${cost_usd:.4f}  (~{cost_czk:.2f} Kč při kurzu {USD_TO_CZK})\n"
             f"Ceník: input ${INPUT_PRICE_PER_MTOK}/1M, output ${OUTPUT_PRICE_PER_MTOK}/1M\n"
         ),
         encoding="utf-8"
     )
-    cost_line = f"Odhad nákladů posledního běhu: ${cost_usd:.4f} (input {input_tokens} tok., output {output_tokens} tok., model {OPENAI_MODEL})"
+    cost_line = f"Odhad nákladů posledního běhu: ${cost_usd:.4f} (~{cost_czk:.2f} Kč) · input {input_tokens} tok., output {output_tokens} tok., model {OPENAI_MODEL}"
 
     # 5b) Zapiš jednotlivé články s patičkou (cost_line)
     for it in render_queue:
