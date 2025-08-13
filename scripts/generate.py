@@ -165,7 +165,7 @@ Anotace: {summary or "(bez anotace)"}
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.7,
-        max_tokens=900,
+        max_tokens=750,
     )
     add_usage(resp)
     raw = (resp.choices[0].message.content or "").strip()
