@@ -85,15 +85,22 @@ def md_links_to_html(text: str) -> str:
                   r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
 
 def md_to_html(txt: str) -> str:
+    """
+    Odstavce = oddělené prázdnou řádkou.
+    Zachová h2/h3, převádí markdown odkazy na <a>.
+    """
     txt = md_links_to_html(txt)
     parts = [p.strip() for p in re.split(r"\n\s*\n", txt.strip()) if p.strip()]
     html_pars = []
     for p in parts:
         if p.startswith("## "):
             html_pars.append(f"<h2>{escape_html(p[3:].strip())}</h2>")
+        elif p.startswith("### "):
+            html_pars.append(f"<h3>{escape_html(p[4:].strip())}</h3>")
         else:
             html_pars.append(f"<p>{p}</p>")
     return "\n".join(html_pars)
+
 
 # ===== LLM =====
 def llm_classify_relevance(title: str, summary: str) -> int:
@@ -139,25 +146,63 @@ Anotace: {summary}
     return ensure_springwalk_link(md.strip())
 
 def llm_generate_linkedin_posts(title: str, summary: str) -> List[str]:
+    """
+    Vrátí 3 HTML bloky s jasným oddělením + tučný nadpis sekce.
+    Sekce: Společnost Spring Walk / Jednatel (formální) / Jednatel (hravý)
+    """
     user = f"""
-Vytvoř 3 delší příspěvky na LinkedIn (4–6 vět) k článku:
-1) Společnost Spring Walk:
-2) Jednatel (formální):
-3) Jednatel (hravý):
+Vytvoř 3 delší příspěvky na LinkedIn (4–6 vět) k tématu níže.
+Každý blok začni přesným nadpisem (bez mřížek, bez Markdownu):
+"Společnost Spring Walk:"
+"Jednatel (formální):"
+"Jednatel (hravý):"
+Poté napiš text. Nepoužívej odrážky. Bloky odděl třemi pomlčkami ---.
 Podklad:
 Titulek: {title}
-Anotace: {summary}
+Anotace: {summary or "(bez anotace)"}
 """
     resp = client.chat.completions.create(
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.7,
-        max_tokens=900
+        max_tokens=900,
     )
     add_usage(resp)
-    raw = resp.choices[0].message.content or ""
-    blocks = [b.strip() for b in raw.split("---") if b.strip()]
-    return [escape_html(b) for b in blocks[:3]]
+    raw = (resp.choices[0].message.content or "").strip()
+
+    # Rozdělit podle --- a vytáhnout nadpis + tělo. Odstraníme případné "### ".
+    blocks = [b.strip() for b in re.split(r'\n?---\n?', raw) if b.strip()]
+    result = []
+    wanted = [
+        r"Společnost Spring Walk:\s*",
+        r"Jednatel\s*\(formální\):\s*",
+        r"Jednatel\s*\(hravý\):\s*",
+    ]
+    for i in range(min(3, len(blocks))):
+        b = re.sub(r"^\s*#+\s*", "", blocks[i])  # odstranit případné ### na začátku
+        m = re.match(wanted[i], b, flags=re.IGNORECASE)
+        if m:
+            heading = m.group(0).rstrip(": ").rstrip()
+            body = b[m.end():].strip()
+        else:
+            # fallback – první věta jako heading, zbytek jako body
+            lines = [ln.strip() for ln in b.splitlines() if ln.strip()]
+            heading = lines[0].rstrip(":") if lines else "Příspěvek"
+            body = " ".join(lines[1:]) if len(lines) > 1 else ""
+
+        # HTML blok (vlastní wrapper pro stylování a rozestupy)
+        block_html = f'''
+<div class="li-post">
+  <div class="li-heading"><strong>{escape_html(heading)}</strong></div>
+  <div class="li-body">{escape_html(body)}</div>
+</div>'''.strip()
+        result.append(block_html)
+
+    # doplň prázdné, kdyby LLM nevrátilo dost
+    while len(result) < 3:
+        result.append('''<div class="li-post"><div class="li-heading"><strong>Příspěvek</strong></div><div class="li-body"></div></div>''')
+    return result[:3]
+
 
 # ===== CSS Light Theme =====
 BASE_CSS = """
@@ -218,6 +263,11 @@ h1, h2 {
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
+  /* LinkedIn blocks */
+  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+  .li-heading { margin-bottom: 6px; }
+  .li-body { line-height: 1.7; }
+
 """
 
 # ===== HTML =====
