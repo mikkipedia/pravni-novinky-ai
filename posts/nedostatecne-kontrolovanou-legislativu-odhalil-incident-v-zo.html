@@ -5,40 +5,109 @@
   <title>Nedostatečně kontrolovanou legislativu odhalil incident v zooparku</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Nedostatečně kontrolovanou legislativu odhalil incident v zooparku</h1>
-  <div class="meta">
-    Poutavost: <strong>4/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/nedostatecne-kontrolovanou-legislativu-odhalil-incident-v-zooparku/" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 13. 8. 2025 08:33
-  </div>
-  <h2>Incident v zooparku a legislativní mezery</h2>
-  <p>Nedávný incident v Zooparku ve Zvoli u Prahy odhalil vážné nedostatky v legislativě týkající se chovu nebezpečných zvířat. V sobotu utekl z klece lev, což vedlo k jeho zastřelení policií. Tento případ upozornil na mezery v kontrolních mechanismch, které by měly zajišťovat bezpečnost jak pro zvířata, tak pro lidi. Spolek Svoboda zvířat poukazuje na to, že současná legislativa umožňuje obcházení zákonů, což je alarmující.</p>
-  <p>Ministerstvo zemědělství se k incidentu vyjádřilo, že jde o selhání jednotlivce a nikoli systémový problém. Podle úřadu je platná legislativa dostatečná. Nicméně, i přesto se úřad shoduje na potřebě důslednějších postihů pro ty, kteří porušují pravidla. Tato situace vyvolává otázky o skutečné efektivitě stávajících zákonů a jejich dodržování.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Tento incident ukazuje, jak důležité je mít dobře nastavené a kontrolované zákony týkající se chovu nebezpečných zvířat. Bezpečnostní opatření by měla být prioritou, aby se předešlo podobným situacím v budoucnu. V případě potřeby právního poradenství je dobré obrátit se na odborníky, jako jsou ti z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Nedostatečně kontrolovanou legislativu odhalil incident v zooparku</h1>
+      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/nedostatecne-kontrolovanou-legislativu-odhalil-incident-v-zooparku/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 08:33</div>
+    </header>
+
+    <article class="article">
+      <h2>Incident v zooparku a jeho důsledky</h2>
+  <p>Nedávný incident v Zooparku ve Zvoli u Prahy upozornil na nedostatky v legislativě týkající se chovu nebezpečných zvířat. Lev, který utekl z klece, byl nakonec zastřelen policií. Tato událost vyvolala otázky ohledně bezpečnosti a kontroly chovu takových zvířat. Spolek Svoboda zvířat tvrdí, že situace odhalila mezery v zákonech, které umožňují obcházení předpisů.</p>
+  <p>Ministerstvo zemědělství však situaci hodnotí jinak. Podle jeho představitelů šlo o selhání jednotlivce, nikoli o systémový problém. Úřad považuje současnou legislativu za dostatečnou, přičemž souhlasí s myšlenkou přísnějších postihů pro porušovatele pravidel. Tato reakce vzbuzuje obavy, zda jsou stávající pravidla skutečně efektivní.</p>
+  <p>Důsledky incidentu by mohly mít dalekosáhlé následky. Zvyšující se tlak na úřady může vést k revizi legislativy a přísnějším kontrolám. Je důležité, aby se právní rámec přizpůsobil aktuálním potřebám a zajistil ochranu jak zvířat, tak návštěvníků. V případě nejasností ohledně právních předpisů může pomoci odborné právní poradenství, které poskytuje například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <p>Tento incident ukazuje, jak důležité je mít jasně definovaná pravidla a jejich důslednou kontrolu. Bez toho se mohou podobné situace opakovat, což by mohlo ohrozit nejen zvířata, ale i lidi. Pro více informací o této problematice se můžete podívat na <a href="https://advokatnidenik.cz/2025/08/13/nedostatecne-kontrolovanou-legislativu-odhalil-incident-v-zooparku/" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Incident v Zooparku ve Zvoli nám připomíná, jak důležité je mít robustní a důsledně kontrolovanou legislativu v oblasti chovu nebezpečných zvířat. Bezpečnost našich občanů a pohoda zvířat by měly být vždy na prvním místě.</li>
-      <li><strong>Jednatel (formální):</strong> Nedávný incident s útěkem lva z klece ukazuje na nedostatky v legislativě, která by měla chránit jak zvířata, tak lidi. Je nezbytné provést revizi a zlepšit kontrolní mechanismy, aby se podobné situace už neopakovaly.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že lev může být takový unikát? Ale vážně, incident v zooparku nám ukazuje, že je čas se zamyslet nad tím, jak lépe chránit nejen zvířata, ale i nás samotné. Bezpečnostní opatření by měla být stejně silná jako naše touha po dobrodružství!</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Incident v Zooparku ve Zvoli nám jasně ukazuje, jak důležité je mít efektivní legislativu pro chov nebezpečných zvířat. Je alarmující, že se stále objevují mezery, které mohou ohrozit nejen zvířata, ale i lidi.</li>
+      <li><strong>Jednatel (formální):</strong> Nedávný útěk lva z klece v Zooparku ve Zvoli odhalil vážné nedostatky v legislativě týkající se chovu nebezpečných zvířat. Je nezbytné, aby se úřady zaměřily na důslednější prosazování a kontrolu pravidel, aby se předešlo podobným incidentům v budoucnu.</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že lev v zooparku může udělat takovou nečekanou &quot;exkurzi&quot;? Tento incident nám ukazuje, že je čas zamyslet se nad tím, jak chráníme nejen zvířata, ale i nás samotné. Jaké další „únikové plány“ by nás mohly překvapit?</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

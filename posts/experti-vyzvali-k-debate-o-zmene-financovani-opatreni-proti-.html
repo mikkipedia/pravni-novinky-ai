@@ -5,40 +5,109 @@
   <title>Experti vyzvali k debatě o změně financování opatření proti závislostem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Experti vyzvali k debatě o změně financování opatření proti závislostem</h1>
-  <div class="meta">
-    Poutavost: <strong>3/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 13. 8. 2025 08:51
-  </div>
-  <h2>Změna financování opatření proti závislostem</h2>
-  <p>Experti v oblasti drogové problematiky vyzvali politiky, aby zahájili debatu o novém způsobu financování opatření proti závislostem. Tato opatření se týkají nejen alkoholu a tabáku, ale také hazardního hraní a nelegálních drog. Podle stanoviska Think tanku Racionální politiky závislostí (TTRPZ) by místo stávajících dotací měla být zřízena specializovaná agentura. Ta by se měla postarat o přidělování finančních prostředků na adiktologické služby, poradenství a prevenci.</p>
-  <p>Experti varují, že pokud by došlo k seškrtání národních dotací, mohlo by to vést k omezení nebo dokonce zrušení důležitých programů. Tyto služby jsou klíčové pro pomoc lidem, kteří se potýkají se závislostmi. Je proto důležité, aby se o této problematice začalo otevřeně diskutovat a hledaly se efektivní řešení.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Změna financování by mohla přinést efektivnější využití prostředků a zlepšení dostupnosti služeb pro osoby se závislostmi. Je důležité, aby se o této problematice diskutovalo na všech úrovních, včetně zapojení odborníků a veřejnosti. Pro ty, kteří potřebují právní poradenství v této oblasti, je možné se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Experti vyzvali k debatě o změně financování opatření proti závislostem</h1>
+      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 08:51</div>
+    </header>
+
+    <article class="article">
+      <h2>Změna financování proti závislostem</h2>
+  <p>Experti v oblasti drogové problematiky vyzvali politiky k debatě o novém způsobu financování opatření proti závislostem. Tato opatření se týkají závislostí na alkoholu, tabáku, hraní a nelegálních drogách. Podle názoru Think tanku Racionální politiky závislostí (TTRPZ) by místo stávajících dotací měla vzniknout agentura, která by zajišťovala přidělování peněz na adiktologické služby, poradenství a prevenci.</p>
+  <p>Tento návrh přichází v době, kdy se diskutuje o omezení národních dotací. Odborníci varují, že seškrtání těchto prostředků by mohlo vést k omezení či dokonce zrušení důležitých programů. Je nezbytné, aby se financování těchto služeb stalo stabilnějším a efektivnějším.</p>
+  <p>Vytvoření agentury by mohlo zajistit lepší přehled o přidělování financí a efektivněji reagovat na potřeby jednotlivých regionů. Odborníci také upozorňují na důležitost právního poradenství, které může pomoci organizacím lépe se orientovat v legislativních změnách a podmínkách financování. Například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a> může poskytnout cenné informace pro ty, kteří se zabývají problematikou závislostí.</p>
+  <p>Diskuse o změnách ve financování je tedy aktuální a důležitá. Je třeba hledat cesty, jak zajistit, aby pomoc lidem s problémy se závislostmi byla co nejefektivnější a nejdostupnější. <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank" rel="noopener">zdroj</a></p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Diskuze o financování opatření proti závislostem je klíčová. Nový přístup, který navrhuje TTRPZ, by mohl přinést efektivnější využití prostředků a zlepšit dostupnost adiktologických služeb.</li>
-      <li><strong>Jednatel (formální):</strong> Experti upozorňují na nezbytnost změny v přístupu k financování služeb pro osoby se závislostmi. Zřízení agentury pro přidělování prostředků by mohlo posílit prevenci a poradenství, které jsou tak důležité pro naši společnost.</li>
-      <li><strong>Jednatel (hravý):</strong> Změna financování závislostí? To zní jako výzva! Když spojíme síly a myšlenky, můžeme vytvořit systém, který skutečně pomůže lidem najít cestu zpět k sobě.</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Změna financování opatření proti závislostem je klíčovým tématem, které si zaslouží naši pozornost. Navrhovaná agentura pro přidělování prostředků může přinést efektivnější podporu adiktologických služeb a prevenci.</li>
+      <li><strong>Jednatel (formální):</strong> Doporučení expertů k debatě o financování opatření proti závislostem ukazuje na důležitost systematického přístupu. Zřízení agentury pro přidělování prostředků by mohlo zajistit stabilnější a cílenější podporu pro osoby v krizi.</li>
+      <li><strong>Jednatel (hravý):</strong> Změna financování závislostí? To je jako změnit strategii ve hře! Když vybudujeme silnější a efektivnější systém, můžeme poskytnout lepší šance pro ty, kteří potřebují pomoc.</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

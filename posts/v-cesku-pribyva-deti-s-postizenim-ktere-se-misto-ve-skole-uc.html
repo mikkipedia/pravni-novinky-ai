@@ -5,40 +5,109 @@
   <title>V Česku přibývá dětí s postižením, které se místo ve škole učí doma</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>V Česku přibývá dětí s postižením, které se místo ve škole učí doma</h1>
-  <div class="meta">
-    Poutavost: <strong>3/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/v-cesku-pribyva-deti-s-postizenim-ktere-se-misto-ve-skole-uci-doma/" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 13. 8. 2025 09:59
-  </div>
-  <h2>Děti s postižením a domácí vzdělávání</h2>
-  <p>V České republice roste počet dětí s postižením, které se místo ve škole učí doma. Mnohé z těchto dětí by mohly být vzdělávány v běžných školách, ale systém je k tomu nenutí. Často se ocitají v institucích daleko od svého domova, což situaci ještě zhoršuje. Hlavním problémem je nedostatek speciálních tříd na běžných základních školách.</p>
-  <p>Otevírání těchto tříd brání několik faktorů. Mezi nimi je nedostatek kvalifikovaných učitelů, obavy z organizační náročnosti a nejasnosti v metodických pokynech. Kromě toho chybí dostatečné zapojení krajů do plánování potřebných kapacit. Tyto překážky vedou k tomu, že stále více dětí se učí doma, místo aby měly možnost navštěvovat školu a socializovat se s vrstevníky.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Tato situace má vážné důsledky pro děti s postižením i jejich rodiny. Domácí vzdělávání může být pro některé rodiny náročné a vyžaduje značné úsilí. Je důležité, aby se situace zlepšila a aby děti měly možnost vzdělávat se v prostředí, které je pro ně nejvhodnější. Rodiče a odborníci by měli mít přístup k právnímu poradenství, aby se mohli lépe orientovat v této problematice. Více informací o právním poradenství naleznete na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>V Česku přibývá dětí s postižením, které se místo ve škole učí doma</h1>
+      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/v-cesku-pribyva-deti-s-postizenim-ktere-se-misto-ve-skole-uci-doma/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 09:59</div>
+    </header>
+
+    <article class="article">
+      <h2>Děti s postižením a domácí vzdělávání</h2>
+  <p>V České republice se zvyšuje počet dětí s postižením, které se místo ve škole učí doma. Tento trend je důsledkem nedostatku speciálních tříd v běžných základních školách. Mnohé děti by se mohly vzdělávat v klasickém prostředí, ale systém je nutí k domácí výuce. Další část dětí zůstává v institucích, které jsou často daleko od jejich domovů.</p>
+  <h2>Příčiny a důsledky</h2>
+  <p>Hlavními překážkami pro otevření speciálních tříd jsou nedostatek kvalifikovaných učitelů a obavy z organizační náročnosti. K tomu se přidává nejasný výklad metodických pokynů a nedostatečné zapojení krajů do plánování vzdělávacích kapacit. Tyto faktory vedou k tomu, že rodiče hledají alternativní možnosti, jako je domácí vzdělávání. V některých případech může být užitečné vyhledat odborné právní poradenství, které může poskytnout cenné informace o právech a povinnostech rodin v této situaci.</p>
+  <p>Podle dostupných informací se situace v oblasti vzdělávání dětí s postižením neustále vyvíjí. Rodiče se snaží najít nejlepší řešení pro své děti, a to i v obtížných podmínkách. Vzhledem k rostoucímu počtu dětí, které se učí doma, je důležité, aby se systém vzdělávání přizpůsobil jejich potřebám a poskytl jim potřebnou podporu. Více informací o této problematice naleznete v článku <a href="https://advokatnidenik.cz/2025/08/13/v-cesku-pribyva-deti-s-postizenim-ktere-se-misto-ve-skole-uci-doma/" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Rostoucí počet dětí s postižením, které se vzdělávají doma, ukazuje na významné nedostatky v našem vzdělávacím systému. Je nezbytné hledat způsoby, jak vytvořit více příležitostí pro inkluzivní vzdělávání v běžných školách.</li>
-      <li><strong>Jednatel (formální):</strong> V České republice se zvyšuje počet dětí, které nemohou navštěvovat školu a místo toho se učí doma. Tento trend poukazuje na urgentní potřebu zlepšit podmínky pro vzdělávání dětí s postižením a posílit podporu pro školské instituce.</li>
-      <li><strong>Jednatel (hravý):</strong> Když místo školní lavice sedíme doma, něco není v pořádku! Děti s postižením si zaslouží mít možnost učit se v prostředí, kde se cítí dobře a podporovaně. Pojďme společně přemýšlet, jak to změnit!</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> V České republice se zvyšuje počet dětí s postižením, které se místo ve škole učí doma. Tento trend ukazuje na nedostatky v systému, které brání otevření speciálních tříd ve školách.</li>
+      <li><strong>Jednatel (formální):</strong> Nárůst dětí, které se vzdělávají doma, poukazuje na vážné výzvy ve vzdělávacím systému. Je nezbytné se zaměřit na zlepšení podmínek pro integraci těchto dětí do běžných škol.</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že domácí školní lavice může být pro některé děti lepší než ta ve třídě? Vypadá to, že náš vzdělávací systém potřebuje trochu kouzelné pomoci, aby se děti s postižením mohly radovat z každodenního učení ve škole!</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

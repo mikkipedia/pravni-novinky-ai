@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-13T18:08:18.668920+00:00",
+  "timestamp": "2025-08-13T18:52:04.261242+00:00",
   "model": "gpt-4o-mini",
   "days_back": 3,
   "feeds": [
@@ -9,9 +9,11 @@
   ],
   "items_collected": 26,
   "items_selected": 21,
-  "input_tokens": 26954,
-  "output_tokens": 13606,
+  "input_tokens": 27668,
+  "output_tokens": 14559,
   "input_price_usd_per_mtok": 0.15,
   "output_price_usd_per_mtok": 0.6,
-  "cost_usd": 0.012207
+  "cost_usd": 0.012886,
+  "cost_czk": 0.3157,
+  "usd_to_czk_rate": 24.5
 }

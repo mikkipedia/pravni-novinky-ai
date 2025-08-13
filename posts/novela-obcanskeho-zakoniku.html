@@ -5,41 +5,109 @@
   <title>Novela občanského zákoníku</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Novela občanského zákoníku</h1>
-  <div class="meta">
-    Poutavost: <strong>4/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 13. 8. 2025 08:30
-  </div>
-  <h2>Novela občanského zákoníku</h2>
-  <p>Dne 1. 1. 2026 vstoupí v účinnost novela občanského zákoníku, která přináší několik důležitých změn. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 268/2025 Sb., se dotýká nejen občanského zákoníku, ale také dalších souvisejících právních předpisů. Cílem novely je modernizace a zjednodušení některých právních vztahů.</p>
-  <p>Mezi hlavní novinky patří úpravy týkající se smluvních vztahů a ochrany spotřebitelů. Novela se zaměřuje na jasnější vymezení práv a povinností, což by mělo přispět k větší právní jistotě. Změny se dotknou také problematiky dědictví a rodinného práva, kde se očekávají úpravy, které usnadní některé procesy.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Pro občany to znamená, že se mohou setkat s novými pravidly, která ovlivní jejich každodenní život. Je důležité se seznámit s těmito změnami, aby se předešlo případným nedorozuměním. V případě potřeby je možné vyhledat odborné právní poradenství, které může pomoci s orientací v novinkách <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
-  <p>Pro více informací o této novele můžete navštívit <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">zdroj</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Novela občanského zákoníku</h1>
+      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 08:30</div>
+    </header>
+
+    <article class="article">
+      <h2>Změny v občanském zákoníku</h2>
+  <p>Dne 1. ledna 2026 začne platit novela občanského zákoníku, která přináší řadu změn. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 268/2025 Sb., se dotkne mnoha oblastí každodenního života. Novela se zaměřuje na úpravy týkající se smluv, odpovědnosti a ochrany spotřebitelů. Cílem je zjednodušení a zpřehlednění právních předpisů.</p>
+  <p>Jednou z hlavních změn je úprava pravidel pro uzavírání smluv. Novela se snaží vyjasnit podmínky, za jakých mohou být smlouvy považovány za platné. To by mělo pomoci zejména spotřebitelům, kteří se často setkávají s nejasnostmi v obchodních podmínkách. V případě nejasností se doporučuje obrátit se na odborníky, například na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <p>Další důležitou oblastí, kterou novela pokrývá, je odpovědnost za škodu. Změny se týkají jak občanskoprávní, tak i obchodněprávní odpovědnosti. Novela se snaží posílit ochranu spotřebitelů tím, že zjednodušuje proces uplatnění nároků na náhradu škody. Všechny tyto změny by měly přispět k větší právní jistotě a ochraně práv jednotlivců.</p>
+  <p>Změny v občanském zákoníku jsou důležité pro každého z nás. Je dobré se s nimi seznámit, abychom věděli, jaké máme práva a povinnosti. Podrobnosti o novele lze nalézt v <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">zdroji</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Novela občanského zákoníku, která nabývá účinnosti 1. 1. 2026, přináší řadu změn, které ovlivní každodenní život. Důležité je být informovaný a připravený na nové povinnosti a práva, která s tímto zákonem přicházejí.</li>
-      <li><strong>Jednatel (formální):</strong> Dne 1. 1. 2026 vstoupí v platnost novela občanského zákoníku, která se dotkne mnoha oblastí právního života. Tato změna si žádá důkladnou analýzu a adaptaci na nové právní normy.</li>
-      <li><strong>Jednatel (hravý):</strong> Novela občanského zákoníku se blíží jako nový ročník oblíbeného seriálu – od 1. 1. 2026 se máme na co těšit! Připravte se na nové zápletky a právní triky, které nás čekají.</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Novela občanského zákoníku, která nabývá účinnosti 1. 1. 2026, přináší změny, které se dotknou mnoha oblastí našeho právního života. Je důležité být informován o těchto změnách a jejich dopadu na naše každodenní jednání.</li>
+      <li><strong>Jednatel (formální):</strong> Dne 1. 1. 2026 vstupuje v platnost novela občanského zákoníku, která má za cíl zmodernizovat a zjednodušit některé právní postupy. Doporučujeme všem, aby se s novinkami seznámili a zvážili jejich vliv na své činnosti.</li>
+      <li><strong>Jednatel (hravý):</strong> Novela občanského zákoníku se blíží a s ní i nové právní dobrodružství! Připravte se na změny, které mohou ovlivnit vaše smlouvy a další právní záležitosti. Co říkáte, pustíme se do toho společně?</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

@@ -5,40 +5,108 @@
   <title>Malá úprava vyhlášky může ovlivnit kvalitu bydlení, varuje ombudsman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Malá úprava vyhlášky může ovlivnit kvalitu bydlení, varuje ombudsman</h1>
-  <div class="meta">
-    Poutavost: <strong>3/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://advokatnidenik.cz/2025/08/11/mala-uprava-vyhlasky-muze-ovlivnit-kvalitu-bydleni-varuje-ombudsman/" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 11. 8. 2025 09:40
-  </div>
-  <h2>Malá úprava vyhlášky a její důsledky</h2>
-  <p>Nedávno se objevila drobná změna ve vyhlášce, která se týká požadavků na výstavbu. I když se může zdát, že jde o maličkost, ombudsman varuje, že tato úprava může mít zásadní dopad na kvalitu bydlení. Uživatelé nemovitostí by měli být obezřetní, protože změny ve stavebních předpisech mohou ovlivnit jejich životní podmínky.</p>
-  <p>Důvodem k obavám je fakt, že nové požadavky mohou snížit standardy, které zajišťují bezpečné a zdravé bydlení. Například úpravy týkající se izolace nebo větrání mohou mít vliv na energetickou náročnost budov a tím i na komfort obyvatel. To může vést k vyšším nákladům na bydlení a horší kvalitě ovzduší uvnitř domů. V konečném důsledku to může mít negativní dopad na zdraví obyvatel.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Je důležité sledovat změny v legislativě a být informován o tom, jak mohou ovlivnit naše bydlení. Každý z nás by měl mít zájem na tom, aby byly zachovány standardy, které zajišťují kvalitní a bezpečné bydlení. Pro více informací a právní poradenství můžete navštívit <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Malá úprava vyhlášky může ovlivnit kvalitu bydlení, varuje ombudsman</h1>
+      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/11/mala-uprava-vyhlasky-muze-ovlivnit-kvalitu-bydleni-varuje-ombudsman/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 11. 8. 2025 09:40</div>
+    </header>
+
+    <article class="article">
+      <h2>Změna vyhlášky a její dopady</h2>
+  <p>Malá úprava ve vyhlášce o požadavcích na výstavbu může mít dalekosáhlé následky pro kvalitu bydlení. Ombudsman upozorňuje, že i zdánlivě nevýznamné změny mohou ovlivnit životní podmínky obyvatel. Uživatelé nemovitostí by se měli mít na pozoru, protože tyto úpravy mohou mít vliv na bezpečnost a komfort jejich domovů.</p>
+  <p>Dopady změn ve vyhlášce se mohou projevit v různých oblastech. Například může dojít ke zhoršení stavebních standardů, což by mohlo ohrozit zdraví a pohodu obyvatel. Je proto důležité sledovat, jaké úpravy se plánují a jaké mají cíle. Odborníci doporučují, aby se lidé zajímali o právní aspekty těchto změn, případně vyhledali <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, pokud chtějí lépe porozumět dopadům na své bydlení.</p>
+  <p>Ombudsman varuje, že i malé úpravy mohou vést k velkým problémům. Je nezbytné, aby veřejnost byla informována o těchto změnách a měla možnost se k nim vyjádřit. Kvalita bydlení by měla být prioritou pro všechny, a proto je důležité, aby se na tyto otázky zaměřovala jak veřejnost, tak i zákonodárci.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Malé úpravy ve vyhlášce o výstavbě mohou mít dalekosáhlé dopady na kvalitu bydlení. Je důležité sledovat změny, které mohou ovlivnit naše životní prostředí a komfort v našich domovech.</li>
-      <li><strong>Jednatel (formální):</strong> Ombudsman varuje před možnými negativními dopady drobných změn ve vyhlášce o výstavbě. Tato situace nám připomíná, jak důležité je mít na paměti kvalitu bydlení a její souvislosti.</li>
-      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že malá změna v papírech může ovlivnit naše bydlení? Je to jako když si v receptu zaměníte sůl za cukr – výsledek může být dost překvapivý!</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Malá úprava ve vyhlášce může mít dalekosáhlé důsledky pro kvalitu bydlení. Je důležité sledovat, jaké změny se chystají, abychom ochránili naše životní prostředí a pohodlí našich domovů.</li>
+      <li><strong>Jednatel (formální):</strong> Ombudsman varuje před potenciálními dopady drobných změn ve vyhlášce o výstavbě. Každá úprava má vliv na budoucnost našich nemovitostí a kvalitu našeho bydlení.</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by si pomyslel, že malá změna v pravidlech může mít tak velký dopad? I drobnosti mohou ovlivnit, kde a jak budeme bydlet. Sledujeme situaci a těšíme se na kvalitnější bydlení pro všechny!</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

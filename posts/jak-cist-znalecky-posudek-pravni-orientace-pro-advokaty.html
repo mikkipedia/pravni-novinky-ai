@@ -5,41 +5,109 @@
   <title>Jak číst znalecký posudek: Právní orientace pro advokáty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Jak číst znalecký posudek: Právní orientace pro advokáty</h1>
-  <div class="meta">
-    Poutavost: <strong>4/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://www.epravo.cz/top/clanky/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty-119913.html" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 13. 8. 2025 02:07
-  </div>
-  <h2>Co je to znalecký posudek?</h2>
-  <p>Znalecký posudek je důležitý dokument, který se používá v různých právních řízeních. Může mít zásadní vliv na rozhodnutí v případech jako jsou rozvody, dědická řízení nebo spory o náhradu škody. Tento posudek není jen obyčejnou přílohou, ale právně závazným materiálem, který může rozhodnout o výsledku sporu. Proto je důležité umět ho správně číst a interpretovat.</p>
-  <h2>Jak správně číst znalecký posudek?</h2>
-  <p>Při čtení znaleckého posudku byste se měli zaměřit na několik klíčových aspektů. Nejde jen o to najít konečnou částku nebo odpověď, ale také pochopit, jak k těmto závěrům znalec dospěl. Je důležité vědět, jaké metody byly použity, jaké podklady znalec měl k dispozici a jaké předpoklady mohly ovlivnit výsledek posudku. Tímto způsobem můžete lépe posoudit jeho relevanci a sílu argumentace ve vašem případě. Pro více informací o tom, jak číst znalecký posudek, se můžete podívat na <a href="https://www.epravo.cz/top/clanky/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty-119913.html" target="_blank" rel="noopener">zdroj</a>.</p>
-  <h2>Co z toho plyne?</h2>
-  <p>Schopnost správně číst a analyzovat znalecký posudek může advokátovi poskytnout strategickou výhodu. Tento dovednost může mít klíčový vliv na úspěch v právním řízení. Pokud potřebujete další informace nebo pomoc v oblasti právního poradenství, můžete se podívat na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Jak číst znalecký posudek: Právní orientace pro advokáty</h1>
+      <div class="meta">Poutavost: <strong>4/5</strong> · Zdroj: <a href="https://www.epravo.cz/top/clanky/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty-119913.html" target="_blank" rel="noopener">odkaz</a> · Publikováno: 13. 8. 2025 02:07</div>
+    </header>
+
+    <article class="article">
+      <h2>Jak správně číst znalecký posudek</h2>
+  <p>Znalecký posudek je důležitý dokument, který může zásadně ovlivnit výsledek právního sporu. Používá se ve správním, daňovém, majetkovém i soudním řízení. Často se setkáváme s posudky v případech rozvodů, dědických vypořádání nebo sporů o náhradu škody. Přestože se může zdát, že je to jen příloha spisu, jeho správné čtení může advokátovi poskytnout zásadní výhodu.</p>
+  <p>Při čtení znaleckého posudku je důležité zaměřit se nejen na konečné číslo nebo stručnou odpověď znalce. Klíčové je rozklíčovat, jak znalec k závěrům došel. Je třeba zkontrolovat, jaké metody byly použity, jaké podklady znalec měl k dispozici a jaké předpoklady mohly ovlivnit jeho závěry. Tímto způsobem může advokát lépe porozumět argumentaci a případně ji využít ve prospěch svého klienta.</p>
+  <p>Doporučuje se také konzultovat znalecké posudky s odborníky na právní poradenství. Ti mohou poskytnout cenné rady a pomoci při interpretaci složitějších částí posudku. Například právní poradenství Spring Walk může být užitečné při analýze konkrétních detailů, které mohou mít vliv na celkový výsledek sporu.</p>
+  <p>Znalost struktury a obsahu znaleckého posudku je tedy pro advokáty klíčová. Ti, kteří se naučí číst tyto dokumenty systematicky, mohou získat výhodu v jednáních a soudních řízeních. Pro více informací o správném čtení znaleckých posudků můžete navštívit <a href="https://www.epravo.cz/top/clanky/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty-119913.html" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Znalecký posudek je klíčovým dokumentem, který může rozhodnout o výsledku právních sporů. Schopnost jej správně interpretovat poskytuje advokátům strategickou výhodu v různých oblastech, od rozvodů po majetkové nároky.</li>
-      <li><strong>Jednatel (formální):</strong> Pochopení struktury a obsahu znaleckého posudku je pro advokáty zásadní. Je důležité nejen identifikovat závěry, ale také rozklíčovat metody a předpoklady, které k nim vedly.</li>
-      <li><strong>Jednatel (hravý):</strong> Znalecký posudek? To je jako detektivka pro právníky! Pokud umíte číst mezi řádky a odhalit, jak znalec dospěl k závěrům, stanete se králem právních bitev.</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Znalec může být klíčovým hráčem ve sporech, a proto je důležité umět správně interpretovat jeho posudek. Čtení takového dokumentu s důrazem na jeho strukturu a metodiku může advokátovi poskytnout zásadní výhodu v řízení.</li>
+      <li><strong>Jednatel (formální):</strong> Znalecký posudek hraje významnou roli v mnoha právních záležitostech. Advokáti by měli umět analyzovat nejen závěry znalce, ale také proces, jakým k nim dospěl, aby mohli efektivně hájit zájmy svých klientů.</li>
+      <li><strong>Jednatel (hravý):</strong> Když čtete znalecký posudek, nezapomeňte se stát detektivem! Nejde jen o čísla, ale také o příběh, který za nimi stojí. Každý detail může mít vliv na výsledek sporu – pojďte ho rozklíčovat!</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>

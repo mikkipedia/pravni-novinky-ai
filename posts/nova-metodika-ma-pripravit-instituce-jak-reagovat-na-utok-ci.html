@@ -5,40 +5,108 @@
   <title>Nová metodika má připravit instituce, jak reagovat na útok či krizi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { line-height: 1.2; }
-    h2 { margin-top: 1.5rem; }
-    .meta { color:#666; font-size: 0.9rem; margin-bottom: 1rem; }
-    .back { margin-top: 2rem; }
-    ul { padding-left: 1.2rem; }
-    .pill { display:inline-block; padding:.15rem .5rem; border:1px solid #ccc; border-radius:999px; font-size:.8rem; color:#333; }
-    hr { border:none; border-top:1px solid #eee; margin:1.5rem 0; }
-    a { color:#0b57d0; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #151a21;
+    --text: #e6e6e6;
+    --muted: #a8b0bb;
+    --accent: #8ab4f8;
+    --success: #7dd3a7;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+    --shadow-hover: 0 18px 36px rgba(0,0,0,.55), 0 6px 14px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { margin-bottom: 24px; }
+  h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 800;
+  }
+  h1 { font-size: 28px; margin: 0 0 10px; }
+  h2 { font-size: 18px; margin: 22px 0 8px; }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .meta {
+    color: var(--muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: .95rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    transform: translateY(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255,255,255,.12);
+  }
+  .pill {
+    display:inline-block; padding:.2rem .6rem; border:1px solid rgba(255,255,255,.2);
+    border-radius:999px; font-size:.8rem; color:var(--muted);
+  }
+  .footer { margin-top: 28px; color: var(--muted); }
+  .article {
+    background-color: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 22px 22px;
+  }
+  .article p { margin: 12px 0; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 24px 0; }
+  ul { margin: 10px 0 0 20px; }
+</style>
 </head>
 <body>
-  <a class="pill" href="../index.html">← Přehled</a>
-  <h1>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h1>
-  <div class="meta">
-    Poutavost: <strong>3/5</strong> &nbsp;|&nbsp; Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">odkaz</a> &nbsp;|&nbsp; Publikováno: 12. 8. 2025 08:00
-  </div>
-  <h2>Příprava na krizové situace</h2>
-  <p>Zodpovědnost za reakci na násilné útoky a jiné krizové situace leží většinou na institucích a firmách. Aby se lépe připravily na možné hrozby, Ministerstvo vnitra České republiky vypracovalo novou metodiku. Ta má za cíl poskytnout jasné pokyny, jak reagovat na takové situace a minimalizovat tak ztráty na životech, majetku a také na reputaci.</p>
-  <p>Metodika se zaměřuje na provozovatele tzv. měkkých cílů, což jsou místa, kde se shromažďuje větší počet lidí, jako jsou školy, nákupní centra nebo kulturní zařízení. Tyto instituce by měly mít připravené plány a postupy, jak se zachovat v případě útoku. Důležité je nejenom rychle reagovat, ale také umět komunikovat s veřejností a médii, aby se předešlo zbytečné panice.</p>
-  <h2>Co z toho plyne</h2>
-  <p>Nová metodika představuje důležitý krok k větší bezpečnosti a ochraně občanů. Instituce, které ji přijmou, budou lépe připravené na krizové situace a mohou tak ochránit nejen své zaměstnance, ale i návštěvníky. Pro další informace a právní poradenství v této oblasti se můžete obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>.</p>
+  <div class="wrap">
+    <header>
+      <a class="pill" href="../index.html">← Přehled</a>
+      <h1>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h1>
+      <div class="meta">Poutavost: <strong>3/5</strong> · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">odkaz</a> · Publikováno: 12. 8. 2025 08:00</div>
+    </header>
+
+    <article class="article">
+      <h2>Nová metodika pro krizové situace</h2>
+  <p>Zodpovědnost za reakci na násilné útoky a krizové situace leží většinou na institucích a firmách. Ministerstvo vnitra proto vytvořilo novou metodiku, která má pomoci provozovatelům takzvaných měkkých cílů. Tento dokument je zaměřen na přípravu na možné hrozby a na to, jak efektivně reagovat v krizových chvílích.</p>
+  <p>Cílem metodiky je minimalizovat ztráty na životech, majetku a také na reputaci institucí. Dokument poskytuje konkrétní doporučení, jak se vyrovnat se závažnými situacemi. Instituce by měly mít připravené plány a postupy, které jim pomohou rychle a účinně reagovat na útoky nebo jiné krizové události. V případě potřeby mohou instituce využít i odborné právní poradenství, které jim pomůže lépe porozumět svým povinnostem a právům v těchto situacích.</p>
+  <p>Je důležité, aby si každá instituce uvědomila, že příprava na krizové situace je klíčová. Včasná a správná reakce může zachránit životy a ochránit majetek. Nová metodika je tedy krokem správným směrem, který by měl pomoci zlepšit bezpečnostní standardy v České republice. Více informací o metodice najdete v článku <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">zdroj</a>.</p>
   <p>Zpracováno z veřejných zdrojů.</p>
 
-  <hr />
-  <h2>Tipy na příspěvky na LinkedIn</h2>
-  <ul>
-      <li><strong>Společnost Spring Walk:</strong> Nová metodika ministerstva vnitra přináší důležité nástroje pro instituce, jak efektivně reagovat na krizové situace. Její cílem je minimalizovat ztráty a zajistit bezpečnost, což je v dnešní době zvlášť důležité.</li>
-      <li><strong>Jednatel (formální):</strong> Zavedení nové metodiky pro přípravu na krizové situace ukazuje, jak zásadní je pro instituce mít připravené plány a strategie. Odpovědnost za reakci na násilné útoky a jiné hrozby leží na bedrech provozovatelů těchto institucí.</li>
-      <li><strong>Jednatel (hravý):</strong> Když se dostaneme do krize, je dobré mít v rukávu nějaké eso! Nová metodika od ministerstva vnitra je jako záchranná brzda pro instituce, aby se na nečekané situace připravily s co nejmenšími ztrátami. Bezpečnost je přece na prvním místě!</li>
-  </ul>
+      <hr />
+      <h2>Tipy na příspěvky na LinkedIn</h2>
+      <ul>
+      <li><strong>Společnost Spring Walk:</strong> Nová metodika od Ministerstva vnitra přináší důležitý návod pro instituce a firmy, jak efektivně reagovat na krizové situace. Tímto krokem se posiluje jejich schopnost ochránit nejen lidské životy, ale i majetek a důvěru veřejnosti.</li>
+      <li><strong>Jednatel (formální):</strong> Zodpovědnost institucí v případě násilných útoků a krizí je zásadní. Nová metodika, kterou připravilo Ministerstvo vnitra, je klíčovým nástrojem pro zajištění bezpečnosti a minimalizaci škod.</li>
+      <li><strong>Jednatel (hravý):</strong> Kdo by chtěl čelit krizovým situacím bez pořádného plánu? Nová metodika od Ministerstva vnitra nás učí, jak být připraveni a zvládnout nečekané situace jako profíci. Bezpečnost je totiž na prvním místě!</li>
+      </ul>
+    </article>
 
-  <p class="meta">Odhad nákladů posledního běhu: $0.0122 (input 26954 tok., output 13606 tok., model gpt-4o-mini)</p>
-  <p class="back"><a href="../index.html">← Zpět na přehled</a></p>
+    <div class="footer meta">Odhad nákladů posledního běhu: $0.0129 (~0.32 Kč) · input 27668 tok., output 14559 tok., model gpt-4o-mini</div>
+  </div>
 </body>
 </html>
