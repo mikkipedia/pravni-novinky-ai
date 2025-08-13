@@ -1,9 +1,7 @@
 name: Generovat články z RSS
 
 on:
-  schedule:
-    - cron: '0 6 * * *'     # denně v 06:00 UTC (8:00 CET/CEST)
-  workflow_dispatch:        # ruční spuštění
+  workflow_dispatch:       # jen ruční spuštění
 
 jobs:
   build:
@@ -33,6 +31,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Auto-update articles [skip ci]" || exit 0
+          git commit -m "Manual run: update articles [skip ci]" || exit 0
           git push
-
