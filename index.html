@@ -1,290 +1,220 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Právní novinky</title>
-<style>
-:root {
-  --bg: #ffffff;
-  --panel: #ffffff;
-  --text: #111111;
-  --muted: #555555;
-  --accent: #0b3a88;      /* navy blue pro odkazy */
-  --heading: #0b3a88;     /* navy blue pro nadpisy */
-}
-
-/* Základ */
-html { font-size: 18px; }                 /* desktop výchozí */
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.7;
-}
-
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-
-/* Nadpisy – menší rozestupy a navy barva */
-h1, h2 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 800;
-  color: var(--heading);
-  letter-spacing: 0.2px;
-}
-h1 {
-  font-size: 28px;
-  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
-}
-h2 {
-  font-size: 18px;
-  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
-}
-
-.meta {
-  color: var(--muted);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: .95rem;
-}
-
-/* Karty na indexu */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
-  gap: 18px;
-}
-.card {
-  background: var(--panel);
-  padding: 18px 18px 16px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-/* Detail článku – patkové písmo pro text */
-.article {
-  font-family: Georgia, 'Times New Roman', serif;
-  background: var(--panel);
-  padding: 24px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-}
-.article p { margin: 12px 0; }
-
-/* LinkedIn blocks (oddělení a čitelnost) */
-.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-.li-heading { margin-bottom: 6px; }
-.li-body { line-height: 1.7; }
-
-/* ===== Lepší responsivita ===== */
-
-/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
-@media (max-width: 900px) {
-  html { font-size: 18.5px; }             /* malinko větší text než desktop */
-  .wrap { padding: 24px 16px 48px; }
-  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
-  .card { padding: 16px; }
-  h1 { font-size: 24px; margin: 0 0 8px; }
-  h2 { font-size: 17px; margin: 14px 0 6px; }
-}
-
-/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
-@media (max-width: 640px) {
-  html { font-size: 19px; }               /* zvětšené systémově */
-  body { line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
-  .grid { grid-template-columns: 1fr; gap: 14px; }
-  .card { padding: 16px; }
-  h1 { font-size: 22px; margin: 0 0 6px; }
-  h2 { font-size: 16px; margin: 12px 0 4px; }
-  .meta { font-size: .95rem; }
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div class="wrap">
-<header>
-  <h1>Právní novinky – AI generované</h1>
-  <div class="meta">Rozsah: 9. 8. 2025 – 14. 8. 2025</div>
-  <div class="meta">Načteno: 31 · Vybráno: 31</div>
-</header>
-<div class="grid">
-<a class="card" href="posts/neplatnost-vydedeni-a-jeji-dusledky.html">
+  <h1>Právní novinky (04.08.2025 – 14.08.2025)</h1>
+  <div class="grid">
+    
+<div class="card">
   <div class="badge">Články, občanské právo, Články</div>
-  <h2>Neplatnost vydědění a její důsledky</h2>
-  <div class="meta">epravo.cz - Články · 14. 8. 2025 02:10</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/narizeni-kterym-se-zrizuje-amla-nabylo-ucinnosti-co-amla-pri.html">
-  <div class="badge">Články, finanční právo, Články</div>
-  <h2>Nařízení, kterým se zřizuje AMLA, nabylo účinnosti – co AMLA přinese povinným osobám?</h2>
-  <div class="meta">epravo.cz - Články · 14. 8. 2025 02:07</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/prvni-rozsudek-v-hromadnem-rizeni-co-napovida-o-budoucnosti-.html">
-  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
-  <h2>První rozsudek v hromadném řízení: Co napovídá o budoucnosti tohoto institutu?</h2>
-  <div class="meta">epravo.cz - Články · 14. 8. 2025 02:05</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/utek-lva-ve-zvoli-odhalil-mezery-v-kontrolach-chovu-nebezpec.html">
-  <div class="badge">Aktuality</div>
-  <h2>Útěk lva ve Zvoli odhalil mezery v kontrolách chovů nebezpečných zvířat</h2>
-  <div class="meta">Právní prostor · 13. 8. 2025 10:13</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne.html">
-  <div class="badge">Judikatura</div>
-  <h2>ÚS: Přiznáním nízké kompenzace soudy bagatelizovaly nezákonné trestní stíhání</h2>
-  <div class="meta">Advokátní deník · 13. 8. 2025 09:59</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/v-cesku-pribyva-deti-s-postizenim-ktere-se-misto-ve-skole-uc.html">
-  <div class="badge">Svět práva</div>
-  <h2>V Česku přibývá dětí s postižením, které se místo ve škole učí doma</h2>
-  <div class="meta">Advokátní deník · 13. 8. 2025 09:59</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-.html">
-  <div class="badge">Svět práva</div>
-  <h2>Experti vyzvali k debatě o změně financování opatření proti závislostem</h2>
-  <div class="meta">Advokátní deník · 13. 8. 2025 08:51</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/nedostatecne-kontrolovanou-legislativu-odhalil-incident-v-zo.html">
-  <div class="badge">Legislativa</div>
-  <h2>Nedostatečně kontrolovanou legislativu odhalil incident v zooparku</h2>
-  <div class="meta">Advokátní deník · 13. 8. 2025 08:33</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/novela-obcanskeho-zakoniku.html">
-  <div class="badge">Změny v legislativě</div>
-  <h2>Novela občanského zákoníku</h2>
-  <div class="meta">Právní prostor · 13. 8. 2025 08:30</div>
-  <div class="meta">Poutavost: 3/5</div>
-</a><a class="card" href="posts/novy-zakon-y-o-ochrane-osobnich-udaju-na-slovensku.html">
-  <div class="badge">Články</div>
-  <h2>Nový zákon(y) o ochraně osobních údajů na Slovensku</h2>
-  <div class="meta">Právní prostor · 13. 8. 2025 08:10</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-oc.html">
-  <div class="badge">Články, občanské právo, Články</div>
-  <h2>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</h2>
-  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:10</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty.html">
-  <div class="badge">Články, občanské právo, Články</div>
-  <h2>Jak číst znalecký posudek: Právní orientace pro advokáty</h2>
-  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:07</div>
-  <div class="meta">Poutavost: 5/5</div>
-</a><a class="card" href="posts/poruseni-akcionarske-dohody-muze-zakladat-neplatnost-usnesen.html">
-  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
-  <h2>Porušení akcionářské dohody může zakládat neplatnost usnesení valné hromady, musí být však dobře napsána</h2>
-  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:05</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informac.html">
-  <div class="badge">Judikatura</div>
-  <h2>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</h2>
-  <div class="meta">Advokátní deník · 12. 8. 2025 10:45</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/zakon-o-kyberneticke-bezpecnosti.html">
-  <div class="badge">Změny v legislativě</div>
-  <h2>Zákon o kybernetické bezpečnosti</h2>
-  <div class="meta">Právní prostor · 12. 8. 2025 10:35</div>
-  <div class="meta">Poutavost: 3/5</div>
-</a><a class="card" href="posts/zacne-platit-zakon-ktery-umozni-cervenemu-krizi-zajistovat-p.html">
-  <div class="badge">Aktuality</div>
-  <h2>Začne platit zákon, který umožní Červenému kříži zajišťovat pátrací službu</h2>
-  <div class="meta">Právní prostor · 12. 8. 2025 10:08</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/konference-odborne-sekce-pro-pracovni-pravo-dav-se-kona-v-za.html">
-  <div class="badge">Advokacie</div>
-  <h2>Konference odborné sekce pro pracovní právo DAV se koná v září v Praze</h2>
-  <div class="meta">Advokátní deník · 12. 8. 2025 08:50</div>
-  <div class="meta">Poutavost: 3/5</div>
-</a><a class="card" href="posts/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu.html">
-  <div class="badge">Legislativa</div>
-  <h2>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</h2>
-  <div class="meta">Advokátní deník · 12. 8. 2025 08:26</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/spotrebitelske-pravo-v-ere-umele-inteligence.html">
-  <div class="badge">Články</div>
-  <h2>Spotřebitelské právo v éře umělé inteligence</h2>
-  <div class="meta">Právní prostor · 12. 8. 2025 08:15</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci.html">
-  <div class="badge">Svět práva</div>
-  <h2>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h2>
-  <div class="meta">Advokátní deník · 12. 8. 2025 08:00</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu.html">
-  <div class="badge">Svět práva</div>
-  <h2>Unie státních zástupců usiluje o doplacení loňských platů</h2>
-  <div class="meta">Advokátní deník · 12. 8. 2025 07:30</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/fashion-upcycling-non-merci-vzkazuje-herm-s.html">
-  <div class="badge">Články, obchodní právo, Články</div>
-  <h2>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</h2>
-  <div class="meta">epravo.cz - Články · 12. 8. 2025 02:10</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/nemoznost-snizeni-hranice-pro-usnasenischopnost-shromazdeni-.html">
-  <div class="badge">Články, občanské právo, Články</div>
-  <h2>Nemožnost snížení hranice pro usnášeníschopnost shromáždění vlastníků aneb příběh zklamaného společenství</h2>
-  <div class="meta">epravo.cz - Články · 12. 8. 2025 02:07</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty.html">
-  <div class="badge">Právník roku</div>
-  <h2>20. ročník Právníka roku byl vyhlášen, nominujte své kandidáty na cenu sv. Yva</h2>
-  <div class="meta">Advokátní deník · 11. 8. 2025 13:05</div>
-  <div class="meta">Poutavost: 3/5</div>
-</a><a class="card" href="posts/novela-zakona-o-ceskem-cervenem-krizi.html">
-  <div class="badge">Změny v legislativě</div>
-  <h2>Novela zákona o Českém červeném kříži</h2>
-  <div class="meta">Právní prostor · 11. 8. 2025 09:48</div>
-  <div class="meta">Poutavost: 3/5</div>
-</a><a class="card" href="posts/mala-uprava-vyhlasky-muze-ovlivnit-kvalitu-bydleni-varuje-om.html">
-  <div class="badge">Svět práva</div>
-  <h2>Malá úprava vyhlášky může ovlivnit kvalitu bydlení, varuje ombudsman</h2>
-  <div class="meta">Advokátní deník · 11. 8. 2025 09:40</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/pruzkum-o-daru-pro-dobrocinnou-organizaci-v-zaveti-uvazuje-p.html">
-  <div class="badge">Svět práva</div>
-  <h2>Průzkum: O daru pro dobročinnou organizaci v závěti uvažuje pětina lidí</h2>
-  <div class="meta">Advokátní deník · 11. 8. 2025 08:33</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/dorucovani-a-elektronizace-v-pracovnim-pravu.html">
-  <div class="badge">Články</div>
-  <h2>Doručování a elektronizace v pracovním právu</h2>
-  <div class="meta">Právní prostor · 11. 8. 2025 08:13</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i.html">
-  <div class="badge">Svět práva</div>
-  <h2>Doplnit platové tabulky kvůli růstu penzijního věku chtějí i soud a kraje</h2>
-  <div class="meta">Advokátní deník · 11. 8. 2025 07:49</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/novela-trestniho-zakoniku.html">
-  <div class="badge">Články, trestní právo, Články</div>
-  <h2>Novela trestního zákoníku</h2>
-  <div class="meta">epravo.cz - Články · 11. 8. 2025 02:10</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a><a class="card" href="posts/10-otazek-pro-adama-simice.html">
-  <div class="badge">Články, Články, 10 otázek</div>
-  <h2>10 otázek pro ... Adama Šimice</h2>
-  <div class="meta">epravo.cz - Články · 11. 8. 2025 02:07</div>
-  <div class="meta">Poutavost: 4/5</div>
-</a>
+  <h2><a href="post_4780906333589105042.html">Neplatnost vydědění a její důsledky</a></h2>
+  <div class="meta">www.epravo.cz — 14.08.2025</div>
 </div>
-<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
+
+<div class="card">
+  <div class="badge">Články, finanční právo, Články</div>
+  <h2><a href="post_1261504683537061867.html">Nařízení, kterým se zřizuje AMLA, nabylo účinnosti – co AMLA přinese povinným osobám?</a></h2>
+  <div class="meta">www.epravo.cz — 14.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
+  <h2><a href="post_669160714333084399.html">První rozsudek v hromadném řízení: Co napovídá o budoucnosti tohoto institutu?</a></h2>
+  <div class="meta">www.epravo.cz — 14.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2><a href="post_8812495486403605472.html">Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</a></h2>
+  <div class="meta">www.epravo.cz — 13.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2><a href="post_2037509347727072114.html">Jak číst znalecký posudek: Právní orientace pro advokáty</a></h2>
+  <div class="meta">www.epravo.cz — 13.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
+  <h2><a href="post_3033508545417694218.html">Porušení akcionářské dohody může zakládat neplatnost usnesení valné hromady, musí být však dobře napsána</a></h2>
+  <div class="meta">www.epravo.cz — 13.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, obchodní právo, Články</div>
+  <h2><a href="post_5220210421662342905.html">Fashion Upcycling? „Non, merci“ vzkazuje Hermès</a></h2>
+  <div class="meta">www.epravo.cz — 12.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2><a href="post_1126719773057692181.html">Nemožnost snížení hranice pro usnášeníschopnost shromáždění vlastníků aneb příběh zklamaného společenství</a></h2>
+  <div class="meta">www.epravo.cz — 12.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, trestní právo, Články</div>
+  <h2><a href="post_4301392796949705073.html">Novela trestního zákoníku</a></h2>
+  <div class="meta">www.epravo.cz — 11.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, Články, 10 otázek</div>
+  <h2><a href="post_8820424012441907196.html">10 otázek pro ... Adama Šimice</a></h2>
+  <div class="meta">www.epravo.cz — 11.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, Články</div>
+  <h2><a href="post_3688397892244425024.html">Právo na víkend - týden v české justici očima šéfredaktora</a></h2>
+  <div class="meta">www.epravo.cz — 09.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
+  <h2><a href="post_7353443567179910422.html">Režimy povinností dle nového zákona o kybernetické bezpečnosti</a></h2>
+  <div class="meta">www.epravo.cz — 08.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, mezinárodní právo veřejné, evropské právo, Články</div>
+  <h2><a href="post_7653685510472510252.html">Důkladnější přezkum rozhodnutí vydaných Rozhodčím soudem pro Sport</a></h2>
+  <div class="meta">www.epravo.cz — 08.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, pracovní právo, Články</div>
+  <h2><a href="post_1092307488929533163.html">Nejvyšší soud o pohyblivé mzdě a pracovní kázni: Krácení nároku, nebo legitimní podmínka?</a></h2>
+  <div class="meta">www.epravo.cz — 07.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, Články, veřejné zakázky</div>
+  <h2><a href="post_7597464608087987072.html">Byznys a paragrafy, díl 15.: Změny závazků ze smlouvy uzavřené ve veřejné zakázce</a></h2>
+  <div class="meta">www.epravo.cz — 07.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, trestní právo, Články</div>
+  <h2><a href="post_8119266020528322147.html">Otevřel Ústavní soud zákonodárci dveře k uzákonění eutanazie v České republice?</a></h2>
+  <div class="meta">www.epravo.cz — 06.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, pracovní právo, Články</div>
+  <h2><a href="post_4924064323119683524.html">Jak na konkurenční doložku</a></h2>
+  <div class="meta">www.epravo.cz — 06.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, obchodní právo, Články</div>
+  <h2><a href="post_8213586943537497675.html">Směrnice NIS2 a zákon o kybernetické bezpečnosti: tak už jdeme do finále?</a></h2>
+  <div class="meta">www.epravo.cz — 05.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, Články, ostatní právní obory</div>
+  <h2><a href="post_6768509349689395260.html">Vymezení zadávacích podmínek na veřejnou zakázku v oblasti zdravotnictví</a></h2>
+  <div class="meta">www.epravo.cz — 05.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2><a href="post_6809458412375612134.html">Objektivní odpovědnost provozovatele vozidla</a></h2>
+  <div class="meta">www.epravo.cz — 05.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2><a href="post_1032688452572592818.html">Pacient má právo odmítnout léčbu, aneb střet mezi povinností poskytnout pomoc a právem pomoc odmítnout</a></h2>
+  <div class="meta">www.epravo.cz — 04.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Aktuality</div>
+  <h2><a href="post_179488902468983912.html">Ministři se vracejí do svých úřadů, začnou jednání o rozpočtu na příští rok</a></h2>
+  <div class="meta">www.pravniprostor.cz — 14.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_3423313147889002987.html">Rozhovor: Hana Lenghartová - o advokacii a mediaci</a></h2>
+  <div class="meta">www.pravniprostor.cz — 14.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Aktuality</div>
+  <h2><a href="post_2328186800722625633.html">Útěk lva ve Zvoli odhalil mezery v kontrolách chovů nebezpečných zvířat</a></h2>
+  <div class="meta">www.pravniprostor.cz — 13.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_1325240272985680468.html">Nový zákon(y) o ochraně osobních údajů na Slovensku</a></h2>
+  <div class="meta">www.pravniprostor.cz — 13.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Aktuality</div>
+  <h2><a href="post_6702114175330929109.html">Začne platit zákon, který umožní Červenému kříži zajišťovat pátrací službu</a></h2>
+  <div class="meta">www.pravniprostor.cz — 12.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_7661084538897895340.html">Spotřebitelské právo v éře umělé inteligence</a></h2>
+  <div class="meta">www.pravniprostor.cz — 12.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_1687167497148962172.html">Doručování a elektronizace v pracovním právu</a></h2>
+  <div class="meta">www.pravniprostor.cz — 11.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Aktuality</div>
+  <h2><a href="post_6682888475313768746.html">Baxa: O smlouvě s Vatikánem i klimatické žalobě rozhodne ÚS ještě letos</a></h2>
+  <div class="meta">www.pravniprostor.cz — 08.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Judikatura</div>
+  <h2><a href="post_6553003708651847951.html">Právo na rovný přístup k veřejným funkcím</a></h2>
+  <div class="meta">www.pravniprostor.cz — 08.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_2731424734154043158.html">Důsledky neplatnosti stanovisek vlastníků infrastruktury v povolovacím řízení</a></h2>
+  <div class="meta">www.pravniprostor.cz — 08.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Aktuality</div>
+  <h2><a href="post_7617758012801329863.html">Filip Smoljak neuspěl u Nejvyššího soudu, kritika v médiích byla přípustná</a></h2>
+  <div class="meta">www.pravniprostor.cz — 07.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Články</div>
+  <h2><a href="post_8521336270747427082.html">Nové způsoby provedení exekuce v kontextu 21. století</a></h2>
+  <div class="meta">www.pravniprostor.cz — 07.08.2025</div>
+</div>
+
+<div class="card">
+  <div class="badge">Judikatura</div>
+  <h2><a href="post_5408741492682901872.html">Nelidské a ponižující zacházení</a></h2>
+  <div class="meta">www.pravniprostor.cz — 06.08.2025</div>
+</div>
+
+  </div>
 </div>
 </body>
 </html>
