@@ -128,3 +128,13 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
   .article { padding: 20px; }
   .article p { margin: 14px 0; }
 }
+
+/* Patička s náklady/tokeny */
+.footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  color: var(--muted);
+  font-size: .95rem;
+}
+.footer .meta { margin-top: 4px; }
