@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,25 +128,26 @@ h1, h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 07:30</div>
 </header>
 <article class="article">
-<h3>Unie státních zástupců požaduje doplacení loňských platů</h3>
-<p>Unie státních zástupců (USZ) se rozhodla aktivně usilovat o doplacení loňských platů pro státní zástupce. Tři členové této unie podali žaloby, které mají za cíl zajistit, aby státní zástupci obdrželi to, co jim podle zákona náleží. Důvodem pro tyto kroky je nález Ústavního soudu, který se týkal platů soudců a na jehož základě se ukázalo, že i státní zástupci mají nárok na podobné dorovnání. Prezident unie Tomáš Foldyna upozornil, že státní zástupci zatím žádné doplacení neobdrželi.</p>
-<h3>Právní kroky a jejich význam</h3>
-<p>Podání žalob ze strany členů USZ je důležitým krokem, který může ovlivnit nejen platovou situaci státních zástupců, ale také celkové vnímání jejich postavení v rámci justice. Zákon totiž jasně stanoví, že platové podmínky státních zástupců by měly být srovnatelné s těmi, které mají soudci. Je tedy na místě, aby se situace co nejdříve vyřešila a státní zástupci dostali to, co jim právem náleží.</p>
-<p>Pokud se i vy zajímáte o právní záležitosti a potřebujete odborné poradenství, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které vám rádo pomůže s vašimi otázkami. Pro více informací o aktuálních událostech v oblasti práva můžete navštívit <a href="https://advokatnidenik.cz/2025/08/12/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu/" target="_blank" rel="noopener">zdroj</a>.</p>
+<h3>Unie státních zástupců usiluje o doplacení loňských platů</h3>
+<p>Unie státních zástupců (USZ) se rozhodla aktivně bojovat za doplacení loňských platů svých členů. Tři z jejích členů podali žaloby, které se odvolávají na nález Ústavního soudu, jenž loni rozhodl o nároku na doplacení platů pro soudce. Tento krok byl oznámen veřejnosti 11. srpna na oficiálním webu unie. Prezident USZ Tomáš Foldyna zdůraznil, že státní zástupci se doplacení svých platů nedočkali, a to i přesto, že zákon stanoví jejich platovou úroveň.</p>
+<p>Podle Foldyny je důležité, aby byli státní zástupci spravedlivě odměňováni za svou práci. Vzhledem k tomu, že se na ně vztahují stejné právní předpisy jako na soudce, je logické, že by měli mít nárok na stejné finanční podmínky. Unie se snaží zajistit, aby jejich požadavek na doplacení platů byl vyslyšen a aby se situace vyřešila co nejdříve.</p>
+<h3>Právní kroky a budoucnost</h3>
+<p>Žaloby, které byly podány, představují klíčový krok k dosažení spravedlnosti pro státní zástupce. Pokud budou úspěšné, mohlo by to otevřít cestu k dalším změnám v odměňování a pracovních podmínkách v této oblasti. Unie státních zástupců se tak snaží nejen o nápravu pro své členy, ale také o zlepšení celkového postavení státního zastupitelství v České republice.</p>
+<p>Pokud se nacházíte v situaci, kdy potřebujete právní poradenství, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Pro více informací o aktuálním dění v oblasti státního zastupitelství si můžete přečíst článek na <a href="https://advokatnidenik.cz/2025/08/12/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu/" target="_blank" rel="noopener">zdroj</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V současné době se situace ohledně financování a platu státních zástupců stává stále aktuálnější. Unie státních zástupců (USZ) se rozhodla jednat a usiluje o doplacení loňských platů. Tento krok je reakcí na nedávný nález Ústavního soudu, který podpořil nároky soudců na doplacení mezd. Oprávněnost požadavku USZ je podložena zákonným rámcem, který upravuje platové podmínky státních zástupců. Je důležité, aby se o těchto otázkách diskutovalo, neboť spravedlivé odměňování je klíčové pro udržení kvality justičního systému.</div>
+  <div class="li-body">Unie státních zástupců se nachází v kritickém momentu, kdy se snaží prosadit doplacení loňských platů, které jim podle loňského nálezu Ústavního soudu náleží. Tato situace ukazuje na důležitost transparentnosti a spravedlnosti v odměňování, která by měla být zajištěna nejen pro soudce, ale i pro státní zástupce. Je znepokojivé, že zatímco soudci byli odměněni, státní zástupci stále čekají na spravedlivé vyrovnání. Tato otázka se dotýká nejen právní sféry, ale také důvěry veřejnosti v justiční systém. Je třeba, aby se všechny strany zasadily o spravedlivé a rychlé vyřešení této záležitosti.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Jednatelství v Unii státních zástupců je nyní pod tlakem vzhledem k nedostatečnému zajištění plateb svým členům. V rámci právních kroků, které byly podniknuty, členové unie podali žaloby, které reflektují nedostatečné dorovnání platů, které soudci obdrželi. Je zřejmé, že situace vyžaduje okamžitou pozornost a řešení ze strany odpovědných institucí. Prezident unie Tomáš Foldyna vyjádřil znepokojení nad tím, že státní zástupci zůstávají bez odpovídajícího finančního ohodnocení, což může mít dlouhodobé důsledky na morálku a motivaci těchto profesionálů. Věříme, že právní kroky vedou k pozitivnímu výsledku pro všechny zúčastněné.</div>
+  <div class="li-body">V rámci aktuálních jednání Unie státních zástupců je klíčové zdůraznit, že právníci usilují o doplacení loňských platů na základě rozhodnutí Ústavního soudu. Tři členové unie již podali žaloby, což dokazuje, jak vážně berou svou situaci a jak silně se snaží o uplatnění svých práv. Prezident Unie, Tomáš Foldyna, vyjádřil znepokojení nad tím, že státní zástupci dosud nedostali dorovnání, které jim náleží. Tato situace by měla být podnětem pro širší diskusi o rovnosti a spravedlnosti v rámci právního systému. Je nezbytné, aby se situace vyřešila v co nejkratším čase, aby se zajistila důvěra ve spravedlnost.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Představte si, že jste státní zástupce a čekáte na výplatu, která se jaksi ztratila v labyrintu byrokracie. Unie státních zástupců se však rozhodla, že se tím nenechá zastrašit, a spustila akci! Jejich prezident Tomáš Foldyna se nebojí postavit se za své kolegy a říct, že spravedlnost by měla platit i v peněženkách. Tři odvážní členové dokonce podali žaloby, aby ukázali, že se nenechají odbýt. Takže, jak to vypadá, státní zástupci se chystají na velký comeback – a my jim držíme palce, aby se spravedlnost dostala i do jejich mzdových účtů!</div>
+  <div class="li-body">Když se řekne &quot;doplacení loňských platů&quot;, možná si představíte nějakou scénu z dramatického právního thrilleru. Ale bohužel, tohle je realita pro státní zástupce, kteří se teď snaží prosadit svá práva. Možná by měli vzít příklad z filmových hrdinů a bojovat za spravedlnost s odhodláním a humorem. Sice to nevypadá jako zábavná komedie, ale určitě by to mohlo být zajímavé sledovat! Každopádně, doufejme, že se situace brzy vyřeší a státní zástupci dostanou to, co jim náleží. Kdo ví, třeba z toho vznikne nový scénář pro právní drama!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

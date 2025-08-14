@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,25 +128,25 @@ h1, h2 {
   <div class="meta">Poutavost: 3/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/konference-odborne-sekce-pro-pracovni-pravo-dav-se-kona-v-zari-v-praze-2/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 08:50</div>
 </header>
 <article class="article">
-<h3>Konference pro odborníky v pracovním právu v Praze</h3>
-<p>V září 2025 se Praha stane místem setkání odborníků v oblasti pracovního práva. Ve dnech 12. a 13. září se zde uskuteční již 90. konference odborné sekce pro pracovní právo Německého advokátního spolku (DAV). Tato konference, která se koná v německém jazyce, přiláká odborníky z různých koutů Evropy a nabídne jim prostor k výměně názorů a zkušeností. Konference se bude konat v prestižním Grand Hotelu Prague Towers, což podtrhuje význam této akce.</p>
-<h3>Odborný program a možnosti diskuse</h3>
-<p>Program konference slibuje zajímavé přednášky a panelové diskuse, které se zaměří na aktuální témata v oblasti pracovního práva. Účastníci budou mít možnost se dozvědět o novinkách v legislativě, sdílet nejlepší praxe a diskutovat o výzvách, kterým čelí právníci a zaměstnavatelé v dnešní době. Taková setkání jsou nezbytná pro udržení kroku s rychlým vývojem v oblasti pracovního práva.</p>
-<p>Pokud vás zajímají právní otázky týkající se zaměstnání, neváhejte se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>, kteří vám rádi poskytnou potřebné informace a pomoc. Pro více informací o konferenci si můžete přečíst článek na <a href="https://advokatnidenik.cz/2025/08/12/konference-odborne-sekce-pro-pracovni-pravo-dav-se-kona-v-zari-v-praze-2/" target="_blank" rel="noopener">zdroji</a>. Tato akce je skvělou příležitostí pro všechny, kdo se zajímají o pracovní právo a chtějí se zapojit do diskuse o jeho budoucnosti.</p>
+<h3>Konference pro odborníky na pracovní právo v Praze</h3>
+<p>V září se Praha stane centrem odborného diskurzu v oblasti pracovního práva. Ve dnech 12. a 13. září 2025 se zde uskuteční již 90. konference odborné sekce pro pracovní právo Německého advokátního spolku (DAV). Tato konference, která se koná v německém jazyce, přitahuje pozornost nejen odborníků z Německa, ale i z dalších zemí, a to díky svému významu a rozsahu. S přibližně 3 800 členy je tato sekce třetí největší v rámci DAV.</p>
+<h3>Odborný program a sdílení zkušeností</h3>
+<p>Účastníci konference se mohou těšit na bohatý program, který zahrnuje přednášky, diskuse a workshopy zaměřené na aktuální témata a výzvy v oblasti pracovního práva. Tato setkání představují skvělou příležitost pro odborníky, aby sdíleli své zkušenosti a navázali nové kontakty. Pro všechny, kteří se chtějí dozvědět více o novinkách v pracovním právu a diskutovat o nejnovějších trendech, je tato konference ideálním místem.</p>
+<p>Pokud se zajímáte o právní poradenství v oblasti pracovního práva, doporučujeme navštívit <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kde najdete odborníky, kteří vám mohou pomoci s vašimi dotazy a problémy. Pro více informací o konferenci můžete navštívit také <a href="https://advokatnidenik.cz/2025/08/12/konference-odborne-sekce-pro-pracovni-pravo-dav-se-kona-v-zari-v-praze-2/" target="_blank" rel="noopener">tento odkaz</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">S potěšením oznamujeme, že se naše společnost zúčastní 90. konference odborné sekce pro pracovní právo Německého advokátního spolku, která se uskuteční ve dnech 12. a 13. září 2025 v krásné Praze. Tato konference je skvělou příležitostí pro odborníky v oblasti pracovního práva sdílet znalosti a zkušenosti. S více než 3 800 členy se jedná o třetí největší odbornou sekci DAV, což podtrhuje její význam na evropské úrovni. Těšíme se na diskuse, které posunou naše chápání pracovního práva a přinesou nové perspektivy do našich praxí. Připojte se k nám a buďte součástí této inspirativní události!</div>
+  <div class="li-body">S radostí oznamujeme, že se v září 2025 uskuteční 90. konference odborné sekce pro pracovní právo Německého advokátního spolku (DAV) v Praze. Tato prestižní akce, která se koná ve dnech 12. a 13. září, přiláká renomované odborníky a praktiky z oblasti pracovního práva. V Grand Hotelu Prague Towers se sejdou účastníci z různých koutů Evropy, aby sdíleli své znalosti a zkušenosti. Jako společnost, která se zaměřuje na inovace v pracovním prostředí, se těšíme na inspirující diskuse a spolupráci s kolegy z oboru. Přijďte a staňte se součástí této významné události!</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Jsem rád, že mohu oznámit, že se naše firma zúčastní 90. konference odborné sekce pro pracovní právo Německého advokátního spolku, která se uskuteční v září 2025 v Praze. Tato konference, s bohatým programem a renomovanými řečníky, nabízí jedinečnou příležitost pro všechny profesionály v oblasti pracovního práva. V rámci konference budeme mít možnost prohloubit naše znalosti a navázat cenné kontakty s kolegy z celého světa. Tímto krokem potvrzujeme naše závazky k dalšímu vzdělávání a zlepšování našich služeb v oblasti pracovního práva. Věřím, že tato akce přinese nové příležitosti pro naši společnost i pro naše klienty.</div>
+  <div class="li-body">Těšíme se na 90. konferenci odborné sekce pro pracovní právo Německého advokátního spolku (DAV), která se uskuteční ve dnech 12. a 13. září 2025 v Praze. Tato konference, která je jednou z nejvýznamnějších v oblasti pracovního práva, přiláká více než 3 800 členů DAV, což z ní činí třetí největší odbornou sekci v rámci této organizace. Účastníci se mohou těšit na pestrý program zaměřený na aktuální trendy a výzvy v pracovním právu. Jsme přesvědčeni, že tato konference poskytne cenné podněty pro další rozvoj a inovace v oblasti pracovního práva. Věříme, že se setkáme s mnoha odborníky a navážeme cenné kontakty.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Již za pár měsíců se Praha stane epicentrem pracovního práva na 90. konferenci odborné sekce DAV! Vždycky jsem si přál, aby se pracovní právo stalo vzrušujícím tématem, a teď mám tu šanci! Věděl jsem, že se naše firma zúčastní, ale teď se nemohu dočkat, až se setkám s tolika inspirativními lidmi a nasávám nové nápady! Těším se na diskuse, které nám pomohou posunout naše myšlení a praxi na novou úroveň. A kdo ví, možná se mi podaří vyhrát i nějaký ten úsměv v debatách! Přidejte se k nám a pojďme společně změnit svět pracovního práva!</div>
+  <div class="li-body">Září se blíží a s ním i 90. konference odborné sekce pro pracovní právo DAV v Praze! Představte si dva dny plné inspirace, diskuzí a nových nápadů, které vás posunou dál v oblasti pracovního práva. V Grand Hotelu Prague Towers se sejde spousta skvělých lidí, kteří stejně jako vy milují svou profesi a chtějí se podělit o své zkušenosti. Ať už jste právník, HR profesionál nebo se jen zajímáte o pracovní právo, tato akce je pro vás! Přijďte se bavit, učit a navazovat nová přátelství – těšíme se na vás!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

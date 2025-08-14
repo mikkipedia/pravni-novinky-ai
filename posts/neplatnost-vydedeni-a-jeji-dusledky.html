@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -124,25 +128,26 @@ h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/neplatnost-vydedeni-a-jeji-dusledky-119915.html" target="_blank">odkaz</a> · Publikováno: 14. 8. 2025 02:10</div>
 </header>
 <article class="article">
-<h3>Neplatnost vydědění: Co to znamená a jaké má důsledky?</h3>
-<p>Vydědění je právní akt, kterým zůstavitel vylučuje některého ze svých dědiců z dědictví. Tento krok však musí být proveden v souladu se zákonem, jinak může být považován za neplatný. Důvody pro vydědění jsou přísně vymezeny v občanském zákoníku a zahrnují například závažné porušení povinností vůči zůstaviteli. Pokud tyto zákonné důvody nejsou naplněny, může být vydědění označeno za neplatné, což má zásadní důsledky pro dědické řízení.</p>
+<h3>Neplatnost vydědění: Co to znamená?</h3>
+<p>Vydědění je právní institut, který umožňuje zůstaviteli vyloučit určité osoby z dědictví. Nicméně, aby bylo vydědění platné, musí splňovat specifické zákonné důvody. Pokud tyto důvody nenaplní, může být vydědění prohlášeno za neplatné. To má významné důsledky nejen pro dědice, ale také pro samotného zůstavitele.</p>
 <h3>Důsledky neplatného vydědění</h3>
-<p>Pokud je vydědění prohlášeno za neplatné, dotyčný dědic má právo na dědictví, jako by nikdy nebyl vyděděn. To může vést k komplikacím, zejména pokud zůstavitel již rozdal část majetku jiným dědicům nebo pokud se na základě neplatného vydědění změnily právní vztahy. Zákon také rozlišuje mezi stávající a předchozí právní úpravou, což může mít vliv na to, jak se situace vyřeší. V případě nejasností nebo komplikací v dědickém řízení je vždy dobré vyhledat odbornou pomoc.</p>
-<p>Pokud se ocitnete v situaci, kdy potřebujete poradit ohledně dědických záležitostí nebo neplatnosti vydědění, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Odborníci vám pomohou vyřešit vaše otázky a připravit se na případné právní kroky. Více informací o problematice neplatnosti vydědění a jejích důsledcích naleznete také v článku na <a href="https://www.epravo.cz/top/clanky/neplatnost-vydedeni-a-jeji-dusledky-119915.html" target="_blank" rel="noopener">zdroj</a>.</p>
+<p>Pokud je vydědění prohlášeno za neplatné, osoba, která byla původně vyloučena, se opět stává dědicem. Zákon stanoví, že neplatné vydědění nemá žádné právní účinky, což znamená, že dědické právo se vrací k osobě, která byla z dědictví vyloučena. Tento proces se řídí jak současnou právní úpravou, tak i předchozími normami, což může být pro některé rodiny komplikované. Je důležité si uvědomit, že i v případě neplatného vydědění mohou nastat spory, které je nutné řešit.</p>
+<p>Pokud se ocitnete v situaci, kdy se vás dotýká otázka vydědění, je dobré se obrátit na odborníky. Právní poradenství může poskytnout cenné informace a pomoci vám orientovat se v této problematice. Více informací naleznete na stránkách <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>.</p>
+<p>Pro více informací o neplatnosti vydědění a jejích důsledcích můžete navštívit <a href="https://www.epravo.cz/top/clanky/neplatnost-vydedeni-a-jeji-dusledky-119915.html" target="_blank" rel="noopener">tento článek</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V dnešní době se otázka neplatnosti vydědění stále více dostává do popředí právních diskuzí. V našem nejnovějším článku se zaměřujeme na situace, kdy je vydědění neplatné z důvodu nenaplnění zákonných podmínek. Tento problém má dalekosáhlé důsledky, které mohou ovlivnit nejen právní postavení dědiců, ale také majetková práva rodiny. Věříme, že pro lepší pochopení celého tématu je důležité se zaměřit na analýzu jak současné, tak i historické právní úpravy. Přijďte se dozvědět více o tom, jak se vyhnout potenciálním komplikacím.</div>
+  <div class="li-body">V dnešní době se právní problematika týkající se dědění a vydědění stává stále více aktuální. Naše společnost Spring Walk se zaměřuje na poradenství v oblasti práva, a proto jsme se rozhodli prozkoumat otázku neplatnosti vydědění. Článek, který se touto problematikou zabývá, se zaměřuje na to, jaké důvody mohou vést k tomu, že je vydědění považováno za neplatné. Zároveň se podíváme na důsledky takového kroku, které mohou mít závažné dopady na rodinné vztahy i majetkové poměry. Naším cílem je osvěta a pomoc klientům orientovat se v těchto složitých právních otázkách.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Vydědění může mít pro rodiny zásadní dopady, avšak ne vždy je jeho platnost zaručena. Naše analýza zdůrazňuje, jak důležité je pečlivě zvažovat všechny zákonné důvody, které mohou ovlivnit platnost vydědění. Neplatné vydědění může vést k nepředvídatelným následkům, které zasahují do majetkového uspořádání a dědických práv. V článku také porovnáváme předchozí a současnou právní úpravu, abychom poskytli komplexní pohled na tuto problematiku. Jsme připraveni poskytnout cenné informace, které pomohou v orientaci v této složité oblasti.</div>
+  <div class="li-body">Z pohledu formálního práva je důležité si uvědomit, že neplatnost vydědění může být důsledkem různých faktorů, které nebyly splněny v souladu se zákonem. V rámci našeho nového článku se podíváme na konkrétní právní normy, které stanovují podmínky pro vydědění, a jaký vliv má jejich nenaplnění na platnost tohoto úkonu. Důsledky neplatného vydědění mohou zahrnovat nejen ztrátu majetku, ale také dopady na rodinné vztahy a dědické řízení. Je nezbytné, aby lidé byli informováni o tom, jak se vyhnout případným komplikacím, které mohou vyplývat z neznalosti právních aspektů. Věříme, že naše analýza přispěje k lepšímu porozumění této problematiky.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Zajímá vás, co se stane, když se vydědění změní v právní &quot;puzzle&quot;? Naše poslední analýza se věnuje tomu, jak může být vydědění neplatné, pokud nesplňuje zákonné podmínky. Představte si, že se najednou ocitnete uprostřed rodinných sporů a právních kliček, které vás donutí přehodnotit dědické plány. Naše zábavné a informativní čtení vám pomůže proplout tímto právním labyrintem a pochopit, jaké důsledky může mít neplatné vydědění na vaši rodinu. Připojte se k nám a objevte, jak se vyhnout potížím a zajistit si klidnou cestu k dědictví!</div>
+  <div class="li-body">Pojďme si představit situaci, kdy se dědictví stává spíše komedií než vážným právním úkonem. Když se někdo rozhodne vydědit svého potomka, ale zapomene splnit zákonné důvody, může se to rychle obrátit proti němu! Naše prozkoumání neplatnosti vydědění ukazuje, že i v právu platí, že „kdo si hraje, ten se v tom vyzná“. Důsledky neplatného vydědění mohou být právně podivné a rodinné vztahy mohou dostat zcela nový rozměr. Přijďte se s námi pobavit o tom, jak mohou malé detaily v právní úpravě vést k velkým překvapením v rodinném životě!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

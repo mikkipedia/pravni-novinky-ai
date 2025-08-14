@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -124,25 +128,26 @@ h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank">odkaz</a> · Publikováno: 13. 8. 2025 09:59</div>
 </header>
 <article class="article">
-<h3>Ústavní soud se postavil proti nízkým kompenzacím za nezákonné trestní stíhání</h3>
-<p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů, které se týkalo nároku akademika a vědce na náhradu nemajetkové újmy. Tento případ se týkal téměř desetiletého trestního stíhání pro daňovou trestnou činnost, které nakonec skončilo zproštěním obvinění. Soudy však přiznaly stěžovateli kompenzaci ve výši pouze 85 000 Kč, což Ústavní soud označil za neústavní bagatelizaci tak vážného problému, jako je nezákonné trestní stíhání.</p>
-<h3>Nezákonné stíhání a jeho následky</h3>
-<p>Dlouhé a stresující období trestního stíhání může mít na jednotlivce devastující dopady. Ztráta pověsti, stres, psychické problémy a další negativní důsledky jsou často nezměrné. Ústavní soud zdůraznil, že obecné soudy nedostatečně zvážily specifické okolnosti případu, a tím zlehčily vážnost situace stěžovatele. Tato rozhodnutí mají dalekosáhlé důsledky pro budoucí případy a signalizují, že je důležité brát v úvahu individuální okolnosti každého případu.</p>
-<p>Pokud se někdo ocitne v podobné situaci, je důležité vyhledat odbornou pomoc. Právní poradenství může poskytnout potřebné informace a podporu. Například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a> nabízí služby, které mohou pomoci lidem orientovat se v právních otázkách a získat spravedlivou kompenzaci za utrpěné újmy. Pro více informací o rozhodnutí Ústavního soudu můžete navštívit <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">zdroj</a>.</p>
+<h3>Ústavní soud se postavil proti bagatelizaci nezákonného trestního stíhání</h3>
+<p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů, které se týkalo nároku akademika a vědce na náhradu nemajetkové újmy. Tento stěžovatel byl téměř deset let trestně stíhán pro daňovou trestnou činnost, přičemž nakonec byl zproštěn všech obvinění. Soudy však přiznaly pouze 85 000 Kč jako zadostiučinění za nemateriální újmu, což Ústavní soud označil za neústavní a bagatelizující závažnost případu.</p>
+<p>Podle Ústavního soudu obecné soudy dostatečně nezohlednily specifické okolnosti případu. Trestní stíhání, které trvalo téměř deset let, mělo pro stěžovatele vážné důsledky, a to nejen v oblasti profesní, ale i osobní. Ústavní soud tak jasně vyjádřil, že je nutné přistupovat k takovým případům s větší vážností a citlivostí, než jak tomu bylo dosud.</p>
+<h3>Důsledky pro budoucnost</h3>
+<p>Toto rozhodnutí Ústavního soudu by mohlo mít dalekosáhlé důsledky pro podobné případy v budoucnu. Soudy by měly brát v úvahu nejen samotné obvinění, ale také dopady, které má nezákonné trestní stíhání na život jednotlivce. Je důležité, aby se podobné situace neopakovaly a aby byla obětem poskytnuta adekvátní kompenzace za utrpěné újmy.</p>
+<p>Pokud se i vy nacházíte v situaci, kdy potřebujete právní poradenství, neváhejte se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>. Jejich zkušenosti vám mohou pomoci lépe se orientovat v právních otázkách a zajistit, abyste dostali spravedlnost, kterou si zasloužíte. Pro více informací o uvedeném rozhodnutí Ústavního soudu můžete navštívit <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">tento odkaz</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V poslední době se stále více hovoří o důsledcích nezákonného trestního stíhání a potřebě spravedlivého odškodnění. Nedávné rozhodnutí Ústavního soudu, které zrušilo kompenzaci za nemajetkovou újmu pro stěžovatele, ukazuje, jak zásadní je důkladné posouzení všech faktorů ve složitých právních případech. Akademik a vědec, který byl téměř deset let stíhán, se nyní dočkal spravedlnosti, ale otázka zůstává: jakým způsobem můžeme zajistit, aby se podobné situace v budoucnu neopakovaly? Je důležité, aby soudy braly v úvahu nejen právní aspekty, ale také lidský rozměr každého případu. Tato kauza nám připomíná, že spravedlnost by měla být nejen na papíře, ale především v praxi.</div>
+  <div class="li-body">V dnešním právním prostředí je důležité si uvědomit, že soudní rozhodnutí mohou mít dalekosáhlé důsledky, a to nejen pro jednotlivce, ale i pro společnost jako celek. Ústavní soud nedávno zrušil rozhodnutí obecných soudů v případu akademika, jehož téměř desetileté trestní stíhání pro daňovou trestnou činnost skončilo zproštěním. Přiznaná náhrada za nemajetkovou újmu ve výši 85 000 Kč byla shledána jako bagatelizace závažnosti situace. Tento případ ukazuje, jak je důležité, aby soudy pečlivě zvažovaly okolnosti každého případu, a to včetně psychických a emocionálních dopadů na oběti nezákonného jednání. Jako odborníci v oblasti práva a podnikání musíme být obezřetní a zajímat se o spravedlnost a práva jednotlivců.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">V nedávném rozhodnutí Ústavního soudu byla zrušena rozhodnutí obecných soudů, které se týkaly nároku na náhradu nemajetkové újmy po téměř desetiletém nezákonném trestním stíhání. Soud poukázal na to, že přiznaná částka 85 000 Kč představuje bagatelizaci vážného porušení práv stěžovatele. Toto rozhodnutí zdůrazňuje potřebu pečlivého zvažování specifických okolností v každém jednotlivém případě a naznačuje, že soudy by měly být citlivější k individuálním traumatům, která mohou taková stíhání způsobit. Důsledky nezákonného stíhání mohou mít vážné dopady na kariéru a osobní život jednotlivce. Je nezbytné, aby systém spravedlnosti reflektoval tuto realitu a zajistil adekvátní ochranu práv občanů.</div>
+  <div class="li-body">Rozhodnutí Ústavního soudu, které se zabývá nárokem na náhradu nemajetkové újmy, je příkladem, jak právní systém může reagovat na nesprávné postupy orgánů činných v trestním řízení. Soudy zjistily, že obecné soudy nedostatečně zohlednily specifické okolnosti případu stěžovatele, což vedlo k neadekvátnímu přiznání kompenzace. Tato situace ukazuje na nutnost zvýšené pozornosti při posuzování podobných případů, zejména pokud se jedná o duševní a emocionální újmu. Je zásadní, aby spravedlnost nebyla pouze slibem, ale i realitou, kterou jednotlivci mohou zažít. Věříme, že by měly být vyvinuty další kroky k zajištění spravedlivého a důstojného přístupu k obětem nezákonného stíhání.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Představte si, že jste akademik, který se téměř deset let potýká s trestním stíháním pro daňovou trestnou činnost, a nakonec jste zproštěn viny. A teď si představte, že vám soud přizná kompenzaci, která je tak nízká, že byste ji mohli snadno zahlédnout na dně kapsy! To je přesně to, co se stalo v nedávném rozhodnutí Ústavního soudu, kde byla částka 85 000 Kč označena jako bagatelizace vážného problému. Je to jako dostat odměnu za měsíc dřiny v práci v podobě jednoho kousku cukrovinky. Přitom spravedlnost by měla být sladká a poctivá. Tato kauza nám připomíná, že musíme více dbát na to, jak se v právním systému vyrovnáváme s lidskými příběhy a osobními ztrátami.</div>
+  <div class="li-body">Když se mluví o spravedlnosti v našem právním systému, je dobré mít na paměti, že každý detail může mít velký význam. Představte si akademika, který strávil téměř deset let na okraji společnosti kvůli nezákonnému trestnímu stíhání. A pak, když se konečně dostane do situace, kdy je osvobozen, obdrží jako &quot;odškodnění&quot; pouhých 85 000 Kč. To je jako říct, že jeho utrpení a ztráta času jsou v podstatě nic! Ústavní soud se na to podíval a rozhodl, že takto se spravedlnost nedělá. Je důležité, abychom se zamysleli nad tím, jak můžeme zlepšit systém a zajistit, aby každý měl možnost dostat to, co mu právem náleží. Každý z nás může být obhájcem spravedlnosti – ať už v kanceláři, ve škole, nebo kdekoliv jinde!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

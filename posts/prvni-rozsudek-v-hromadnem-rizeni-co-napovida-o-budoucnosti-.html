@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -124,25 +128,26 @@ h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/prvni-rozsudek-v-hromadnem-rizeni-co-napovida-o-budoucnosti-tohoto-institutu-119926.html" target="_blank">odkaz</a> · Publikováno: 14. 8. 2025 02:05</div>
 </header>
 <article class="article">
-<h2>První rozsudek v hromadném řízení v České republice</h2>
-<p>Nedávno se v českém právním prostředí odehrála událost, která by mohla mít dalekosáhlé důsledky pro budoucnost hromadných žalob v naší zemi. Městský soud v Praze vydal historicky první rozsudek v hromadném řízení, který vyhověl žalující straně téměř v celém rozsahu. Tento krok je důležitým milníkem, který naznačuje, jakým směrem se může hromadné řízení ubírat v budoucnosti. Ačkoliv se obě strany stále mohou odvolat, rozhodnutí soudu již nyní vyvolává široké diskuse o jeho významu a dopadech.</p>
-<h2>Důležité poznatky z rozsudku</h2>
-<p>Písemné vyhotovení rozsudku přináší řadu zajímavých informací, které mohou být pro veřejnost nové. Například se ukazuje, že hromadné řízení může být efektivním nástrojem pro ochranu práv spotřebitelů a jednotlivců, kteří se cítí být poškozeni. Soudní rozhodnutí potvrzuje, že v případě hromadných žalob je možné dosáhnout spravedlnosti pro více lidí najednou, což může výrazně zjednodušit a urychlit proces vyrovnání s odpovědnými subjekty. Tato situace by mohla povzbudit další jednotlivce k tomu, aby se nebáli hájit svá práva kolektivně.</p>
-<p>Pokud se zajímáte o právní poradenství v oblasti hromadných žalob, doporučujeme navštívit <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kde vám mohou poskytnout cenné informace a pomoc. Pro více informací o prvním rozsudku v hromadném řízení a jeho dopadech můžete navštívit původní zdroj <a href="https://www.epravo.cz/top/clanky/prvni-rozsudek-v-hromadnem-rizeni-co-napovida-o-budoucnosti-tohoto-institutu-119926.html" target="_blank" rel="noopener">zdroj</a>.</p>
+<h3>První hromadná žaloba v Česku: Historický rozsudek a jeho důsledky</h3>
+<p>V nedávné době se v českém právním prostředí odehrál významný moment, když Městský soud v Praze vydal historicky první rozsudek v rámci hromadného řízení. Tento krok dal za pravdu žalující straně a vyhověl podané žalobě téměř v celém rozsahu. Rozsudek, který byl nedávno zveřejněn, přináší zajímavé informace o pozadí a průběhu celého sporu, které dosud nebyly široké veřejnosti známy. Přestože obě strany mají nyní možnost podat odvolání, tento rozsudek může významně ovlivnit budoucnost hromadných žalob v České republice.</p>
+<h3>Co nám rozsudek říká?</h3>
+<p>Rozsudek se týká případu, který se stal vzorem pro další hromadná řízení. Soud se v něm zabýval nejen právními otázkami, ale také otázkami spravedlnosti a ochrany spotřebitelů. V rámci rozhodnutí soud zdůraznil, že hromadné žaloby mohou být efektivním nástrojem pro ochranu práv skupin lidí, které byly poškozeny stejným způsobem. To naznačuje, že hromadné řízení by mohlo v budoucnu hrát klíčovou roli v českém právním systému, zejména v případech, kdy je obtížné jednotlivě uplatňovat nároky.</p>
+<p>Pokud se i vy potýkáte s právními problémy nebo máte otázky ohledně hromadných žalob, neváhejte se obrátit na odborníky. Právní poradenství <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a> vám může poskytnout potřebné informace a pomoc v této oblasti.</p>
+<p>Více o tomto důležitém rozsudku a jeho dopadech se dozvíte v článku na <a href="https://www.epravo.cz/top/clanky/prvni-rozsudek-v-hromadnem-rizeni-co-napovida-o-budoucnosti-tohoto-institutu-119926.html" target="_blank" rel="noopener">zdroji</a>. Hromadné řízení tak může být novým krokem k efektivnější ochraně práv spotřebitelů v České republice.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">Městský soud v Praze nedávno vydal historicky první rozsudek v hromadném řízení v České republice, což je událost, která má potenciál zásadně změnit právní landscape v naší zemi. Rozhodnutí, které vyhovělo žalující straně téměř v celém rozsahu, ukazuje na efektivitu a důležitost hromadných žalob jako nástroje ochrany práv spotřebitelů. Tento případ nám dává možnost přehodnotit, jakým způsobem se mohou jednotlivci spojit a hájit svá práva vůči mocnějším institucím. Vzhledem k tomu, že obě strany mají možnost odvolání, je důležité sledovat, jak se situace vyvine a jaké precedentní hodnoty tento rozsudek přinese pro budoucí případy. Hromadné žaloby by se tak mohly stát silným nástrojem pro ochranu práv a zájmů občanů v České republice.</div>
+  <div class="li-body">Historický rozsudek v hromadné žalobě v České republice je milníkem, který může zásadně ovlivnit budoucnost právního systému v naší zemi. Městský soud v Praze se postavil na stranu žalující strany a téměř v plném rozsahu vyhověl jejich požadavkům. Tento výsledek nejenže potvrzuje platnost hromadných žalob, ale také ukazuje, že české soudnictví je schopné efektivně reagovat na výzvy moderní doby. Důležité je, že i když obě strany mohou ještě podat odvolání, tento rozsudek vytváří precedens, který by mohl usnadnit ochranu práv jednotlivců v podobných případech v budoucnu. Sledujme tedy pečlivě další vývoj a jeho dopad na právní praxi v České republice.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">První rozsudek v hromadném řízení, který byl vydán Městským soudem v Praze, představuje významný krok vpřed v oblasti kolektivního právního postavení jednotlivců. Soud se postavil na stranu žalujících a vyhověl jejich nárokům, což naznačuje, že hromadné žaloby mohou být efektivním prostředkem pro prosazování práv. Je však důležité mít na paměti, že právní proces není uzavřen, neboť obě strany mají ještě možnost odvolání. Význam tohoto rozhodnutí spočívá nejen v jeho bezprostředním dopadu, ale také v budování precedentů pro budoucí hromadná řízení, která by mohla posílit ochranu spotřebitelů a jednotlivců v právním systému. Sledování dalších kroků v této věci bude klíčové pro pochopení budoucnosti hromadných žalob v České republice.</div>
+  <div class="li-body">Jako jednatel společnosti Spring Walk vítám rozhodnutí Městského soudu v Praze, které se stalo součástí historického okamžiku v oblasti hromadných žalob. Rozsudek, který vyhověl žalujícím stranám, nám ukazuje, jak důležitá je kolektivní ochrana práv jednotlivců a jakým způsobem může soudní systém reagovat na potřeby společnosti. Je však důležité si uvědomit, že tento případ není zdaleka uzavřený a obě strany mají možnost se odvolat. Zároveň se domnívám, že tento krok přispěje k dalšímu rozvoji právního rámce v České republice, což může mít dalekosáhlé dopady na ochranu spotřebitelů a dalších skupin. Naše společnost se i nadále bude snažit sledovat vývoj a podporovat jakékoli iniciativy, které pomáhají zlepšit právní prostředí pro všechny.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">V historii českého práva se nedávno odehrál malý zázrak – Městský soud v Praze totiž vydal první rozsudek v hromadném řízení! A co to znamená pro nás, obyčejné smrtelníky? No, především to, že si můžeme konečně vzít na paškál mocné instituce, které si občas dělají, co chtějí. Ačkoliv ještě není konec příběhu, protože se obě strany chystají na odvolání, tento rozsudek nám dává naději, že když se spojíme, máme šanci na vítězství. Možná se dočkáme doby, kdy hromadné žaloby budou běžným nástrojem v našich rukou – jako superhrdinské kostýmy pro právníky! Tak držme palce, ať se tento trend rozvine a přinese nám více spravedlnosti!</div>
+  <div class="li-body">Ahoj všichni! Možná jste už slyšeli o tom, že v České republice padl historický rozsudek v hromadné žalobě. Je to jako když se v právním světě rozsvítí nová hvězda! Městský soud v Praze se postavil na stranu žalující strany a ukázal, že hromadné žaloby mohou mít sílu měnit pravidla hry. I když ještě není konec, protože obě strany mohou podat odvolání, já osobně jsem zvědavý, jak to celé dopadne. Tento rozsudek by mohl otevřít dveře pro další podobné případy a přinést novou víru do právní ochrany spotřebitelů. Takže se připravte na zajímavé časy v právním světě!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

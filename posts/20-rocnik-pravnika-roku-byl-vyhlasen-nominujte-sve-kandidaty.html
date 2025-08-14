@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -74,28 +125,28 @@ h1, h2 {
   <a href="../index.html">← Přehled</a>
   <div class="badge">Právník roku</div>
   <h1>20. ročník Právníka roku byl vyhlášen, nominujte své kandidáty na cenu sv. Yva</h1>
-  <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/11/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty-na-cenu-sv-yva/" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 13:05</div>
+  <div class="meta">Poutavost: 3/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/11/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty-na-cenu-sv-yva/" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 13:05</div>
 </header>
 <article class="article">
-<h3>Jubilejní 20. ročník Právníka roku</h3>
-<p>V České republice byl vyhlášen již jubilejní 20. ročník soutěže Právník roku, kterou pořádají Česká advokátní komora a vzdělávací skupina EPRAVO.CZ. Tato prestižní soutěž má za cíl ocenit vynikající právníky a právní odborníky, kteří se zasloužili o rozvoj právní praxe a přispěli k ochraně práv a svobod občanů. Nominace na cenu sv. Yva jsou nyní otevřeny, a tak máte možnost podpořit své kandidáty, kteří si podle vás zaslouží toto významné ocenění.</p>
-<h3>Jak nominovat své kandidáty</h3>
-<p>Pokud máte ve svém okolí právníka, jehož práci obdivujete, můžete ho nominovat na tuto prestižní cenu. Nominace probíhá prostřednictvím webových stránek soutěže, kde najdete všechny potřebné informace a formuláře. Je to skvělá příležitost, jak vyjádřit uznání těm, kteří se v oblasti práva neúnavně snaží pomáhat druhým a zlepšovat právní systém v naší zemi. Více informací o soutěži a nominacích naleznete v původním zdroji <a href="https://advokatnidenik.cz/2025/08/11/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty-na-cenu-sv-yva/" target="_blank" rel="noopener">zdroj</a>.</p>
-<p>Pokud potřebujete právní poradenství nebo pomoc s jakýmkoliv právním problémem, doporučujeme se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>, kteří vám rádi pomohou najít to nejlepší řešení. Nezapomeňte, že kvalitní právní pomoc je klíčem k úspěchu ve všech právních záležitostech.</p>
+<h2>20. ročník Právníka roku: Nominujte své kandidáty</h2>
+<p>Jubilejní 20. ročník soutěže Právník roku byl oficiálně vyhlášen. Tato prestižní celojustiční soutěž, kterou pořádají Česká advokátní komora a vzdělávací skupina EPRAVO.CZ, si klade za cíl ocenit a vyzdvihnout významné právníky a právní odborníky, kteří se zasloužili o rozvoj právního oboru v České republice. V letošním roce mají možnost nominovat své kandidáty nejen právníci, ale také široká veřejnost, což dává příležitost vyjádřit uznání těm, kteří se věnují právní pomoci a obraně práv jednotlivců.</p>
+<h2>Jak nominovat?</h2>
+<p>Nominace probíhá prostřednictvím online formuláře, který je dostupný na stránkách soutěže. Každý má možnost navrhnout právníka, kterého považuje za výjimečného, a to v několika kategoriích. Ocenění se udělují nejen za odborné znalosti, ale také za etické jednání a přístup k klientům. Tato soutěž má za cíl nejen ocenit jednotlivce, ale také zvýšit povědomí o důležitosti právní pomoci v naší společnosti.</p>
+<p>Pokud potřebujete právní poradenství, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kde vám odborníci rádi pomohou. Více informací o soutěži Právník roku naleznete v článku na <a href="https://advokatnidenik.cz/2025/08/11/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty-na-cenu-sv-yva/" target="_blank" rel="noopener">advokatnidenik.cz</a>. Nezapomeňte, že váš hlas může pomoci ocenit ty, kteří se snaží o spravedlnost a ochranu práv ostatních.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">S potěšením oznamujeme, že byl vyhlášen již 20. ročník prestižní soutěže Právník roku, která je organizována Českou advokátní komorou a vzdělávací skupinou EPRAVO.CZ. Tato událost je nejen oslavou vynikajících právníků na českém trhu, ale také příležitostí pro nás všechny, abychom uznali a ocenili jejich přínos k právnímu oboru. Nominace jsou nyní otevřené a my vás vyzýváme, abyste se zapojili a podpořili své kolegy a přátele, kteří si tuto poctu zaslouží. Nezapomeňte, že každý hlas může mít významný dopad na kariéru těchto talentovaných profesionálů. Společně můžeme osvětlit úspěchy a hodnoty, které právní profese představuje.</div>
+  <div class="li-body">S potěšením oznamujeme, že byl vyhlášen jubilejní 20. ročník celojustiční soutěže Právník roku. Tato prestižní událost, kterou pořádají Česká advokátní komora a vzdělávací skupina EPRAVO.CZ, je příležitostí ocenit vynikající právníky a jejich přínos pro naši profesi. Těšíme se, že mezi nominacemi uvidíme řadu inspirativních osobností, které svým nasazením a odborností obohacují právní sféru v České republice. Nezapomeňte nominovat své kandidáty, ať už jsou to kolegové z kanceláře, nebo právníci, kteří vás osobně oslovili svými dovednostmi.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Drazí kolegové a přátelé, s radostí vás informuji, že byl zahájen proces nominací na 20. ročník soutěže Právník roku. Tato soutěž, organizovaná Českou advokátní komorou a EPRAVO.CZ, je klíčovou událostí v právnické komunitě, která se zaměřuje na ocenění těch nejlepších z nás. Nominace jsou otevřené pro všechny, kdo chtějí vyjádřit podporu svým kolegům, a já vás vyzývám, abyste se aktivně zapojili. Vaše nominace mohou přispět k tomu, aby se právníci, kteří dělají rozdíl, dostali do povědomí široké veřejnosti. Je to příležitost ukázat, jak významná je naše profese a jakou hodnotu přináší společnosti.</div>
+  <div class="li-body">Rád bych upozornil na to, že právě nyní máte možnost nominovat své kandidáty na cenu sv. Yva v rámci 20. ročníku soutěže Právník roku. Tato soutěž nejen že uznává excelenci v právní praxi, ale také podporuje profesní rozvoj a etické standardy v oboru. Věnujte chvíli zamyšlení nad právníky, kteří se zasloužili o pozitivní změny ve společnosti či přispěli k obohacení právní kultury. Nominace jsou otevřené a mohou mít zásadní význam pro další rozvoj vaší kariéry i kariéry vašich kolegů.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Ahoj právníci a právničky! Už jste slyšeli tu novinku? 20. ročník Právník roku je tu a je čas nominovat své hvězdy! Tato soutěž je jako Oscars pro nás, právníky, a každý z vás má možnost vybrat si svého favorita. Takže, kdo je ten, kdo vás inspiruje, kdo vždy ví, jak na to, a kdo vás nenechá na holičkách? Dejte mu šanci zazářit a přihlaste ho do soutěže! Pamatujte, že skvělí právníci si zaslouží být vidět a slyšet, a právě teď je ten pravý čas, abyste ukázali, jak moc si jich vážíte.</div>
+  <div class="li-body">Je to tady! Jubilejní 20. ročník soutěže Právník roku je oficiálně vyhlášen a my máme šanci oslavit ty, kteří dělají právní svět lepším místem. Ať už je to váš kolega, který má vždy pravdu, nebo právník, který vám pomohl v těžké situaci, nyní je čas ukázat, jak moc si jich vážíte. Nominace na cenu sv. Yva jsou otevřené, tak neváhejte a pošlete své tipy! Ukažme světu, jak jsou naši právníci skvělí a jaký mají vliv na naše komunity. Soutěžíme nejen o cenu, ale také o uznání, které si právníci zaslouží!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

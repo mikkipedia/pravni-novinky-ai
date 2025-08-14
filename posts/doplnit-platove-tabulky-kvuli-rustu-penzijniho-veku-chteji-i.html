@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,26 +128,26 @@ h1, h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 07:49</div>
 </header>
 <article class="article">
-<h3>Změny v platových tabulkách: Odbory a soudy volají po úpravách</h3>
-<p>V poslední době se stále častěji diskutuje o potřebě upravit platové tabulky ve veřejném sektoru. Tento krok by měl reagovat na zvyšování důchodového věku a prodlužování doby praxe. Odbory, zástupci samospráv a dokonce i Nejvyšší soud se shodují na tom, že zkušeným zaměstnancům v závěru kariéry již často základní plat neroste. Tato situace může mít negativní dopad na motivaci a spokojenost pracovníků, kteří věnovali svůj profesní život službě veřejnosti.</p>
-<p>Podle zástupců těchto institucí je důležité, aby platové tabulky zohledňovaly nejen třídu a stupeň zaměstnanců, ale také jejich dlouholetou praxi. Navrhované úpravy by měly zajistit, že lidé, kteří se v průběhu své kariéry vypracovali a mají cenné zkušenosti, budou spravedlivě odměňováni. Tímto způsobem by se mohlo předejít odchodu kvalifikovaných pracovníků z veřejného sektoru, což by mělo pozitivní dopad na kvalitu služeb, které občané dostávají.</p>
-<h3>Jak se na to dívají odborníci?</h3>
-<p>Odbory a zástupci samospráv apelují na vládu, aby tuto problematiku brala vážně a přijala potřebná opatření. Očekává se, že vláda bude reagovat na připomínky a navrhne úpravy, které by přinesly spravedlivější odměňování pro pracovníky ve veřejném sektoru. Pokud máte otázky ohledně pracovního práva nebo potřebujete právní poradenství, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kde vám odborníci rádi pomohou.</p>
-<p>Tento návrh na úpravu platových tabulek je důležitým krokem k zajištění spravedlivého odměňování v časech, kdy se mění demografická struktura společnosti a zvyšuje se důchodový věk. Pro více informací o této problematice si můžete přečíst článek na <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank" rel="noopener">zdroj</a>.</p>
+<h2>Platové tabulky a důchodový věk: Co nás čeká?</h2>
+<p>V poslední době se stále více diskutuje o nutnosti upravit platové tabulky ve veřejném sektoru. Odbory, zástupci samospráv a dokonce i Nejvyšší soud se shodují na tom, že je třeba zohlednit rostoucí důchodový věk a prodlužování doby praxe zaměstnanců. Tato změna by mohla mít významný dopad na platy pracovníků v závěru jejich kariéry, kteří často nedosahují na vyšší základní platy, i když mají bohaté zkušenosti.</p>
+<p>Podle návrhu vládního nařízení o zvýšení platů pro příští rok je důležité, aby platové tarify zohlednily nejen třídu a stupeň profesí, ale také prodlužující se dobu praxe. V současnosti se totiž stává, že zkušení pracovníci, kteří by měli být odměněni za své dlouholeté úsilí, čelí stagnaci svých platů. Tato situace může vést k frustraci a demotivaci, což by mohlo negativně ovlivnit kvalitu služeb poskytovaných veřejným sektorem.</p>
+<h2>Jaké jsou další možnosti?</h2>
+<p>Kromě úpravy platových tabulek se nabízí i další možnosti, jak podpořit zaměstnance v jejich profesním rozvoji. Například právní poradenství, které nabízí <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, může pomoci zaměstnancům lépe se orientovat v pracovních právech a možnostech, které mají. Je důležité, aby se zaměstnanci aktivně zajímali o své práva a povinnosti, a aby se nebáli vyjádřit své názory na zlepšení pracovních podmínek.</p>
+<p>Změny v platových tabulkách a zohlednění rostoucího důchodového věku jsou tedy tématem, které se dotýká nás všech. Je důležité, aby se o těchto otázkách diskutovalo a aby se hledala řešení, která by vedla k lepším pracovním podmínkám pro všechny zaměstnance veřejného sektoru. Více informací o této problematice naleznete v článku na <a href="https://advokatnidenik.cz/2025/08/11/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i-soud-a-kraje/" target="_blank" rel="noopener">Advokátním deníku</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V dnešní době se stále častěji diskutuje o otázkách souvisejících se zvyšováním důchodového věku a jeho dopadech na pracovní trh. Odbory, zástupci samospráv a Nejvyšší soud se shodují na potřebě upravit platové tabulky tak, aby reflektovaly prodlužování doby praxe a podporovaly zkušené zaměstnance v závěru jejich kariéry. Je nezbytné, aby se platové tarify staly spravedlivějšími a motivovaly pracovníky veřejného sektoru, místo aby je odrazovaly. Společnost Spring Walk se také angažuje v diskusi o spravedlivém ohodnocení a podpoře zaměstnanců, jejichž zkušenosti jsou neocenitelné. Věříme, že investice do lidského kapitálu se vyplatí nejen jednotlivcům, ale i celé společnosti.</div>
+  <div class="li-body">V současné době se v oblasti veřejného sektoru diskutuje o potřebě aktualizace platových tabulek, zejména v souvislosti se zvyšováním důchodového věku. Odbory a zástupci samospráv, včetně Nejvyššího soudu, vyzdvihují důležitost zohlednění prodlužování doby praxe. Zkušeným zaměstnancům, kteří dosahují vrcholu své kariéry, totiž často stagnuje základní plat. Tato situace může vést k demotivaci a odchodu talentovaných pracovníků z veřejného sektoru, což by mohlo mít negativní dopad na celkovou kvalitu služeb. Je nezbytné, aby se vláda zamyslela nad návrhem na úpravu platových tarifů, aby bylo možné udržet kvalifikované a zkušené pracovníky v tomto důležitém odvětví.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Zvyšování důchodového věku a jeho vliv na platové tabulky jsou tématy, která si zasluhují naši pozornost. Odbory a představitelé samospráv argumentují, že je nutné přizpůsobit platové tarify tak, aby reflektovaly realitu prodlužující se pracovní kariéry. Zkušenosti a kvalifikace by měly být adekvátně ohodnoceny, aby se zajistila motivace pro stávající zaměstnance veřejného sektoru. Věřím, že modernizace platových tabulek nejenže posílí důvěru v zaměstnavatele, ale také zlepší celkovou pracovní morálku a spokojenost. Je na čase, abychom se zaměřili na spravedlivější odměňování a podmínky pro všechny pracovníky.</div>
+  <div class="li-body">V návaznosti na aktuální návrhy na úpravu platových tabulek je důležité podívat se na oblast veřejné správy s ohledem na budoucí vývoj. Zvyšování důchodového věku je nevyhnutelným krokem, který by měl být doprovázen adekvátními změnami v odměňování zaměstnanců. Zástupci odborů i soudu upozorňují na to, že stagnace platů pro zkušené pracovníky může mít za následek jejich odchod z veřejného sektoru. Udržení konkurenceschopných platových podmínek je klíčové pro zajištění kvality veřejných služeb a spokojenosti zaměstnanců. Je tedy nezbytné, aby vláda reagovala na tyto výzvy s cílem zajistit stabilitu a efektivitu veřejné správy.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Zvýšení důchodového věku je jako velký horký brambor, který se teď snažíme uchopit tak, aby nás nepopálil! Odbory a samosprávy se shodují, že platové tabulky potřebují facelift, aby lépe odrážely realitu našich zkušenějších kolegů. Představte si, že máte v týmu někoho, kdo má za sebou desítky let praxe, a jeho plat se už dlouho nezměnil. To je jako mít starý mobil, který už nefunguje tak, jak by měl! Pojďme tedy udělat krok vpřed a přizpůsobit naše odměny tak, aby odrážely hodnotu, kterou naši kolegové přinášejí. Každý z nás si zaslouží, aby byl odměněn za svou tvrdou práci a zkušenosti!</div>
+  <div class="li-body">Kdo by si pomyslel, že se platové tabulky stanou takovým hitem diskuzí! S rostoucím důchodovým věkem se ukazuje, že je čas na změnu – a to nejen v našich peněženkách, ale také v našich přístupech k odměňování. Odbory a zástupci samospráv se shodují, že je důležité, aby se platové tarify přizpůsobily realitě, kde zkušení pracovníci na konci kariéry už nevydělávají tolik, kolik by si zasloužili. Představte si, že byste pracovali několik let a na konci se dostali na stejnou startovní čáru jako nováček! To by bylo jako hrát šachy, kde byste měli stále stejnou úroveň. Pojďme tedy společně podpořit změny, které přinesou spravedlivější a motivující odměňování pro všechny.</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

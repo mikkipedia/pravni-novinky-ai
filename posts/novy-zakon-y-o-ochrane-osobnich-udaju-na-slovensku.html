@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -125,24 +129,24 @@ h2 {
 </header>
 <article class="article">
 <h3>Nové zákony o ochraně osobních údajů na Slovensku</h3>
-<p>Slovensko se chystá na důležité změny v oblasti ochrany osobních údajů, které by měly přinést novou legislativu. Tyto nové zákony mají za cíl oddělit policejní režim od běžného zpracování osobních údajů a omezit duplicity s evropským nařízením GDPR. Vzhledem k rostoucímu počtu hrozeb, jako jsou například technologie deepfake, je tato iniciativa velmi aktuální.</p>
-<h3>Ochrana před novými hrozbami</h3>
-<p>Nové právní předpisy na Slovensku reagují na stále se vyvíjející technologické prostředí a nové výzvy v oblasti ochrany osobních údajů. Zákony by měly posílit ochranu jednotlivců před zneužitím jejich dat a poskytnout jasnější pravidla pro zpracování osobních údajů v různých kontextech. To zahrnuje i specifické úpravy pro policejní složky, které budou mít přístup k citlivějším informacím.</p>
-<p>Pokud se zajímáte o právní poradenství v oblasti ochrany osobních údajů, můžete se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>, kteří vám rádi pomohou orientovat se v aktuálních změnách a pravidlech. Pro více informací o nových zákonech o ochraně osobních údajů na Slovensku můžete navštívit <a href="https://www.pravniprostor.cz/clanky/pravo-it/novy-zakony-o-ochrane-osobnich-udaju-na-slovensku" target="_blank" rel="noopener">zdroj</a>.</p>
+<p>Slovensko se připravuje na zavedení nových zákonů, které se zaměří na ochranu osobních údajů. Tyto změny mají za cíl oddělit policejní režim od běžných pravidel ochrany dat a zároveň omezit duplicity s obecným nařízením o ochraně osobních údajů (GDPR). Nové zákony by měly reagovat na aktuální hrozby, jako je například technologie deepfake, která může být zneužita k manipulaci s informacemi a zneužití identity.</p>
+<h3>Ochrana dat v digitálním věku</h3>
+<p>Vzhledem k neustálému vývoji technologií je ochrana osobních údajů stále důležitější. Nové legislativní kroky na Slovensku reflektují potřebu přizpůsobit se moderním výzvám, které s sebou nese digitální svět. Oddělení policejního režimu od běžného nakládání s osobními údaji umožní lépe regulovat, jakým způsobem mohou orgány činné v trestním řízení shromažďovat a zpracovávat osobní informace. Tento krok by měl přispět k větší ochraně soukromí jednotlivců.</p>
+<p>Pokud se o této problematice chcete dozvědět více, doporučujeme nahlédnout do podrobností na <a href="https://www.pravniprostor.cz/clanky/pravo-it/novy-zakony-o-ochrane-osobnich-udaju-na-slovensku" target="_blank" rel="noopener">zdroj</a>. Pro další právní poradenství ohledně ochrany osobních údajů se můžete obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které vám rádo pomůže orientovat se v aktuálních legislativních změnách.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">Slovensko se chystá na zásadní změnu v oblasti ochrany osobních údajů, která má za cíl posílit ochranu soukromí občanů. Nové zákony, které se připravují, jasně oddělují policejní režim od ochrany osobních dat a tím eliminují potenciální zneužití. Tato iniciativa nejenže reaguje na aktuální technologické výzvy, jako je fenomén deepfake, ale také se vyhýbá duplicitám s již zavedeným nařízením GDPR. Naše společnost Spring Walk se těší na možnost přispět k této důležité diskusi a zajistit, aby naše řešení odpovídala novým standardům.</div>
+  <div class="li-body">Nové zákony o ochraně osobních údajů na Slovensku přinášejí důležité změny, které ovlivní nejen jednotlivce, ale i firmy. Oddělení policejního režimu je klíčovým krokem k zajištění transparentnosti a odpovědnosti v oblasti zpracování osobních údajů. Tyto změny zároveň omezují duplicity s GDPR, což usnadní podnikům orientaci v legislativních požadavcích. Reakce na hrozby, jako jsou deepfake technologie, ukazuje, že Slovensko bere ochranu osobních údajů vážně a snaží se být krok před novými výzvami. Firmy by měly být připraveny na úpravy svých procesů a strategií, aby zajistily, že budou v souladu s těmito novými předpisy.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Nové legislativní změny v oblasti ochrany osobních údajů na Slovensku představují významný krok k posílení práv jednotlivců. Oddělení policejního režimu a ochrany soukromí je klíčové pro zajištění transparentnosti a důvěry občanů. Naše společnost s tímto vývojem souhlasí a je připravena přizpůsobit své procesy v souladu s novými předpisy. Důležité je také reagovat na nové hrozby v digitálním světě, což je přesně to, co návrh zákonů nabízí. Věříme, že společným úsilím můžeme vytvořit bezpečnější a důvěryhodnější prostředí pro všechny.</div>
+  <div class="li-body">V kontextu nových zákonů týkajících se ochrany osobních údajů na Slovensku je důležité zdůraznit, že tyto legislativní změny budou mít dalekosáhlý dopad na způsob, jakým organizace nakládají s citlivými informacemi. Oddělení policejního režimu a omezení duplicity s GDPR vytváří jasnější rámec pro podniky, což usnadní dodržování právních předpisů. Nově zavedené opatření proti technologiím, jako jsou deepfake, ukazuje, že Slovensko se snaží aktivně reagovat na moderní hrozby. V tomto dynamickém prostředí je klíčové, aby se firmy angažovaly v ochraně osobních údajů a přizpůsobily své interní politiky. S ohledem na tyto změny je nezbytné, aby organizace investovaly do školení a technologií, které podpoří jejich snahu o dodržování nových předpisů.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Na Slovensku se na nás chystá nová legislativní párty! Nové zákony o ochraně osobních údajů budou mít jasně vymezené mantinely mezi policejními pravomocemi a našimi osobními daty, což se cítí jako vítězství pro každého, kdo se bojí, že by jeho soukromí mohlo být ohroženo. A co je nejzajímavější? Tyto zákony se nebojí postavit tváří v tvář moderním výzvám, jako je deepfake. Takže, ať už jste odborník na GDPR nebo jen zvědavý občan, připravte se na novou éru ochrany soukromí! V Spring Walk jsme připraveni se zapojit a těšíme se na to, co nám budoucnost přinese.</div>
+  <div class="li-body">Ahoj všichni! Novinky ze Slovenska ohledně ochrany osobních údajů jsou tu a vypadají to jako velký krok vpřed! Představte si, že se policejní režim a GDPR konečně oddělují a vytvářejí tak prostor pro jasnější pravidla, která usnadní život nejen firmám, ale i nám všem. A co je nejlepší? Slovensko se nebojí čelit hrozbám jako deepfake – to znamená, že se snažíme ochránit naše identitky před nevyžádanými &quot;digitálními mimikry&quot;. Pro firmy to představuje nejen výzvu, ale také příležitost ukázat, jak to se zpracováním osobních údajů myslí vážně. Takže, kdo je připraven na nový dobrodružný výlet do světa ochrany dat?</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

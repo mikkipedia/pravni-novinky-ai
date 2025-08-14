@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,26 +128,26 @@ h1, h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.pravniprostor.cz/clanky/pracovni-pravo/dorucovani-elektronizace-v-pracovnim-pravu" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 08:13</div>
 </header>
 <article class="article">
-<h3>Doručování v pracovním právu: Od minulosti k současnosti</h3>
-<p>Doručování dokumentů v pracovním právu prošlo v posledních letech zásadními změnami. Dříve se používaly klasické metody, jako je osobní doručení nebo zasílání poštou. Tyto způsoby byly často zdlouhavé a náchylné k chybám, což mohlo vést k různým nedorozuměním mezi zaměstnavateli a zaměstnanci. V dnešní digitální době se však situace mění a elektronizace doručování se stává standardem. Tento posun přináší řadu výhod, mezi které patří rychlost a efektivita.</p>
-<h3>Elektronický podpis jako nový standard</h3>
-<p>Jedním z klíčových prvků moderního doručování je elektronický podpis. Ten umožňuje oběma stranám rychle a bezpečně podepisovat dokumenty bez nutnosti fyzické přítomnosti. Tím se zjednodušuje proces uzavírání pracovních smluv, dohod a dalších důležitých dokumentů. Zároveň to přispívá k ekologičtějšímu přístupu, jelikož se snižuje potřeba papírových dokumentů. Zaměstnavatelé i zaměstnanci si tak mohou ušetřit čas i náklady spojené s tradičním doručováním.</p>
-<p>Pokud se chcete dozvědět více o tom, jak správně využívat elektronizaci v pracovním právu, doporučujeme se obrátit na odborníky. Právní poradenství, které nabízí například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, vám může pomoci orientovat se v novinkách a změnách v pracovním právu, včetně elektronického doručování. Pro více informací o doručování a elektronizaci v pracovním právu se můžete podívat na <a href="https://www.pravniprostor.cz/clanky/pracovni-pravo/dorucovani-elektronizace-v-pracovnim-pravu" target="_blank" rel="noopener">zdroj</a>.</p>
-<p>Díky těmto změnám se pracovní prostředí stává flexibilnějším a efektivnějším, což je prospěšné pro všechny zúčastněné strany. Elektronizace doručování je tedy krokem vpřed, který usnadňuje komunikaci a zjednodušuje administrativní procesy.</p>
+<h3>Doručování v pracovním právu: Od minulosti k budoucnosti</h3>
+<p>V dnešní době se pracovní právo neustále vyvíjí a přizpůsobuje technologickému pokroku. Doručování dokumentů, které bylo kdysi spojeno s osobním předáním nebo zasláním poštou, se nyní stále více přesouvá do digitální sféry. Tento posun má zásadní význam pro efektivitu a rychlost komunikace mezi zaměstnavateli a zaměstnanci. Jak se tedy doručování v pracovním právu vyvíjelo a jaké výhody přináší elektronizace?</p>
+<h3>Elektronizace a její výhody</h3>
+<p>Historicky bylo doručování dokumentů v pracovním právu zdlouhavé a často komplikované. S nástupem elektronických podpisů a dalších digitálních nástrojů se však situace výrazně zlepšila. Dnes mohou zaměstnavatelé a zaměstnanci snadno a rychle sdílet důležité dokumenty, což šetří čas a náklady. Elektronizace také zvyšuje bezpečnost doručování, jelikož eliminuje riziko ztráty nebo poškození papírových dokumentů.</p>
+<p>Díky elektronickému doručování se zjednodušuje i proces archivace a vyhledávání dokumentů. Zaměstnanci mohou mít přístup k důležitým informacím kdykoliv a odkudkoliv, což zvyšuje flexibilitu a efektivitu práce. Více informací o této problematice naleznete v článku na <a href="https://www.pravniprostor.cz/clanky/pracovni-pravo/dorucovani-elektronizace-v-pracovnim-pravu" target="_blank" rel="noopener">Právním prostoru</a>.</p>
+<p>Pokud máte otázky ohledně pracovního práva nebo potřebujete právní poradenství, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Naši odborníci vám rádi pomohou orientovat se v aktuálních trendech a pravidlech, která se týkají doručování a elektronizace v pracovním právu.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">Doručování a elektronizace v pracovním právu jsou témata, která se v posledních letech dostávají do popředí zájmu. Naše společnost Spring Walk se snaží být na špici těchto změn, které mění způsob, jakým komunikujeme a zajišťujeme právní úkony. Od historických metod, jako byl pěstní klín, až po moderní technologie, jako je elektronický podpis, jsme svědky revoluce, která nejen urychluje procesy, ale také zvyšuje jejich bezpečnost. Věříme, že správné porozumění těmto změnám může pomoci firmám lépe se orientovat v pracovním právu a efektivněji chránit svá práva. Těšíme se na další diskusi o tom, jak tyto trendy ovlivňují nejen právo, ale i naše každodenní pracovní životy.</div>
+  <div class="li-body">V dnešním příspěvku se zaměříme na fascinující evoluci doručování a elektronizace v pracovním právu. Od dob, kdy se dokumenty předávaly osobně a vyžadovaly fyzické podpisy, jsme se posunuli k moderním technologiím, jako jsou elektronické podpisy a digitální platformy. Tato transformace nejen zjednodušila administrativní procesy, ale také zvýšila efektivitu a bezpečnost. Jak se naše společnost adaptovala na tyto změny, je důležité reflektovat na to, jaký dopad má digitalizace na naše každodenní pracovní interakce a jak nám pomáhá vyřešit složité situace.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">V dnešní dynamické době se doručování a elektronizace stávají neoddělitelnou součástí pracovního práva. Je fascinující sledovat, jak se postupně vyvinuly metody doručování od tradičních formátů až po implementaci elektronických podpisů. Tyto změny přinášejí nejen rychlost a efektivitu, ale také zvyšují úroveň ochrany našich právních zájmů. V rámci pracovního práva je klíčové, aby zaměstnavatelé i zaměstnanci rozuměli novým technologiím a jejich aplikaci v praxi. Naše společnost je připravena pomoci s adaptací na tyto změny a zajistit, abychom byli vždy o krok napřed.</div>
+  <div class="li-body">Dnešní doba přináší nejen výzvy, ale také příležitosti, a to zejména v oblasti pracovního práva. Doručování dokumentů, které bylo dříve časově náročné a často problematické, se dnes díky elektronizaci stalo mnohem efektivnějším. Elektronický podpis je nyní standardním nástrojem, který usnadňuje uzavírání pracovních smluv a dalších důležitých dokumentů. Je klíčové, abychom se v právním prostředí naučili využívat tyto inovace tak, abychom zlepšili naše procesy a ochránili naše zájmy. Věřím, že budoucnost pracovního práva bude nadále formována technologiemi, které zjednodušují a zefektivňují naše každodenní fungování.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Kdo by si pomyslel, že doručování může mít tak pestrou historii? Od doby, kdy se právníci museli spolehnout na pěstní klín, jsme ušli dlouhou cestu! Dnes máme možnost využívat elektronické podpisy, které nejen zrychlují procesy, ale také zajišťují, že naše dokumenty dorazí na správné místo včas a bezpečně. Je to jako přechod z jeskyně do digitálního světa – z úplné nejistoty k preciznosti a efektivitě. Jsem nadšený z toho, jak technologie mění naši profesi a těším se na to, co přinese budoucnost! Jaké máte vy zkušenosti s elektronizací v pracovním právu?</div>
+  <div class="li-body">Pamatujete si ještě na dobu, kdy jsme museli posílat důležité dokumenty poštou a čekali jsme dny, než dorazily? V dnešní době je to jako srovnávat pěstní klín s chytrým telefonem! Elektronizace v pracovním právu přinesla revoluci a my už nemusíme mít strach z „ztracené pošty“. S elektronickým podpisem můžeme se svými kolegy uzavírat dohody, aniž bychom museli opustit pohodlí našeho pracovního stolu. Je fascinující, jak technologie mění pracovní prostředí, a já se nemohu dočkat, co dalšího nám budoucnost přinese. Jaké jsou vaše zkušenosti s elektronizací v pracovním právu? Podělte se o ně!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

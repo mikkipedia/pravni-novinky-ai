@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -119,8 +123,8 @@ h2 {
 <div class="wrap">
 <header>
   <h1>Právní novinky – AI generované</h1>
-  <div class="meta">Rozsah: 13. 8. 2025 – 14. 8. 2025</div>
-  <div class="meta">Načteno: 10 · Vybráno: 10</div>
+  <div class="meta">Rozsah: 9. 8. 2025 – 14. 8. 2025</div>
+  <div class="meta">Načteno: 31 · Vybráno: 31</div>
 </header>
 <div class="grid">
 <a class="card" href="posts/neplatnost-vydedeni-a-jeji-dusledky.html">
@@ -173,9 +177,114 @@ h2 {
   <h2>Nový zákon(y) o ochraně osobních údajů na Slovensku</h2>
   <div class="meta">Právní prostor · 13. 8. 2025 08:10</div>
   <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/deti-jiz-maji-sveho-zastance-novela-zavedla-urad-detskeho-oc.html">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2>Děti již mají svého zastánce, novela zavedla úřad dětského ochránce práv</h2>
+  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:10</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/jak-cist-znalecky-posudek-pravni-orientace-pro-advokaty.html">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2>Jak číst znalecký posudek: Právní orientace pro advokáty</h2>
+  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:07</div>
+  <div class="meta">Poutavost: 5/5</div>
+</a><a class="card" href="posts/poruseni-akcionarske-dohody-muze-zakladat-neplatnost-usnesen.html">
+  <div class="badge">Články, občanské právo, obchodní právo, Články</div>
+  <h2>Porušení akcionářské dohody může zakládat neplatnost usnesení valné hromady, musí být však dobře napsána</h2>
+  <div class="meta">epravo.cz - Články · 13. 8. 2025 02:05</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/pozustali-po-obetech-strelby-na-ff-uk-maji-pravo-na-informac.html">
+  <div class="badge">Judikatura</div>
+  <h2>Pozůstalí po obětech střelby na FF UK mají právo na informace z šetření GIBS</h2>
+  <div class="meta">Advokátní deník · 12. 8. 2025 10:45</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/zakon-o-kyberneticke-bezpecnosti.html">
+  <div class="badge">Změny v legislativě</div>
+  <h2>Zákon o kybernetické bezpečnosti</h2>
+  <div class="meta">Právní prostor · 12. 8. 2025 10:35</div>
+  <div class="meta">Poutavost: 3/5</div>
+</a><a class="card" href="posts/zacne-platit-zakon-ktery-umozni-cervenemu-krizi-zajistovat-p.html">
+  <div class="badge">Aktuality</div>
+  <h2>Začne platit zákon, který umožní Červenému kříži zajišťovat pátrací službu</h2>
+  <div class="meta">Právní prostor · 12. 8. 2025 10:08</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/konference-odborne-sekce-pro-pracovni-pravo-dav-se-kona-v-za.html">
+  <div class="badge">Advokacie</div>
+  <h2>Konference odborné sekce pro pracovní právo DAV se koná v září v Praze</h2>
+  <div class="meta">Advokátní deník · 12. 8. 2025 08:50</div>
+  <div class="meta">Poutavost: 3/5</div>
+</a><a class="card" href="posts/novy-zakon-umozni-cervenemu-krizi-zajistovat-patraci-sluzbu.html">
+  <div class="badge">Legislativa</div>
+  <h2>Nový zákon umožní Červenému kříži zajišťovat pátrací službu</h2>
+  <div class="meta">Advokátní deník · 12. 8. 2025 08:26</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/spotrebitelske-pravo-v-ere-umele-inteligence.html">
+  <div class="badge">Články</div>
+  <h2>Spotřebitelské právo v éře umělé inteligence</h2>
+  <div class="meta">Právní prostor · 12. 8. 2025 08:15</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci.html">
+  <div class="badge">Svět práva</div>
+  <h2>Nová metodika má připravit instituce, jak reagovat na útok či krizi</h2>
+  <div class="meta">Advokátní deník · 12. 8. 2025 08:00</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/unie-statnich-zastupcu-usiluje-o-doplaceni-lonskych-platu.html">
+  <div class="badge">Svět práva</div>
+  <h2>Unie státních zástupců usiluje o doplacení loňských platů</h2>
+  <div class="meta">Advokátní deník · 12. 8. 2025 07:30</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/fashion-upcycling-non-merci-vzkazuje-herm-s.html">
+  <div class="badge">Články, obchodní právo, Články</div>
+  <h2>Fashion Upcycling? „Non, merci“ vzkazuje Hermès</h2>
+  <div class="meta">epravo.cz - Články · 12. 8. 2025 02:10</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/nemoznost-snizeni-hranice-pro-usnasenischopnost-shromazdeni-.html">
+  <div class="badge">Články, občanské právo, Články</div>
+  <h2>Nemožnost snížení hranice pro usnášeníschopnost shromáždění vlastníků aneb příběh zklamaného společenství</h2>
+  <div class="meta">epravo.cz - Články · 12. 8. 2025 02:07</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/20-rocnik-pravnika-roku-byl-vyhlasen-nominujte-sve-kandidaty.html">
+  <div class="badge">Právník roku</div>
+  <h2>20. ročník Právníka roku byl vyhlášen, nominujte své kandidáty na cenu sv. Yva</h2>
+  <div class="meta">Advokátní deník · 11. 8. 2025 13:05</div>
+  <div class="meta">Poutavost: 3/5</div>
+</a><a class="card" href="posts/novela-zakona-o-ceskem-cervenem-krizi.html">
+  <div class="badge">Změny v legislativě</div>
+  <h2>Novela zákona o Českém červeném kříži</h2>
+  <div class="meta">Právní prostor · 11. 8. 2025 09:48</div>
+  <div class="meta">Poutavost: 3/5</div>
+</a><a class="card" href="posts/mala-uprava-vyhlasky-muze-ovlivnit-kvalitu-bydleni-varuje-om.html">
+  <div class="badge">Svět práva</div>
+  <h2>Malá úprava vyhlášky může ovlivnit kvalitu bydlení, varuje ombudsman</h2>
+  <div class="meta">Advokátní deník · 11. 8. 2025 09:40</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/pruzkum-o-daru-pro-dobrocinnou-organizaci-v-zaveti-uvazuje-p.html">
+  <div class="badge">Svět práva</div>
+  <h2>Průzkum: O daru pro dobročinnou organizaci v závěti uvažuje pětina lidí</h2>
+  <div class="meta">Advokátní deník · 11. 8. 2025 08:33</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/dorucovani-a-elektronizace-v-pracovnim-pravu.html">
+  <div class="badge">Články</div>
+  <h2>Doručování a elektronizace v pracovním právu</h2>
+  <div class="meta">Právní prostor · 11. 8. 2025 08:13</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/doplnit-platove-tabulky-kvuli-rustu-penzijniho-veku-chteji-i.html">
+  <div class="badge">Svět práva</div>
+  <h2>Doplnit platové tabulky kvůli růstu penzijního věku chtějí i soud a kraje</h2>
+  <div class="meta">Advokátní deník · 11. 8. 2025 07:49</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/novela-trestniho-zakoniku.html">
+  <div class="badge">Články, trestní právo, Články</div>
+  <h2>Novela trestního zákoníku</h2>
+  <div class="meta">epravo.cz - Články · 11. 8. 2025 02:10</div>
+  <div class="meta">Poutavost: 4/5</div>
+</a><a class="card" href="posts/10-otazek-pro-adama-simice.html">
+  <div class="badge">Články, Články, 10 otázek</div>
+  <h2>10 otázek pro ... Adama Šimice</h2>
+  <div class="meta">epravo.cz - Články · 11. 8. 2025 02:07</div>
+  <div class="meta">Poutavost: 4/5</div>
 </a>
 </div>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

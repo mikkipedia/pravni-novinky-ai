@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,25 +128,25 @@ h1, h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank">odkaz</a> · Publikováno: 12. 8. 2025 08:00</div>
 </header>
 <article class="article">
-<h3>Nová metodika pro reakci na krize</h3>
-<p>V dnešní době se bezpečnost stává stále důležitějším tématem. S rostoucím počtem násilných útoků a krizových situací je nezbytné, aby instituce a firmy byly připraveny na to, jak na ně reagovat. Ministerstvo vnitra České republiky proto vypracovalo novou metodiku, která má za cíl pomoci provozovatelům takzvaných měkkých cílů, jako jsou školy, nemocnice nebo kulturní zařízení, efektivně zvládat tyto situace. Tato metodika se zaměřuje na minimalizaci ztrát na životech, majetku a také na ochranu reputace institucí.</p>
-<h3>Příprava na možné hrozby</h3>
-<p>Dokument obsahuje konkrétní doporučení a postupy, které by měly instituce dodržovat v případě, že dojde k útoku nebo jiné krizové situaci. Zodpovědnost za reakci na tyto události leží převážně na samotných institucích a firmách, a proto je důležité, aby měly jasně definované plány a postupy. Metodika se zaměřuje nejen na okamžitou reakci, ale také na dlouhodobé strategie, které mohou pomoci zvýšit bezpečnost a důvěru veřejnosti.</p>
-<p>Pokud se chcete dozvědět více o právních aspektech bezpečnostních opatření nebo potřebujete odborné právní poradenství, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Včasná příprava a správné postupy mohou zásadně ovlivnit průběh krizových situací a přispět k ochraně všech zúčastněných. Pro více informací o metodice navštivte <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">zdroj</a>.</p>
+<h3>Jak se připravit na krizi: Nová metodika pro instituce</h3>
+<p>V současném světě se bohužel stále častěji setkáváme s násilnými útoky a krizovými situacemi, které mohou ohrozit životy a majetek. Zodpovědnost za reakci na tyto hrozby leží převážně na institucích a firmách. Aby jim pomohlo lépe se připravit, Ministerstvo vnitra České republiky vyvinulo novou metodiku. Ta je určena především pro provozovatele takzvaných „měkkých cílů“, tedy míst, kde se shromažďuje větší množství lidí, jako jsou školy, nákupní centra nebo kulturní akce.</p>
+<h3>Cíle nové metodiky</h3>
+<p>Cílem této metodiky je poskytnout institucím jasné pokyny, jak reagovat na možné útoky a krizové situace. Dokument by měl pomoci minimalizovat ztráty na životech, majetku, ale také ochránit reputaci a důvěru veřejnosti. Instituce budou mít možnost se na situace lépe připravit, což je v dnešní době nezbytné. Je důležité, aby každý zaměstnanec věděl, jak se v případě krize zachovat a jakým způsobem může přispět k ochraně ostatních.</p>
+<p>Pokud se vaše instituce nebo firma potřebuje poradit ohledně právních aspektů krizového řízení, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které nabízí odbornou pomoc a podporu v této oblasti. Více informací o nové metodice a jejím významu naleznete také v článku na <a href="https://advokatnidenik.cz/2025/08/12/nova-metodika-ma-pripravit-instituce-jak-reagovat-na-utok-ci-krizi/" target="_blank" rel="noopener">Advokátním deníku</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V dnešní době se bezpečnost stává prioritou pro všechny instituce a firmy, zejména pro ty, které se nacházejí na veřejných místech. Nová metodika, kterou představilo Ministerstvo vnitra, má za cíl poskytnout provozovatelům měkkých cílů návod, jak se efektivně připravit na možné krizové situace. Tato iniciativa je zásadní, neboť zodpovědnost za reakci na útoky leží převážně na těchto institucích. Je důležité, aby si každý podnik uvědomil, jak důležité je mít robustní plán pro zvládání krizí, který zahrnuje nejen ochranu životů, ale i ochranu majetku a reputace. Tímto způsobem mohou společnosti lépe čelit hrozbám a ochránit nejen sebe, ale i své zákazníky.</div>
+  <div class="li-body">V dnešním světě, kde se rizika a hrozby neustále vyvíjejí, je klíčové, aby instituce a firmy měly připravené plány pro reakci na krizové situace. Ministerstvo vnitra nedávno představilo novou metodiku, která poskytuje jasné pokyny pro provozovatele „měkkých cílů“. Tato metodika je navržena tak, aby pomohla institucím minimalizovat ztráty na životech, majetku a důvěře veřejnosti v případě násilného útoku nebo jiné krize. Věříme, že osvojení těchto doporučení přispěje k bezpečnějšímu prostředí pro všechny. Naším cílem je zvýšit povědomí o důležitosti přípravy a reakce na krizové situace.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Dovolte mi, abych se vyjádřil k vysoce aktuálnímu tématu, které se dotýká bezpečnosti našich institucí. Ministerstvo vnitra zavedlo novou metodiku, která má za cíl pomoci organizacím, které se nacházejí na takzvaných měkkých cílech, efektivně reagovat na krizové situace. Je to krok správným směrem, který může výrazně přispět k minimalizaci škod na životech a majetku. Věřím, že implementace těchto postupů povede k posílení důvěry veřejnosti v naše instituce a zlepší jejich schopnost reagovat na potenciální hrozby. Je naší povinností se na tyto situace připravit a zajistit tak bezpečnost našich občanů.</div>
+  <div class="li-body">Jsem potěšen, že Ministerstvo vnitra zavedlo novou metodiku zaměřenou na přípravu institucí na krizové situace. Tato iniciativa je zásadní, neboť zodpovědnost za reakci v případě útoku nebo jiné krizové situace leží především na nás – provozovatelích institucí. Je důležité, aby byly naše systémy a postupy efektivní a aby naše týmy byly dobře vyškolené. Doufám, že tato metodika pomůže nejen snížit ztráty na životech a majetku, ale také posílí důvěru veřejnosti v naše schopnosti. Bezpečnost by měla být naší prioritou a společně můžeme vytvořit lepší a bezpečnější budoucnost.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Jak bychom se cítili, kdybychom čelili krizové situaci bez jakéhokoliv plánu? Nová metodika, kterou připravilo Ministerstvo vnitra, je jako záchranný kruh pro instituce, které se nacházejí na měkkých cílech. Je to skvělá příležitost, jak se naučit, jak se postavit k hrozbám a vyjít z nich silnější. Představte si, že máte v rukávu plán, který vám pomůže nejen chránit životy, ale i udržet si důvěru a reputaci. Pojďme se společně naučit, jak se připravit na krize, abychom mohli žít v bezpečnějším světě!</div>
+  <div class="li-body">Když se řekne „krizová situace“, většina z nás si představí chaos a paniku. Ale co kdybychom se na to podívali z jiného úhlu? Ministerstvo vnitra právě představilo novou metodiku, která nám pomůže být na hrozby připraveni jako superhrdinové! Ano, mluvím o tom, jak se stát neohroženými strážci našich institucí. Připravme se na to, abychom v krizových chvílích jednali s chladnou hlavou a s důvěrou, že máme plán. Kdo říká, že příprava na krizi nemůže být zábavná? Pojďme se společně zapojit do budování bezpečnějších prostor!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

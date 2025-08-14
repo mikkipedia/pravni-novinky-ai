@@ -9,8 +9,12 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
+
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
@@ -18,26 +22,44 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
+  gap: 18px;
 }
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +68,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +76,47 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks (oddělení a čitelnost) */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Lepší responsivita ===== */
+
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -77,25 +128,25 @@ h1, h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://www.epravo.cz/top/clanky/10-otazek-pro-adama-simice-119787.html" target="_blank">odkaz</a> · Publikováno: 11. 8. 2025 02:07</div>
 </header>
 <article class="article">
-<h3>Právo nemovitostí v rukou odborníka</h3>
-<p>Mgr. Adam Šimice je zkušeným advokátem v renomované kanceláři Eversheds Sutherland, kde se specializuje na oblast práva nemovitostí. Jeho práce zahrnuje široké spektrum činností, od zastupování klientů při komerčních transakcích po správu majetku a vyjednávání komerčních pronájmů. Adam se věnuje jak pronajímatelům, tak nájemcům, což mu umožňuje nahlížet na situace z obou perspektiv a nacházet tak optimální řešení pro všechny zúčastněné strany.</p>
-<h3>Co ho na práci baví?</h3>
-<p>Adam Šimice zdůrazňuje, že ho na jeho profesi nejvíce těší viditelné výsledky, které jeho práce přináší. Každý úspěšný obchod nebo uzavřený pronájem je pro něj důkazem, že jeho úsilí má smysl. Kromě pracovních úspěchů si Adam také cení času stráveného s rodinou. Rád cestuje, ať už se jedná o relaxaci u moře, nebo aktivní dovolenou plnou dobrodružství.</p>
-<p>Pokud i vy potřebujete právní poradenství v oblasti nemovitostí, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které vám může poskytnout potřebné informace a podporu. Pro více informací o Adamovi Šimicovi a jeho názorech na právo nemovitostí si můžete přečíst rozhovor na <a href="https://www.epravo.cz/top/clanky/10-otazek-pro-adama-simice-119787.html" target="_blank" rel="noopener">zdroj</a>.</p>
+<h3>Právník s vášní pro nemovitosti: Mgr. Adam Šimice</h3>
+<p>Mgr. Adam Šimice je zkušeným advokátem v prestižní advokátní kanceláři Eversheds Sutherland, kde se specializuje na právo nemovitostí. Jeho práce zahrnuje široké spektrum činností, od zastupování klientů při komerčních transakcích, přes správu majetku, až po vyjednávání komerčních pronájmů. Adam se věnuje nejen pronajímatelům, ale i nájemcům, což mu umožňuje mít komplexní pohled na problematiku nemovitostí.</p>
+<h3>Výsledky, které jsou vidět</h3>
+<p>Jedním z aspektů, které Adama na jeho práci nejvíce baví, je možnost přinášet svým klientům viditelné výsledky. V oblasti práva nemovitostí je důležité nejen právní poradenství, ale i schopnost efektivně vyjednávat a dosahovat dohod, které vyhovují oběma stranám. Adamova odbornost a zkušenosti mu umožňují navigovat složité situace a pomáhat klientům dosáhnout jejich cílů.</p>
+<p>Kromě své profesní dráhy si Adam rád odpočine s rodinou a cestováním. Ať už se rozhodne relaxovat u moře, nebo se pustí do aktivní dovolené, ví, jak důležité je najít rovnováhu mezi pracovním a osobním životem. Pokud i vy hledáte právní poradenství v oblasti nemovitostí, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, které nabízí odbornou pomoc v této oblasti. Pro více informací o Adamovi Šimicovi a jeho práci si můžete přečíst článek <a href="https://www.epravo.cz/top/clanky/10-otazek-pro-adama-simice-119787.html" target="_blank" rel="noopener">zdroj</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V dnešním dynamickém světě je klíčové mít po svém boku odborníky, kteří rozumí specifikům daného odvětví. Mgr. Adam Šimice, advokát v Eversheds Sutherland, je jedním z těch, kteří mají hluboké znalosti v oblasti práva nemovitostí. Jeho zkušenosti s komerčními transakcemi a správou majetku přinášejí klientům nejen odbornou, ale i strategickou podporu. Adamova schopnost vyjednávat komerční pronájmy napříč různými segmenty trhu je pro naše klienty neocenitelná. S jeho pomocí mohou být si jisti, že jejich zájmy jsou vždy na prvním místě. Děkujeme, Adame, že jste součástí našeho týmu!</div>
+  <div class="li-body">V dnešním rychle se měnícím světě je důležité mít po svém boku odborníka, který rozumí nejen právním aspektům, ale i specifikům trhu s nemovitostmi. Mgr. Adam Šimice, advokát v Eversheds Sutherland, se přesně na tuto oblast zaměřuje. Jeho zkušenosti s komerčními transakcemi a vyjednáváním pronájmů kancelářských a maloobchodních prostor dělají z něj cenný zdroj pro každého, kdo se snaží orientovat v tomto složitém prostředí. Adam je důkazem, že právní poradenství může mít přímý dopad na úspěch našich podnikatelských záměrů. Společnost Spring Walk je hrdá na spolupráci s takovými profesionály, kteří chápou potřeby svých klientů a dokážou je efektivně podpořit.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Adam Šimice je nejen vynikajícím advokátem, ale také klíčovým partnerem pro naše klienty, kteří se potýkají s výzvami v oblasti nemovitostí. Jeho odborné znalosti v právních aspektech komerčních pronájmů a správy majetku z něj činí neocenitelného spojence. Adamova schopnost sledovat trendy na trhu a přizpůsobovat se dynamickým změnám je pro naše klienty velkým přínosem. Věříme, že jeho důraz na viditelné výsledky a etický přístup k právní praxi posiluje důvěru našich klientů. Jsme rádi, že máme Adama v našem týmu jako vzor pro všechny advokáty a profesionály v oboru.</div>
+  <div class="li-body">V oblasti práva nemovitostí je klíčové mít na své straně odborníka, který se nebojí výzev a umí efektivně vyjednávat. Mgr. Adam Šimice z Eversheds Sutherland se specializuje na komerční transakce a správu majetku, což z něj činí ideálního partnera pro firmy, které hledají spolehlivou právní podporu. Jeho dovednosti v oblasti vyjednávání pronájmů kancelářských a maloobchodních prostor jsou zásadní pro úspěch klientů. Adamova schopnost přetavit složité právní otázky na srozumitelné a praktické řešení je to, co ho odlišuje od ostatních. V kontextu dynamického trhu s nemovitostmi je takový přístup nezbytný pro dosažení optimálních výsledků.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Kdo říká, že právo nemovitostí je nudné? Mgr. Adam Šimice z Eversheds Sutherland dokazuje, že i v této oblasti lze najít zábavu! Jeho nadšení pro vyjednávání a výkon výsledků je nakažlivé. Ať už jde o kanceláře, maloobchodní jednotky nebo logistická centra, Adam se do každého projektu vrhá s vervou a smyslem pro detail. Když zrovna nejedná o komerčních pronájmech, najdete ho s rodinou na pláži nebo na aktivní dovolené, kde si dobíjí energii. Děkujeme, Adame, že přinášíte do naší firmy nejen odborné znalosti, ale i radost a pozitivní energii!</div>
+  <div class="li-body">Když se řekne &quot;právo nemovitostí&quot;, možná si představíte suché smlouvy a nekonečné diskuze. Ale s Adamem Šimicem z Eversheds Sutherland je to jinak! Adam je právník, který si umí hrát s argumenty a vyjednáváním, a to jak na straně pronajímatele, tak nájemce. Jeho vášeň pro viditelné výsledky je nakažlivá a dává nám všem naději, že i v právním světě se dá najít radost. Když zrovna neřeší komplexní transakce, odpočívá s rodinou nebo cestuje za dobrodružstvím. Takže, pokud hledáte právního partnera, který je nejen odborníkem, ale i člověkem s duší, Adam je ten pravý!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

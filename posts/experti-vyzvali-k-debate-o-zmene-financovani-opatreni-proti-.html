@@ -9,17 +9,18 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -27,20 +28,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -50,12 +51,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -78,6 +79,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -87,28 +89,30 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
@@ -124,25 +128,26 @@ h2 {
   <div class="meta">Poutavost: 4/5 · Zdroj: <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank">odkaz</a> · Publikováno: 13. 8. 2025 08:51</div>
 </header>
 <article class="article">
-<h3>Opatření proti závislostem potřebují novou strategii</h3>
-<p>Experti na drogovou problematiku se obrátili na politiky s výzvou k otevření debaty o změně financování opatření proti závislostem. Tyto závislosti zahrnují nejen alkohol a tabák, ale také hazardní hry a nelegální drogy. Podle stanoviska Think tanku Racionální politiky závislostí (TTRPZ) je navrhováno místo stávajících dotací zřídit agenturu, která by efektivněji přidělovala peníze na adiktologické služby, poradenství a prevenci.</p>
-<h3>Hrozba omezení dotací</h3>
-<p>TTRPZ varuje, že pokud dojde k seškrtání národních dotací, mohlo by to mít vážné důsledky. Omezování financí by mohlo vést k redukci nebo dokonce zrušení důležitých služeb, které pomáhají lidem v boji proti závislostem. Je zásadní, aby se o této problematice vedla veřejná debata a aby se našla udržitelná řešení, která zajistí dostupnost potřebné pomoci.</p>
-<p>Pokud potřebujete právní poradenství v oblasti závislostí nebo jiných právních otázek, neváhejte se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Pro více informací o výzvě expertů se můžete podívat na <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank" rel="noopener">původní zdroj</a>.</p>
+<h3>Nová cesta v boji proti závislostem</h3>
+<p>Experti na drogovou problematiku se shodují, že je čas na změnu ve financování opatření proti závislostem. V poslední době se stále více diskutuje o tom, jak efektivněji využívat prostředky na boj s problémy, které přinášejí alkohol, tabák, hazardní hry a nelegální drogy. Think tank Racionální politiky závislostí (TTRPZ) navrhuje, aby místo současného systému dotací vznikla nová agentura, která by spravovala finance a přidělovala je adiktologickým službám, poradenství a preventivním programům.</p>
+<h3>Potřeba efektivního financování</h3>
+<p>Podle odborníků současný systém financování může vést k omezení nebo dokonce zrušení klíčových služeb, které pomáhají lidem v obtížných situacích. Varování před seškrtáním národních dotací je na místě, protože by to mohlo mít vážné důsledky pro dostupnost potřebné pomoci. Nová agentura by mohla zajistit, že prostředky budou efektivněji využity tam, kde jsou nejvíce potřeba, a to zejména v oblasti prevence a léčby závislostí.</p>
+<p>Pokud se chcete dozvědět více o právních aspektech spojených s problematikou závislostí, můžete se obrátit na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>. Odborníci v této oblasti vám mohou poskytnout cenné informace a podporu.</p>
+<p>Pro více informací o výzvě expertů a jejich návrzích na změnu financování se můžete podívat na <a href="https://advokatnidenik.cz/2025/08/13/experti-vyzvali-k-debate-o-zmene-financovani-opatreni-proti-zavislostem/" target="_blank" rel="noopener">zdroj</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V rámci naší mise podporovat duševní zdraví a prevenci závislostí vítáme iniciativu expertů, kteří vyzvali k otevřené debatě o změně financování opatření proti závislostem. Správné financování adiktologických služeb je klíčové pro efektivní prevenci a pomoc lidem, kteří se potýkají s různými formami závislostí. Zřízení specializované agentury by mohlo přinést větší transparentnost a efektivitu v rozdělování prostředků, což je krok správným směrem. Společnost Spring Walk se těší na aktivní zapojení do této důležité diskuse a hledání inovativních řešení, která pomohou zlepšit kvalitu života jednotlivců i celých komunit. Je nezbytné, abychom spojili síly a vytvořili systém, který bude účinně reagovat na potřeby společnosti.</div>
+  <div class="li-body">V naší společnosti se neustále snažíme o zlepšení přístupu k prevenci a léčbě závislostí. V reakci na výzvu expertů k debatě o financování opatření proti závislostem, bychom rádi podpořili myšlenku vytvoření agentury, která by efektivně spravovala prostředky z veřejných zdrojů. Tento krok by mohl zajistit lepší koordinaci a dostupnost adiktologických služeb, poradenství a prevenci. Je nezbytné, abychom se jako společnost zaměřili na prevenci a léčbu závislostí, abychom pomohli jednotlivcům v obtížných situacích a přispěli tak k celkovému zdraví naší komunity. Společně můžeme vybudovat silnější a zdravější základ pro budoucnost.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Dovolte mi vyjádřit podporu výzvě expertů na drogovou problematiku k debatě o změně financování opatření proti závislostem. Podle názoru Think tanku Racionální politiky závislostí je nezbytné přehodnotit současný systém dotací a zvážit alternativy, které by zajistily stabilní a efektivní financování adiktologických služeb. Je klíčové, aby se na tuto problematiku zaměřila nejen odborná, ale i politická veřejnost. Očekáváme, že se do diskuse zapojí široké spektrum aktérů, protože řešení této problematiky vyžaduje spolupráci napříč různými sektory. Naším cílem je zajistit, aby se zdroje dostaly tam, kde jsou nejvíce potřebné, a abychom se vyhnuli potenciálnímu omezení nebo zrušení důležitých služeb.</div>
+  <div class="li-body">V reakci na výzvu expertů k přehodnocení financování opatření proti závislostem je důležité, abychom jako společnost zahájili konstruktivní diskusi. Navrhovaná změna, která zahrnuje zřízení agentury pro efektivní přidělování prostředků na adiktologické služby, by mohla přinést pozitivní změny v oblasti prevence a léčby. Je klíčové, abychom se vyhnuli seškrtání národních dotací, které by vedlo k omezení dostupnosti těchto nezbytných služeb. Tato problematika se dotýká mnoha lidí a vyžaduje naši pozornost a aktivní přístup. Podporujme diskusi a spolupráci v rámci odborné i laické veřejnosti.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Ahoj, LinkedIn! Představte si, že by se naše společnost stala hlavním hráčem v boji proti závislostem! Experti teď volají po změně způsobu, jak financujeme opatření v této oblasti, a já jsem nadšený, že se o tom mluví! Místo dotací by mohla vzniknout agentura, která by efektivně přerozdělovala peníze na adiktologické služby a prevenci. To by bylo jako když vyměníte starý stroj za nový, který běží jako hodinky! Připojte se k nám a podělte se o své myšlenky – jak si představujete ideální systém financování, který by skutečně pomohl těm, kteří to potřebují?</div>
+  <div class="li-body">Představte si, že máme kouzelnou hůlku, která by mohla proměnit způsob, jakým financujeme opatření proti závislostem! Vyzývám všechny, abyste se připojili k této zajímavé debatě, kde experti navrhují vytvoření agentury, která by spravovala peníze na adiktologické služby. Co kdybychom místo seškrtání dotací začali investovat do prevence a poradenství? Všichni víme, že závislosti neznají hranice a potřebují naši pozornost. Pojďme společně vymyslet kreativní řešení, která by mohla změnit životy lidí k lepšímu!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0244 (~0.60 Kč) · Input 27557 · Output 33713 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>
