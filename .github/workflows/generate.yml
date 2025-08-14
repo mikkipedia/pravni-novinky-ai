@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Clean previous outputs
+        run: |
+          rm -rf posts
+          mkdir -p posts
+          find . -maxdepth 1 -type f -name 'post_*.html' -delete
+
       - name: Generate site
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
