@@ -91,7 +91,9 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
   letter-spacing: 0.1px;
   margin-top: 1.2em;
   margin-bottom: 0.4em;
+  font-size: 1.25rem; /* stejná velikost pro všechny */
 }
+
 
 /* LinkedIn blocks */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
