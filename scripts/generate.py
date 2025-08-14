@@ -254,10 +254,12 @@ def render_index_html(articles, start_date: str, end_date: str, usage_real: dict
     """Vytvoř HTML přehledu článků + patička s odhadem a měřením."""
     cards = []
     for a in articles:
-        badge = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
-        cards.append(f"""
+      badge_topic = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
+badge_rating = f'<div class="badge">Poutavost {int(a.get("rating", 0))}/5</div>'
+cards.append(f"""
 <a class="card" href="{escape_html(a['file_name'])}">
-  {badge}
+  {badge_topic}
+  {badge_rating}
   <h2>{escape_html(a['title'])}</h2>
   <div class="meta">{escape_html(a['source'])} — {a['published'].strftime('%d.%m.%Y')}</div>
 </a>
@@ -326,6 +328,15 @@ def render_post_html(a: dict) -> str:
 
 
 # ===== Hlavní běh =====
+def normalize_category(topic: str) -> str:
+    """Vrať prázdný řetězec pro generické štítky (článek/aktualita), jinak původní text."""
+    if not topic:
+        return ""
+    t = topic.strip().lower()
+    generics = {"článek", "clanek", "aktualita", "aktuality", "news"}
+    return "" if t in generics else topic.strip()
+
+
 def fetch_articles():
     """Načti položky z RSS, filtruj duplicitní a staré záznamy, obohať o metadata."""
     cutoff = datetime.now() - timedelta(days=DAYS_BACK)
@@ -358,7 +369,7 @@ def fetch_articles():
                 "summary": summary,
                 "published": pub or datetime.now(),
                 "source": source_name,
-                "category": topic,
+                "category": normalize_category(topic),  # nově přes normalizaci
             })
     return out
 
