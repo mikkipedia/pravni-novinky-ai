@@ -211,35 +211,56 @@ BASE_CSS = """
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
+  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
 }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
+  font-size: 18px;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozpal (mezery) a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  gap: 18px;
 }
+
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -248,6 +269,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -255,19 +277,44 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Mobile tuning =====
+   - 1 sloupec na malých displejích
+   - větší písmo pro čitelnost
+   - vydechlé okraje a paddingy
+*/
+@media (max-width: 640px) {
+  html { font-size: 17px; }      /* celé UI malinko zvětšit */
+  body { font-size: 17px; line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+
+  .grid {
+    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
+    gap: 14px;
+  }
+  .card {
+    padding: 16px;
+  }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 """
 
 # ===== HTML =====
