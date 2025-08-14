@@ -7,7 +7,7 @@
   --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
-/* Základ */
+/* Základ (desktop / velké displeje) */
 html { font-size: 18px; }
 body {
   margin: 0;
@@ -69,13 +69,25 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
 
 /* Detail článku */
 .article {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: Georgia, 'Times New Roman', serif;  /* patkové písmo pro text článku */
   background: var(--panel);
   padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 .article p { margin: 12px 0; }
+
+/* Nadpisy uvnitř článku – bezpatkové a tučné */
+.article h1,
+.article h2,
+.article h3 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
+}
 
 /* LinkedIn blocks */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
@@ -84,24 +96,34 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
 
 /* ===== Responsivita ===== */
 
-/* Tablety a menší laptopy */
+/* Tablety a menší laptopy – preferuj 1 sloupec pro čitelnost */
 @media (max-width: 900px) {
   html { font-size: 18.5px; }
   .wrap { padding: 24px 16px 48px; }
   .grid { grid-template-columns: 1fr; gap: 16px; }
   .card { padding: 16px; }
-  h1 { font-size: 24px; }
+  h1 { font-size: 26px; }
   h2 { font-size: 17px; }
 }
 
-/* Telefony – vždy 1 sloupec bez ohledu na fyzické rozlišení */
+/* Telefony – vždy 1 sloupec a VĚTŠÍ písmo (lepší čitelnost) */
 @media (max-device-width: 768px) {
-  html { font-size: 19px; }
-  body { line-height: 1.75; }
+  html { font-size: 20px; }                /* výrazně větší základní písmo */
+  body { line-height: 1.8; }
   .wrap { padding: 20px 14px 36px; }
-  .grid { grid-template-columns: 1fr; gap: 14px; }
-  .card { padding: 16px; }
-  h1 { font-size: 22px; }
-  h2 { font-size: 16px; }
-  .meta { font-size: .95rem; }
+
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 18px; }                 /* větší „tap target“ */
+  .badge { font-size: 0.9em; }
+
+  /* Nadpisy na mobilu o něco větší */
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 14px 0 6px; }
+
+  /* Meta informace zůstanou čitelné */
+  .meta { font-size: 1rem; }
+
+  /* Článek – čitelnější řádkování a spacing */
+  .article { padding: 20px; }
+  .article p { margin: 14px 0; }
 }
