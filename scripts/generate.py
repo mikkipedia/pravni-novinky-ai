@@ -254,9 +254,9 @@ def render_index_html(articles, start_date: str, end_date: str, usage_real: dict
     """Vytvoř HTML přehledu článků + patička s odhadem a měřením."""
     cards = []
     for a in articles:
-      badge_topic = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
-badge_rating = f'<div class="badge">Poutavost {int(a.get("rating", 0))}/5</div>'
-cards.append(f"""
+        badge_topic = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
+        badge_rating = f'<div class="badge">Poutavost {int(a.get("rating", 0))}/5</div>'
+        cards.append(f"""
 <a class="card" href="{escape_html(a['file_name'])}">
   {badge_topic}
   {badge_rating}
