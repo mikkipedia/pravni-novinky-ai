@@ -22,7 +22,7 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy (bezpatkové, tučné, navy) */
+/* Nadpisy (bezpatkové, tučné, navy) – globální */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
@@ -71,7 +71,7 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
   font-weight: 600;
 }
 
-/* Detail článku */
+/* Detail článku – tělo */
 .article {
   font-family: Georgia, 'Times New Roman', serif;  /* patkové písmo pro text článku */
   background: var(--panel);
@@ -81,14 +81,14 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
 }
 .article p { margin: 12px 0; }
 
-/* Nadpisy uvnitř článku – bezpatkové a tučné (přebijí patkové písmo článku) */
+/* Nadpisy uvnitř článku – patkové, tučné, černé (přebijí globální) */
 .article h1,
 .article h2,
 .article h3 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 800;
-  color: var(--heading);
-  letter-spacing: 0.2px;
+  color: #111111;
+  letter-spacing: 0.1px;
   margin-top: 1.2em;
   margin-bottom: 0.4em;
 }
@@ -97,37 +97,6 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
-
-/* ===== Responsivita ===== */
-
-/* Tablety a menší laptopy: preferuj 1 sloupec */
-@media (max-width: 900px) {
-  html { font-size: 18.5px; }
-  .wrap { padding: 24px 16px 48px; }
-  .grid { grid-template-columns: 1fr; gap: 16px; }
-  .card { padding: 16px; }
-  h1 { font-size: 26px; }
-  h2 { font-size: 17px; }
-}
-
-/* Telefony – vždy 1 sloupec a větší písmo (lepší čitelnost, i na 2532×1170) */
-@media (max-device-width: 768px) {
-  html { font-size: 20px; }          /* výrazně větší základní písmo */
-  body { line-height: 1.8; }
-  .wrap { padding: 20px 14px 36px; }
-
-  .grid { grid-template-columns: 1fr; gap: 16px; }
-  .card { padding: 18px; }           /* větší „tap target“ */
-  .badge { font-size: 0.9em; }
-
-  h1 { font-size: 26px; margin: 0 0 8px; }
-  h2 { font-size: 18px; margin: 14px 0 6px; }
-
-  .meta { font-size: 1rem; }
-
-  .article { padding: 20px; }
-  .article p { margin: 14px 0; }
-}
 
 /* Patička s náklady/tokeny */
 .footer {
@@ -138,3 +107,34 @@ h2 { font-size: 18px; margin: 16px 0 6px; }
   font-size: .95rem;
 }
 .footer .meta { margin-top: 4px; }
+
+/* ===== Responsivita ===== */
+
+/* Tablety a menší laptopy */
+@media (max-width: 900px) {
+  html { font-size: 18px; }         /* menší než dříve (bylo 18.5) */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 16px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 17px; }
+}
+
+/* Telefony – ještě menší písmo než dříve */
+@media (max-device-width: 768px) {
+  html { font-size: 17px; }         /* bylo 20px -> zmenšeno */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 16px; }
+  .badge { font-size: 0.85em; }
+
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 16.5px; margin: 12px 0 6px; }
+
+  .meta { font-size: .95rem; }
+
+  .article { padding: 18px; }
+  .article p { margin: 12px 0; }
+}
