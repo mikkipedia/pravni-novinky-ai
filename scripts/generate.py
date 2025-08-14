@@ -1,94 +1,145 @@
-# scripts/generate.py
-# Forbes-like Light Theme + Topic extraction + Spring Walk link enforcement
-
 import os
 import re
-import html
-import json
+import requests
 import feedparser
 from datetime import datetime, timedelta
-from dateutil import tz
-from pathlib import Path
-from typing import List, Dict, Any
-
+from urllib.parse import urlparse
 from openai import OpenAI
+from html import escape as escape_html
 
-# ===== Config =====
-FEEDS = [
+# ====== CONFIG ======
+OPENAI_MODEL = "gpt-4o-mini"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+# Počet dní zpět pro sběr článků (můžeš si změnit později na 1)
+DAYS_BACK = 30
+
+# RSS zdroje
+RSS_FEEDS = [
     "https://www.epravo.cz/rss.php",
-    "https://advokatnidenik.cz/feed/",
-    "https://www.pravniprostor.cz/rss/aktuality",
+    "https://www.pravniprostor.cz/rss/zpravy",
+    "https://www.bulletin-advokacie.cz/rss",
 ]
 
-OPENAI_MODEL = os.getenv("MODEL_NAME", "gpt-4o-mini")
-DAYS_BACK = int(os.getenv("DAYS_BACK", "30"))
+# ====== USAGE TRACKING ======
+total_prompt_tokens = 0
+total_completion_tokens = 0
 
-INPUT_PRICE_PER_MTOK = float(os.getenv("INPUT_PRICE_USD_PER_MTOK", "0.15"))
-OUTPUT_PRICE_PER_MTOK = float(os.getenv("OUTPUT_PRICE_USD_PER_MTOK", "0.60"))
-USD_TO_CZK = float(os.getenv("USD_TO_CZK", "24.5"))
-
-OUTPUT_DIR = Path(".")
-POSTS_DIR = OUTPUT_DIR / "posts"
-POSTS_DIR.mkdir(exist_ok=True)
-
-API_KEY = os.environ.get("OPENAI_API_KEY")
-if not API_KEY:
-    raise RuntimeError("Chybí OPENAI_API_KEY v env.")
-
-client = OpenAI(api_key=API_KEY)
-
-TOK_IN = 0
-TOK_OUT = 0
-
-# ===== Utility =====
 def add_usage(resp):
-    global TOK_IN, TOK_OUT
+    global total_prompt_tokens, total_completion_tokens
+    usage = resp.usage
+    total_prompt_tokens += usage.prompt_tokens
+    total_completion_tokens += usage.completion_tokens
+
+# ====== FETCH ======
+def fetch_articles():
+    articles = []
+    cutoff = datetime.now() - timedelta(days=DAYS_BACK)
+    for feed_url in RSS_FEEDS:
+        parsed = feedparser.parse(feed_url)
+        for entry in parsed.entries:
+            try:
+                published = None
+                if hasattr(entry, "published_parsed") and entry.published_parsed:
+                    published = datetime(*entry.published_parsed[:6])
+                elif hasattr(entry, "updated_parsed") and entry.updated_parsed:
+                    published = datetime(*entry.updated_parsed[:6])
+                else:
+                    published = datetime.now()
+                if published < cutoff:
+                    continue
+                link = entry.link
+                title = entry.title
+                summary = getattr(entry, "summary", "")
+                category = getattr(entry, "category", "")
+                articles.append({
+                    "title": title,
+                    "link": link,
+                    "summary": summary,
+                    "published": published,
+                    "source": urlparse(feed_url).netloc,
+                    "category": category
+                })
+            except Exception as e:
+                print(f"Chyba při parsování článku: {e}")
+    return articles
+
+# ====== LLM ======
+def llm_rank_article(title, summary):
+    user = f"Title: {title}\nSummary: {summary}\n\nRate interest 1-5 (1=boring, 5=groundbreaking). Respond with just the number."
+    resp = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": user}],
+        max_tokens=5,
+    )
+    add_usage(resp)
+    content = resp.choices[0].message.content.strip()
     try:
-        u = resp.usage
-        TOK_IN += int(getattr(u, "prompt_tokens", getattr(u, "input_tokens", 0)) or 0)
-        TOK_OUT += int(getattr(u, "completion_tokens", getattr(u, "output_tokens", 0)) or 0)
-    except Exception:
-        pass
+        return int(content)
+    except:
+        return 1
 
-def to_cz_date(dt: datetime) -> str:
-    if dt and dt.tzinfo is None:
-        dt = dt.replace(tzinfo=tz.UTC)
-    return dt.astimezone(tz.gettz("Europe/Prague")).strftime("%-d. %-m. %Y %H:%M") if dt else "neznámo"
+def llm_generate_article(title, summary, link):
+    user = f"""
+Napiš čtivý článek srozumitelný pro širokou veřejnost na základě níže uvedených informací. 
+Použij patkové písmo pro text, odkaz na zdroj uveď na začátku nebo konci, 
+a organicky vlož odkaz na https://www.springwalk.cz/pravni-poradenstvi/ tak, aby nepůsobil násilně.
 
-def to_cz_day(dt: datetime) -> str:
-    if dt and dt.tzinfo is None:
-        dt = dt.replace(tzinfo=tz.UTC)
-    return dt.astimezone(tz.gettz("Europe/Prague")).strftime("%-d. %-m. %Y")
+Titulek: {title}
+Anotace: {summary}
+Zdroj: {link}
+"""
+    resp = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": user}],
+        temperature=0.7,
+        max_tokens=1400,
+    )
+    add_usage(resp)
+    text = resp.choices[0].message.content.strip()
+    if "springwalk.cz/pravni-poradenstvi" not in text:
+        text += f"\n\nVíce informací: [Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/)"
+    return text
 
-def parse_pubdate(entry):
-    t = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
-    if not t:
-        return None
-    return datetime(t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec, tzinfo=tz.UTC)
+def llm_generate_linkedin_posts(title, summary):
+    user = f"""
+Vytvoř 3 příspěvky na LinkedIn (každý 4–6 vět) k tématu níže.
+Každý blok začni nadpisem:
+"Společnost Spring Walk:"
+"Jednatel (formální):"
+"Jednatel (hravý):"
+Bloky odděl třemi pomlčkami ---.
+Nepoužívej odrážky.
 
-def slugify(text: str) -> str:
-    text = text.lower()
-    replace_map = {
-        ord('á'): 'a', ord('č'): 'c', ord('ď'): 'd', ord('é'): 'e', ord('ě'): 'e',
-        ord('í'): 'i', ord('ň'): 'n', ord('ó'): 'o', ord('ř'): 'r', ord('š'): 's',
-        ord('ť'): 't', ord('ú'): 'u', ord('ů'): 'u', ord('ý'): 'y', ord('ž'): 'z'
-    }
-    text = text.translate(replace_map)
-    text = re.sub(r'[^a-z0-9]+', '-', text).strip('-')
-    return text or "clanek"
+Titulek: {title}
+Anotace: {summary}
+"""
+    resp = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": user}],
+        temperature=0.7,
+        max_tokens=680,
+    )
+    add_usage(resp)
+    raw = (resp.choices[0].message.content or "").strip()
+    blocks = [b.strip() for b in re.split(r'\n?---\n?', raw) if b.strip()]
+    html_blocks = []
+    for b in blocks:
+        lines = [ln.strip() for ln in b.splitlines() if ln.strip()]
+        if lines:
+            heading = lines[0].rstrip(":")
+            body = " ".join(lines[1:])
+            html_blocks.append(f'<div class="li-post"><div class="li-heading"><strong>{escape_html(heading)}</strong></div><div class="li-body">{escape_html(body)}</div></div>')
+    while len(html_blocks) < 3:
+        html_blocks.append('<div class="li-post"><div class="li-heading"><strong>Příspěvek</strong></div><div class="li-body"></div></div>')
+    return html_blocks
 
-def escape_html(s: str) -> str:
-    return html.escape(s, quote=True)
+# ====== HTML RENDER ======
+def md_links_to_html(text):
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
 
-def md_links_to_html(text: str) -> str:
-    return re.sub(r'\[([^\]]+)\]\((https?://[^\s)]+)\)',
-                  r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
-
-def md_to_html(txt: str) -> str:
-    """
-    Odstavce = oddělené prázdnou řádkou.
-    Zachová h2/h3, převádí markdown odkazy na <a>.
-    """
+def md_to_html(txt):
     txt = md_links_to_html(txt)
     parts = [p.strip() for p in re.split(r"\n\s*\n", txt.strip()) if p.strip()]
     html_pars = []
@@ -101,360 +152,82 @@ def md_to_html(txt: str) -> str:
             html_pars.append(f"<p>{p}</p>")
     return "\n".join(html_pars)
 
-
-# ===== LLM =====
-def llm_classify_relevance(title: str, summary: str) -> int:
-    prompt = f"""
-Ohodnoť poutavost článku (1–5) pro odborný právnický blog:
-Titulek: {title}
-Anotace: {summary or "(bez anotace)"}
-Vrať pouze číslo.
-"""
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.0
-    )
-    add_usage(resp)
-    m = re.search(r"[1-5]", resp.choices[0].message.content or "")
-    return int(m.group()) if m else 2
-
-def ensure_springwalk_link(article_md: str) -> str:
-    if "springwalk.cz" not in article_md.lower():
-        article_md += "\n\nDalší informace nabízí [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/)."
-    return article_md
-
-def llm_generate_article(title: str, summary: str, source_url: str) -> str:
-    user = f"""
-Napiš česky článek pro širokou veřejnost (3–5 odstavců), srozumitelný, bez žargonu.
-- Použij 1–2 mezititulky
-- Uveď 1× odkaz na původní zdroj: [zdroj]({source_url})
-- Přirozeně vlož odkaz na [právní poradenství Spring Walk](https://www.springwalk.cz/pravni-poradenstvi/)
-- Drž se faktů z podkladu
-Podklad:
-Titulek: {title}
-Anotace: {summary}
-"""
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[{"role": "user", "content": user}],
-        temperature=0.5,
-        max_tokens=1200
-    )
-    add_usage(resp)
-    md = resp.choices[0].message.content or ""
-    return ensure_springwalk_link(md.strip())
-
-def llm_generate_linkedin_posts(title: str, summary: str) -> List[str]:
-    """
-    Vrátí 3 HTML bloky s jasným oddělením + tučný nadpis sekce.
-    Sekce: Společnost Spring Walk / Jednatel (formální) / Jednatel (hravý)
-    """
-    user = f"""
-Vytvoř 3 delší příspěvky na LinkedIn (4–6 vět) k tématu níže.
-Každý blok začni přesným nadpisem (bez mřížek, bez Markdownu):
-"Společnost Spring Walk:"
-"Jednatel (formální):"
-"Jednatel (hravý):"
-Poté napiš text. Nepoužívej odrážky. Bloky odděl třemi pomlčkami ---.
-Podklad:
-Titulek: {title}
-Anotace: {summary or "(bez anotace)"}
-"""
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[{"role": "user", "content": user}],
-        temperature=0.7,
-        max_tokens=750,
-    )
-    add_usage(resp)
-    raw = (resp.choices[0].message.content or "").strip()
-
-    # Rozdělit podle --- a vytáhnout nadpis + tělo. Odstraníme případné "### ".
-    blocks = [b.strip() for b in re.split(r'\n?---\n?', raw) if b.strip()]
-    result = []
-    wanted = [
-        r"Společnost Spring Walk:\s*",
-        r"Jednatel\s*\(formální\):\s*",
-        r"Jednatel\s*\(hravý\):\s*",
-    ]
-    for i in range(min(3, len(blocks))):
-        b = re.sub(r"^\s*#+\s*", "", blocks[i])  # odstranit případné ### na začátku
-        m = re.match(wanted[i], b, flags=re.IGNORECASE)
-        if m:
-            heading = m.group(0).rstrip(": ").rstrip()
-            body = b[m.end():].strip()
-        else:
-            # fallback – první věta jako heading, zbytek jako body
-            lines = [ln.strip() for ln in b.splitlines() if ln.strip()]
-            heading = lines[0].rstrip(":") if lines else "Příspěvek"
-            body = " ".join(lines[1:]) if len(lines) > 1 else ""
-
-        # HTML blok (vlastní wrapper pro stylování a rozestupy)
-        block_html = f'''
-<div class="li-post">
-  <div class="li-heading"><strong>{escape_html(heading)}</strong></div>
-  <div class="li-body">{escape_html(body)}</div>
-</div>'''.strip()
-        result.append(block_html)
-
-    # doplň prázdné, kdyby LLM nevrátilo dost
-    while len(result) < 3:
-        result.append('''<div class="li-post"><div class="li-heading"><strong>Příspěvek</strong></div><div class="li-body"></div></div>''')
-    return result[:3]
-
-
-# ===== CSS Light Theme =====
-BASE_CSS = """
-:root {
-  --bg: #ffffff;
-  --panel: #ffffff;
-  --text: #111111;
-  --muted: #555555;
-  --accent: #0b3a88;      /* navy blue pro odkazy */
-  --heading: #0b3a88;     /* navy blue pro nadpisy */
-}
-
-/* Základ */
-html { font-size: 18px; }                 /* desktop výchozí */
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.7;
-}
-
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
-
-/* Nadpisy – menší rozestupy a navy barva */
-h1, h2 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 800;
-  color: var(--heading);
-  letter-spacing: 0.2px;
-}
-h1 {
-  font-size: 28px;
-  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
-}
-h2 {
-  font-size: 18px;
-  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
-}
-
-.meta {
-  color: var(--muted);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: .95rem;
-}
-
-/* Karty na indexu */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
-  gap: 18px;
-}
-.card {
-  background: var(--panel);
-  padding: 18px 18px 16px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-/* Detail článku – patkové písmo pro text */
-.article {
-  font-family: Georgia, 'Times New Roman', serif;
-  background: var(--panel);
-  padding: 24px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-}
-.article p { margin: 12px 0; }
-
-/* LinkedIn blocks (oddělení a čitelnost) */
-.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-.li-heading { margin-bottom: 6px; }
-.li-body { line-height: 1.7; }
-
-/* ===== Lepší responsivita ===== */
-
-/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
-@media (max-width: 900px) {
-  html { font-size: 18.5px; }             /* malinko větší text než desktop */
-  .wrap { padding: 24px 16px 48px; }
-  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
-  .card { padding: 16px; }
-  h1 { font-size: 24px; margin: 0 0 8px; }
-  h2 { font-size: 17px; margin: 14px 0 6px; }
-}
-
-/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
-@media (max-width: 640px) {
-  html { font-size: 19px; }               /* zvětšené systémově */
-  body { line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
-  .grid { grid-template-columns: 1fr; gap: 14px; }
-  .card { padding: 16px; }
-  h1 { font-size: 22px; margin: 0 0 6px; }
-  h2 { font-size: 16px; margin: 12px 0 4px; }
-  .meta { font-size: .95rem; }
-}
-"""
-
-
-# ===== HTML =====
-def render_post_html(title, article_html, posts, rating, source_url, pub_date_str, topic, cost_line=""):
-    esc_title = escape_html(title)
-    esc_url = escape_html(source_url or "#")
-    topic_html = f'<div class="badge">{escape_html(topic)}</div>' if topic else ""
-    posts_html = "".join(f"<li>{p}</li>" for p in posts)
-    return f"""<!DOCTYPE html>
-<html lang="cs">
-<head>
-<meta charset="UTF-8">
-<title>{esc_title}</title>
-<style>{BASE_CSS}</style>
-</head>
-<body>
-<div class="wrap">
-<header>
-  <a href="../index.html">← Přehled</a>
-  {topic_html}
-  <h1>{esc_title}</h1>
-  <div class="meta">Poutavost: {rating}/5 · Zdroj: <a href="{esc_url}" target="_blank">odkaz</a> · Publikováno: {escape_html(pub_date_str)}</div>
-</header>
-<article class="article">
-{article_html}
-<hr>
-<h2>Tipy na LinkedIn</h2>
-<ul>{posts_html}</ul>
-</article>
-<div class="meta">{escape_html(cost_line)}</div>
+def render_index_html(articles, start_date, end_date):
+    items = []
+    for art in articles:
+        badge_html = f'<div class="badge">{escape_html(art["category"])}</div>' if art.get("category") else ""
+        items.append(f'''
+<div class="card">
+  {badge_html}
+  <h2><a href="{art["file_name"]}">{escape_html(art["title"])}</a></h2>
+  <div class="meta">{art["source"]} — {art["published"].strftime("%d.%m.%Y")}</div>
 </div>
-</body>
-</html>
-"""
-
-def render_index_html(items, cost_line="", range_line="", counts_line=""):
-    cards = []
-    for it in items:
-        topic_html = f'<div class="badge">{escape_html(it["topic"])}</div>' if it.get("topic") else ""
-        cards.append(f"""<a class="card" href="{escape_html(it['href'])}">
-  {topic_html}
-  <h2>{escape_html(it['title'])}</h2>
-  <div class="meta">{escape_html(it['source'])} · {escape_html(it['pub_date_str'])}</div>
-  <div class="meta">Poutavost: {it['rating']}/5</div>
-</a>""")
-    return f"""<!DOCTYPE html>
+''')
+    return f'''<!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Právní novinky</title>
-<style>{BASE_CSS}</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div class="wrap">
-<header>
-  <h1>Právní novinky – AI generované</h1>
-  <div class="meta">{escape_html(range_line)}</div>
-  <div class="meta">{escape_html(counts_line)}</div>
-</header>
-<div class="grid">
-{''.join(cards)}
-</div>
-<div class="meta">{escape_html(cost_line)}</div>
+  <h1>Právní novinky ({start_date} – {end_date})</h1>
+  <div class="grid">
+    {''.join(items)}
+  </div>
 </div>
 </body>
-</html>
-"""
+</html>'''
 
-# ===== Main =====
+def render_post_html(art):
+    return f'''<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>{escape_html(art["title"])}</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>{escape_html(art["title"])}</h1>
+  <div class="meta">{art["source"]} — {art["published"].strftime("%d.%m.%Y")}</div>
+  {f'<div class="badge">{escape_html(art["category"])}</div>' if art.get("category") else ""}
+  <div class="article">
+    {md_to_html(art["article_html"])}
+  </div>
+  <h2>Příspěvky na LinkedIn</h2>
+  {''.join(art["linkedin_posts"])}
+</div>
+</body>
+</html>'''
+
+# ====== MAIN ======
 def main():
-    now_utc = datetime.now(tz.UTC)
-    cutoff = now_utc - timedelta(days=DAYS_BACK)
-    seen_links = set()
-    collected = []
-    for feed_url in FEEDS:
-        feed = feedparser.parse(feed_url)
-        source_name = getattr(feed.feed, "title", feed_url)
-        for e in feed.entries:
-            link = getattr(e, "link", "")
-            if not link or link in seen_links:
-                continue
-            pub_dt = parse_pubdate(e)
-            if pub_dt and pub_dt < cutoff:
-                continue
-            title = (getattr(e, "title", "") or "").strip()
-            summary = getattr(e, "summary", "") or getattr(e, "description", "") or ""
-            categories = getattr(e, "tags", [])
-            topic = categories[0]["term"] if categories else ""
-            seen_links.add(link)
-            collected.append({
-                "title": title, "summary": summary, "link": link,
-                "source": source_name, "pub_dt": pub_dt, "topic": topic
-            })
-
-    selected = []
-    for item in collected:
-        rating = llm_classify_relevance(item["title"], item["summary"])
-        item["rating"] = rating
-        if rating >= 3:
-            selected.append(item)
-
-    render_queue = []
-    index_items = []
-    for item in selected:
-        article_md = llm_generate_article(item["title"], item["summary"], item["link"])
-        article_html = md_to_html(article_md)
-        posts = llm_generate_linkedin_posts(item["title"], item["summary"])
-        slug = slugify(item["title"])[:60]
-        fn = POSTS_DIR / f"{slug}.html"
-        render_queue.append({
-            "filepath": fn, "title": item["title"], "article_html": article_html,
-            "posts": posts, "rating": item["rating"], "link": item["link"],
-            "pub_date_str": to_cz_date(item["pub_dt"]), "topic": item["topic"]
-        })
-        index_items.append({
-            "title": item["title"], "href": f"posts/{fn.name}", "rating": item["rating"],
-            "source": item["source"], "pub_date": item["pub_dt"] or datetime.min.replace(tzinfo=tz.UTC),
-            "pub_date_str": to_cz_date(item["pub_dt"]), "topic": item["topic"]
-        })
-
-    index_items.sort(key=lambda x: x["pub_date"], reverse=True)
-
-    cost_usd = (TOK_IN * (INPUT_PRICE_PER_MTOK/1_000_000)) + (TOK_OUT * (OUTPUT_PRICE_PER_MTOK/1_000_000))
-    cost_czk = cost_usd * USD_TO_CZK
-    cost_line = f"Odhad nákladů: ${cost_usd:.4f} (~{cost_czk:.2f} Kč) · Input {TOK_IN} · Output {TOK_OUT} · Model {OPENAI_MODEL}"
-    range_line = f"Rozsah: {to_cz_day(cutoff)} – {to_cz_day(now_utc)}"
-    counts_line = f"Načteno: {len(collected)} · Vybráno: {len(selected)}"
-
-    for it in render_queue:
-        html_out = render_post_html(it["title"], it["article_html"], it["posts"], it["rating"],
-                                    it["link"], it["pub_date_str"], it["topic"], cost_line)
-        it["filepath"].write_text(html_out, encoding="utf-8")
-
-    index_html = render_index_html(index_items, cost_line, range_line, counts_line)
-    (OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
+    arts = fetch_articles()
+    ranked = []
+    for art in arts:
+        score = llm_rank_article(art["title"], art["summary"])
+        if score >= 3:
+            ranked.append(art)
+    for art in ranked:
+        art["article_html"] = llm_generate_article(art["title"], art["summary"], art["link"])
+        art["linkedin_posts"] = llm_generate_linkedin_posts(art["title"], art["summary"])
+        art["file_name"] = f"post_{abs(hash(art['title']))}.html"
+    if ranked:
+        start_date = min(a["published"] for a in ranked).strftime("%d.%m.%Y")
+        end_date = max(a["published"] for a in ranked).strftime("%d.%m.%Y")
+    else:
+        start_date = end_date = datetime.now().strftime("%d.%m.%Y")
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(render_index_html(ranked, start_date, end_date))
+    for art in ranked:
+        with open(art["file_name"], "w", encoding="utf-8") as f:
+            f.write(render_post_html(art))
+    usd_cost = (total_prompt_tokens/1_000*0.00015 + total_completion_tokens/1_000*0.0006)
+    czk_cost = usd_cost * 24
+    print(f"Použito tokenů: prompt={total_prompt_tokens}, completion={total_completion_tokens}")
+    print(f"Odhadovaná cena: {usd_cost:.4f} USD (~{czk_cost:.2f} CZK)")
 
 if __name__ == "__main__":
     main()
