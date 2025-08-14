@@ -7,7 +7,7 @@
 # - článek VŽDY rozdělí do 2–3 sekcí s H2/H3 nadpisy
 # - používá externí CSS: assets/style.css
 # - délky: článek max_tokens=1280, LI posty max_tokens=650
-# - dole na indexu zobrazuje tokeny a odhad nákladů (USD + CZK)
+# - dole na indexu zobrazuje odhad nákladů (model) + reálné usage z API
 # -----------------------------------------
 
 from datetime import datetime, timedelta
@@ -36,12 +36,21 @@ RSS_FEEDS = [
     "https://www.pravniprostor.cz/rss/aktuality",
 ]
 
-# ---- Ceník (konfigurovatelné přes env) ----
-USD_PER_1K_INPUT = float(os.getenv("USD_PER_1K_INPUT", "0.005"))   # $/1k input tokens
-USD_PER_1K_OUTPUT = float(os.getenv("USD_PER_1K_OUTPUT", "0.015")) # $/1k output tokens
-USD_TO_CZK = float(os.getenv("USD_TO_CZK", "23.5"))                # kurz USD→CZK
+# ===== Ceník a odhadové parametry (dle README) =====
+# Jednotkové ceny (USD / token)
+INPUT_PRICE_USD = float(os.getenv("INPUT_PRICE_USD", str(0.15 / 1_000_000)))
+OUTPUT_PRICE_USD = float(os.getenv("OUTPUT_PRICE_USD", str(0.60 / 1_000_000)))
+USD_TO_CZK = float(os.getenv("USD_TO_CZK", "23.5"))
 
-# ===== Usage tracking (orientační) =====
+# Průměrné tokeny (lze ladit přes env)
+IN_CLS = int(os.getenv("IN_CLS", "300"))      # klasifikace na položku (input)
+OUT_CLS = int(os.getenv("OUT_CLS", "1"))      # klasifikace na položku (output)
+IN_BLOG = int(os.getenv("IN_BLOG", "350"))    # 1 vybraný článek (input)
+OUT_BLOG = int(os.getenv("OUT_BLOG", "700"))  # 1 vybraný článek (output)
+IN_LI = int(os.getenv("IN_LI", "300"))        # 3 LI posty dohromady (input)
+OUT_LI = int(os.getenv("OUT_LI", "220"))      # 3 LI posty dohromady (output)
+
+# ===== Usage tracking (reálné měření) =====
 total_prompt_tokens = 0
 total_completion_tokens = 0
 
@@ -125,7 +134,6 @@ def ensure_section_headings(md: str) -> str:
     Pokud článek obsahuje < 2 nadpisy (##/###), rozděl text na 2–3 tematické sekce
     a vlož generické H2 nadpisy. Odkazy zůstanou zachované.
     """
-    # Má už text aspoň 2 mezititulky?
     if len(re.findall(r"^\s*##\s+|^\s*###\s+", md, flags=re.MULTILINE)) >= 2:
         return md
 
@@ -134,13 +142,11 @@ def ensure_section_headings(md: str) -> str:
         return md
 
     if len(paras) <= 3:
-        # Krátký text → 2 sekce
-        split = max(1, len(paras) // 2)
+        split = max(1, len(paras) // 2)  # 2 sekce
         parts = [paras[:split], paras[split:]]
         titles = ["## Co se stalo", "## Co z toho plyne"]
     else:
-        # Delší text → 3 sekce
-        third = max(1, len(paras) // 3)
+        third = max(1, len(paras) // 3)  # 3 sekce
         parts = [paras[:third], paras[third:2 * third], paras[2 * third:]]
         titles = ["## Kontext a shrnutí", "## Dopady v praxi", "## Na co si dát pozor"]
 
@@ -150,7 +156,6 @@ def ensure_section_headings(md: str) -> str:
             continue
         out.append(titles[min(i, len(titles) - 1)])
         out.append("\n\n".join(chunk))
-
     return "\n\n".join(out)
 
 
@@ -171,7 +176,6 @@ Anotace: {summary or "(bez anotace)"}
         max_tokens=5,
     )
     add_usage(resp)
-
     txt = (resp.choices[0].message.content or "").strip()
     m = re.search(r"[1-5]", txt)
     return int(m.group()) if m else 2
@@ -194,13 +198,12 @@ Anotace/Perex: {summary or "(bez anotace)"}
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.6,
-        max_tokens=1280,  # požadovaný limit
+        max_tokens=1280,
     )
     add_usage(resp)
-
     md = (resp.choices[0].message.content or "").strip()
     md = ensure_springwalk_link(md)
-    md = ensure_section_headings(md)  # vynutí 2–3 sekce s H2/H3, pokud chybí
+    md = ensure_section_headings(md)
     return md
 
 
@@ -222,7 +225,7 @@ Anotace: {summary or "(bez anotace)"}
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.7,
-        max_tokens=650,  # požadovaný limit
+        max_tokens=650,
     )
     add_usage(resp)
 
@@ -231,7 +234,6 @@ Anotace: {summary or "(bez anotace)"}
 
     out = []
     labels = ["Společnost Spring Walk:", "Jednatel (formální):", "Jednatel (hravý):"]
-
     for i in range(3):
         b = blocks[i] if i < len(blocks) else labels[i]
         lines = [ln.strip() for ln in b.splitlines() if ln.strip()]
@@ -240,43 +242,36 @@ Anotace: {summary or "(bez anotace)"}
             body = " ".join(lines[1:]) if len(lines) > 1 else ""
         else:
             heading, body = labels[i].rstrip(":"), ""
-
         out.append(
-            f'<div class="li-post">'
-            f'<div class="li-heading"><strong>{escape_html(heading)}</strong></div>'
-            f'<div class="li-body">{escape_html(body)}</div>'
-            f"</div>"
+            f'<div class="li-post"><div class="li-heading"><strong>{escape_html(heading)}</strong></div>'
+            f'<div class="li-body">{escape_html(body)}</div></div>'
         )
-
     return out
 
 
 # ===== HTML render =====
-def render_index_html(articles, start_date: str, end_date: str, usage: dict) -> str:
-    """Vytvoř HTML přehledu článků + patička s tokeny a náklady."""
+def render_index_html(articles, start_date: str, end_date: str, usage_real: dict, usage_est: dict) -> str:
+    """Vytvoř HTML přehledu článků + patička s odhadem a měřením."""
     cards = []
     for a in articles:
-        badge = (
-            f'<div class="badge">{escape_html(a["category"])}</div>'
-            if a.get("category")
-            else ""
-        )
-        cards.append(
-            f"""
+        badge = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
+        cards.append(f"""
 <a class="card" href="{escape_html(a['file_name'])}">
   {badge}
   <h2>{escape_html(a['title'])}</h2>
   <div class="meta">{escape_html(a['source'])} — {a['published'].strftime('%d.%m.%Y')}</div>
 </a>
-"""
-        )
+""")
 
     footer = f"""
 <div class="footer">
-  <div>Model: <strong>{escape_html(OPENAI_MODEL)}</strong></div>
-  <div>Tokeny — input: <strong>{usage['prompt_tokens']:,}</strong>, output: <strong>{usage['completion_tokens']:,}</strong>, celkem: <strong>{usage['total_tokens']:,}</strong></div>
-  <div>Odhad nákladů: <strong>${usage['cost_usd']:.4f}</strong> (~{usage['cost_czk']:.2f} Kč)</div>
-  <div class="meta">Ceny konfigurovatelné přes <code>USD_PER_1K_INPUT</code>, <code>USD_PER_1K_OUTPUT</code> a kurz <code>USD_TO_CZK</code>.</div>
+  <div><strong>Odhad (model)</strong></div>
+  <div>Input: <strong>{int(usage_est['input_tokens']):,}</strong>, Output: <strong>{int(usage_est['output_tokens']):,}</strong></div>
+  <div>Odhad ceny: <strong>${usage_est['cost_usd']:.4f}</strong> (~{usage_est['cost_czk']:.2f} Kč)</div>
+
+  <div style="margin-top:10px;"><strong>Měřeno (API)</strong></div>
+  <div>Tokeny — input: <strong>{usage_real['prompt_tokens']:,}</strong>, output: <strong>{usage_real['completion_tokens']:,}</strong>, celkem: <strong>{usage_real['total_tokens']:,}</strong></div>
+  <div class="meta">Pozn.: Odhad vychází z průměrů na položku a může se lišit od skutečného účtování.</div>
 </div>
 """
 
@@ -302,12 +297,7 @@ def render_index_html(articles, start_date: str, end_date: str, usage: dict) -> 
 
 def render_post_html(a: dict) -> str:
     """Vytvoř HTML detailu článku."""
-    badge = (
-        f'<div class="badge">{escape_html(a["category"])}</div>'
-        if a.get("category")
-        else ""
-    )
-
+    badge = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -340,53 +330,55 @@ def fetch_articles():
     cutoff = datetime.now() - timedelta(days=DAYS_BACK)
     out = []
     seen = set()
-
     for feed_url in RSS_FEEDS:
         parsed = feedparser.parse(feed_url)
         source_name = getattr(parsed.feed, "title", urlparse(feed_url).netloc)
-
         for e in parsed.entries:
             link = getattr(e, "link", "") or ""
             if not link or link in seen:
                 continue
-
             pub = parse_pub_date(e)
             if pub and pub < cutoff:
                 continue
-
             title = (getattr(e, "title", "") or "").strip()
             if not title:
                 continue
-
             summary = getattr(e, "summary", "") or getattr(e, "description", "") or ""
-
-            # kategorie / téma
             topic = ""
             tags = getattr(e, "tags", None)
             if tags and isinstance(tags, list) and len(tags) and "term" in tags[0]:
                 topic = tags[0]["term"] or ""
             else:
                 topic = getattr(e, "category", "") or ""
-
             seen.add(link)
-            out.append(
-                {
-                    "title": title,
-                    "link": link,
-                    "summary": summary,
-                    "published": pub or datetime.now(),
-                    "source": source_name,
-                    "category": topic,
-                }
-            )
-
+            out.append({
+                "title": title,
+                "link": link,
+                "summary": summary,
+                "published": pub or datetime.now(),
+                "source": source_name,
+                "category": topic,
+            })
     return out
+
+
+def estimate_costs(n_items: int, n_selected: int) -> dict:
+    """Odhad tokenů a ceny dle README metodiky."""
+    input_tokens = n_items * IN_CLS + n_selected * (IN_BLOG + IN_LI)
+    output_tokens = n_items * OUT_CLS + n_selected * (OUT_BLOG + OUT_LI)
+    cost_usd = input_tokens * INPUT_PRICE_USD + output_tokens * OUTPUT_PRICE_USD
+    return {
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "cost_usd": cost_usd,
+        "cost_czk": cost_usd * USD_TO_CZK,
+    }
 
 
 def main():
     articles = fetch_articles()
 
-    # Ohodnotit poutavost a vybrat 3–5 (≥3)
+    # Ohodnotit poutavost a vybrat (≥3)
     selected = []
     for a in articles:
         rating = llm_rank_article(a["title"], a["summary"])
@@ -394,7 +386,7 @@ def main():
         if rating >= 3:
             selected.append(a)
 
-    # Vygenerovat obsah
+    # Vygenerovat obsah pro vybrané
     for a in selected:
         a["article_md"] = llm_generate_article(a["title"], a["summary"], a["link"])
         a["linkedin_posts"] = llm_generate_linkedin_posts(a["title"], a["summary"])
@@ -409,35 +401,31 @@ def main():
         today = datetime.now().strftime("%d.%m.%Y")
         start_date = end_date = today
 
-    # Výpočet nákladů
+    # Odhad nákladů (model) + reálné usage z API
+    usage_est = estimate_costs(n_items=len(articles), n_selected=len(selected))
     total_tokens = total_prompt_tokens + total_completion_tokens
-    cost_usd = (
-        (total_prompt_tokens / 1000.0) * USD_PER_1K_INPUT
-        + (total_completion_tokens / 1000.0) * USD_PER_1K_OUTPUT
-    )
-    cost_czk = cost_usd * USD_TO_CZK
-
-    usage = {
+    usage_real = {
         "prompt_tokens": total_prompt_tokens,
         "completion_tokens": total_completion_tokens,
         "total_tokens": total_tokens,
-        "cost_usd": cost_usd,
-        "cost_czk": cost_czk,
     }
 
     # Zápis indexu
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(render_index_html(selected, start_date, end_date, usage))
+        f.write(render_index_html(selected, start_date, end_date, usage_real, usage_est))
 
     # Zápis detailů
     for a in selected:
         with open(a["file_name"], "w", encoding="utf-8") as f:
             f.write(render_post_html(a))
 
-    # Orientační log
+    # Log
     print(
-        f"Použito tokenů — input: {total_prompt_tokens}, output: {total_completion_tokens}, "
-        f"USD: ${cost_usd:.4f}, CZK: {cost_czk:.2f}"
+        f"[ODHAD] input≈{int(usage_est['input_tokens'])}, output≈{int(usage_est['output_tokens'])}, "
+        f"USD≈${usage_est['cost_usd']:.4f} / CZK≈{usage_est['cost_czk']:.2f}"
+    )
+    print(
+        f"[MERENO] input={total_prompt_tokens}, output={total_completion_tokens}, total={total_tokens}"
     )
 
 
