@@ -390,8 +390,9 @@ def main():
     for a in selected:
         a["article_md"] = llm_generate_article(a["title"], a["summary"], a["link"])
         a["linkedin_posts"] = llm_generate_linkedin_posts(a["title"], a["summary"])
+         os.makedirs("posts", exist_ok=True)  # vytvoří složku posts pokud není
         slug = slugify(a["title"])[:60]
-        a["file_name"] = f"post_{slug}.html"
+        a["file_name"] = f"posts/post_{slug}.html"
 
     # Časový rozsah na index
     if selected:
