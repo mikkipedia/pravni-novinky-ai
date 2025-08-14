@@ -94,7 +94,7 @@ Zdroj: {link}
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.7,
-        max_tokens=1400,
+        max_tokens=1250,
     )
     add_usage(resp)
     text = resp.choices[0].message.content.strip()
@@ -119,7 +119,7 @@ Anotace: {summary}
         model=OPENAI_MODEL,
         messages=[{"role": "user", "content": user}],
         temperature=0.7,
-        max_tokens=680,
+        max_tokens=650,
     )
     add_usage(resp)
     raw = (resp.choices[0].message.content or "").strip()
