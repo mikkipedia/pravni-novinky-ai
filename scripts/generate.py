@@ -211,17 +211,18 @@ BASE_CSS = """
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
-  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
+  --accent: #0b3a88;      /* navy blue pro odkazy */
+  --heading: #0b3a88;     /* navy blue pro nadpisy */
 }
 
+/* Základ */
+html { font-size: 18px; }                 /* desktop výchozí */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  font-size: 18px;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -229,20 +230,20 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
 
-/* Nadpisy – menší rozpal (mezery) a navy barva */
+/* Nadpisy – menší rozestupy a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 800;
   color: var(--heading);
-  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
+  letter-spacing: 0.2px;
 }
 h1 {
   font-size: 28px;
-  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+  margin: 0 0 8px;                        /* zmenšený rozpal pod H1 */
 }
 h2 {
   font-size: 18px;
-  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+  margin: 16px 0 6px;                     /* zmenšený rozpal pod H2 */
 }
 
 .meta {
@@ -252,12 +253,12 @@ h2 {
   font-size: .95rem;
 }
 
+/* Karty na indexu */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));  /* širší karta */
   gap: 18px;
 }
-
 .card {
   background: var(--panel);
   padding: 18px 18px 16px;
@@ -280,6 +281,7 @@ h2 {
   font-weight: 600;
 }
 
+/* Detail článku – patkové písmo pro text */
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
@@ -289,33 +291,36 @@ h2 {
 }
 .article p { margin: 12px 0; }
 
-/* LinkedIn blocks */
+/* LinkedIn blocks (oddělení a čitelnost) */
 .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
 .li-heading { margin-bottom: 6px; }
 .li-body { line-height: 1.7; }
 
-/* ===== Mobile tuning =====
-   - 1 sloupec na malých displejích
-   - větší písmo pro čitelnost
-   - vydechlé okraje a paddingy
-*/
-@media (max-width: 640px) {
-  html { font-size: 17px; }      /* celé UI malinko zvětšit */
-  body { font-size: 17px; line-height: 1.75; }
-  .wrap { padding: 20px 14px 36px; }
+/* ===== Lepší responsivita ===== */
 
-  .grid {
-    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
-    gap: 14px;
-  }
-  .card {
-    padding: 16px;
-  }
+/* Tablety a menší laptopy: preferuj 1 sloupec pro lepší čitelnost */
+@media (max-width: 900px) {
+  html { font-size: 18.5px; }             /* malinko větší text než desktop */
+  .wrap { padding: 24px 16px 48px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }  /* jeden sloupec */
+  .card { padding: 16px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  h2 { font-size: 17px; margin: 14px 0 6px; }
+}
+
+/* Telefony: ještě o fous větší písmo a kompaktnější spacing */
+@media (max-width: 640px) {
+  html { font-size: 19px; }               /* zvětšené systémově */
+  body { line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 16px; }
   h1 { font-size: 22px; margin: 0 0 6px; }
   h2 { font-size: 16px; margin: 12px 0 4px; }
   .meta { font-size: .95rem; }
 }
 """
+
 
 # ===== HTML =====
 def render_post_html(title, article_html, posts, rating, source_url, pub_date_str, topic, cost_line=""):
