@@ -296,7 +296,7 @@ def render_index_html(articles, start_date: str, end_date: str, usage_real: dict
 
 
 def render_post_html(a: dict) -> str:
-    """Vytvoř HTML detailu článku."""
+    """Vytvoř HTML detailu článku (soubor je v posts/, proto ../ cesty)."""
     badge = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
     return f"""<!DOCTYPE html>
 <html lang="cs">
@@ -304,11 +304,11 @@ def render_post_html(a: dict) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{escape_html(a['title'])}</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 <div class="wrap">
-  <a href="index.html" class="meta">← Zpět na přehled</a>
+  <a href="../index.html" class="meta">← Zpět na přehled</a>
   {badge}
   <h1>{escape_html(a['title'])}</h1>
   <div class="meta">{escape_html(a['source'])} — {a['published'].strftime('%d.%m.%Y')}</div>
@@ -322,6 +322,7 @@ def render_post_html(a: dict) -> str:
 </div>
 </body>
 </html>"""
+
 
 
 # ===== Hlavní běh =====
