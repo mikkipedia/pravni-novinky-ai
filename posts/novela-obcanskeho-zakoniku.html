@@ -9,35 +9,56 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
+  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
 }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
+  font-size: 18px;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozpal (mezery) a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  gap: 18px;
 }
+
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +67,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +75,44 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Mobile tuning =====
+   - 1 sloupec na malých displejích
+   - větší písmo pro čitelnost
+   - vydechlé okraje a paddingy
+*/
+@media (max-width: 640px) {
+  html { font-size: 17px; }      /* celé UI malinko zvětšit */
+  body { font-size: 17px; line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+
+  .grid {
+    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
+    gap: 14px;
+  }
+  .card {
+    padding: 16px;
+  }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -78,25 +125,25 @@ h1, h2 {
 </header>
 <article class="article">
 <h3>Novela občanského zákoníku: Co nás čeká od roku 2026?</h3>
-<p>Dne 1. ledna 2026 vstoupí v platnost novela občanského zákoníku, která přináší řadu změn a úprav. Tento zákon, publikovaný pod číslem 268/2025 Sb. ve Sbírce zákonů, se dotýká mnoha oblastí každodenního života a právních vztahů. Je důležité, aby se občané seznámili s těmito změnami, které mohou ovlivnit jejich práva a povinnosti.</p>
-<h3>Klíčové změny a jejich dopad</h3>
-<p>Novela se zaměřuje na zlepšení právní úpravy v oblastech jako jsou smluvní vztahy, ochrana spotřebitele a rodinné právo. Změny by měly usnadnit uzavírání smluv a zjednodušit procesy, které se týkají například dědictví nebo rozvodů. Je důležité mít na paměti, že tyto úpravy mohou mít dalekosáhlé důsledky pro všechny občany, a proto je dobré se na ně připravit.</p>
-<p>Pokud máte otázky ohledně toho, jak se vás novely týkají, nebo potřebujete právní poradenství, můžete se obrátit na odborníky, například na <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a>, kteří vám rádi pomohou orientovat se v novinkách.</p>
-<p>Pro více informací o této legislativní změně můžete navštívit <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">původní zdroj</a>. Je důležité, abychom byli informováni a připraveni na změny, které nás čekají.</p>
+<p>Dne 1. ledna 2026 vstoupí v platnost významná novela občanského zákoníku, která přináší řadu změn v právní úpravě. Tento zákon, publikovaný ve Sbírce zákonů pod číslem 268/2025 Sb., se dotkne mnoha oblastí, které se týkají každodenního života občanů. Cílem novely je přizpůsobit právní předpisy aktuálním potřebám společnosti a zjednodušit některé procesy.</p>
+<h3>Hlavní změny a jejich dopad</h3>
+<p>Mezi klíčové změny patří úprava pravidel týkajících se smluvních vztahů, dědictví a ochrany osobních údajů. Například se očekává, že nové ustanovení usnadní uzavírání smluv v digitálním prostředí, což je v dnešní době stále důležitější. Dále novela přináší nové možnosti pro dědické řízení, které by měly zjednodušit a urychlit proces předávání majetku. Tyto změny mohou mít dalekosáhlý dopad na každého z nás, a proto je důležité být informován.</p>
+<p>Pokud máte otázky ohledně toho, jak se vás tyto změny mohou dotknout, neváhejte se obrátit na odborníky. Právní poradenství můžete získat například u <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">Spring Walk</a>, kde vám rádi pomohou s konkrétními dotazy a poradí vám, jak se na novou legislativu připravit.</p>
+<p>Více informací o novele a jejích aspektech naleznete v původním zdroji <a href="https://www.pravniprostor.cz/zmeny-v-legislative/vyslo-ve-sbirce-zakonu/novela-obcanskeho-zakoniku4" target="_blank" rel="noopener">zdroj</a>. Buďte připraveni na změny, které přinese nový rok 2026!</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">Novela občanského zákoníku, která nabývá účinnosti k 1. 1. 2026, představuje významný krok v právní úpravě, který ovlivní široké spektrum oblastí našeho každodenního života. Tento zákon, publikovaný pod č. 268/2025 Sb., přináší řadu změn, které mohou mít dalekosáhlé důsledky pro podnikatele, jednotlivce i celé společnosti. Je důležité, abychom se s těmito novinkami seznámili a připravili se na jejich implementaci. Naše společnost Spring Walk se již nyní aktivně zapojuje do diskuzí a školení, abychom byli v této oblasti informováni a připraveni na nadcházející změny. Udržování právní jistoty a informovanosti je pro nás klíčové.</div>
+  <div class="li-body">S radostí oznamujeme, že od 1. 1. 2026 vstoupí v platnost novela občanského zákoníku, která přináší důležité změny pro podnikatele i jednotlivce. Tato změna je součástí snahy o modernizaci právního rámce, který by měl lépe reflektovat dnešní dynamické obchodní prostředí. V Spring Walk se připravujeme na implementaci těchto změn a jsme si vědomi, že adaptace na nové právní předpisy je klíčová pro efektivní fungování našich služeb. Našim klientům i partnerům nabízíme podporu a poradenství, aby byl přechod na nový systém co nejhladší. Těšíme se na další příležitosti, které nám tyto změny přinesou.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Jako jednatel společnosti bych chtěl upozornit na důležitost novely občanského zákoníku, která začne platit 1. ledna 2026. Tento právní předpis, publikovaný pod číslem 268/2025 Sb., nám klade na srdce povinnost přizpůsobit naše interní procesy a smluvní vztahy novým pravidlům. V našem odvětví je nezbytné, abychom se na tyto změny důkladně připravili a zajistili, že naše činnosti budou v souladu s novými právními normami. Očekáváme, že tato novela přinese řadu výzev, ale i příležitostí, a my jsme odhodláni je maximálně využít ve prospěch našich klientů a partnerů.</div>
+  <div class="li-body">Novela občanského zákoníku, publikovaná ve Sbírce zákonů pod č. 268/2025 Sb., je zásadní krok směrem k reformě právního rámce České republiky. Od 1. 1. 2026 se očekává, že přinese řadu novinek, které se dotknou nejen obchodních vztahů, ale i každodenního života občanů. Je nezbytné, aby podnikatelé a jednotlivci byli informováni o těchto změnách a připravili se na ně. Naše společnost se aktivně podílí na této debatě a snaží se zajistit, aby naši klienti měli všechny potřebné informace a podporu v této fázi přechodu. Předpokládáme, že s těmito novinkami se zlepší právní jistota a efektivita obchodních praktik.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Ahoj všichni! Připravte se na právní revoluci! Novela občanského zákoníku, která začne platit 1. ledna 2026, s sebou nese spoustu zajímavých novinek. Je to jako nový level ve hře – musíme se naučit nová pravidla, abychom zvládli všechny úkoly a překážky, které nám přijdou do cesty. Jako jednatel společnosti se těším na to, jak naše týmové strategie a přístupy pomohou našim klientům v tomto novém herním poli. Takže, připravte se na změnu a pojďme se společně postavit novým výzvám!</div>
+  <div class="li-body">Nový rok 2026 se blíží a s ním také revoluce v občanském zákoníku! Připravte se na právní změny, které mohou ovlivnit nejen váš byznys, ale i každodenní život. V Spring Walk jsme si toho plně vědomi a už teď se těšíme na to, jak se s těmito novinkami popasujeme. Zákon č. 268/2025 Sb. nám přináší novinky, které si zaslouží vaši pozornost – a nebojte, nejsme právníci, abychom vás nutili číst nudné texty! Spíše jsme tu, abychom vám pomohli proplout těmito změnami s úsměvem na tváři! Připravte se, změny jsou na obzoru!</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>

@@ -9,35 +9,56 @@
   --panel: #ffffff;
   --text: #111111;
   --muted: #555555;
-  --accent: #0056b3;
+  --accent: #0b3a88;      /* tmavá navy blue pro odkazy */
+  --heading: #0b3a88;     /* tmavá navy blue pro nadpisy */
 }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 1.7;
+  font-size: 18px;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+
+/* Nadpisy – menší rozpal (mezery) a navy barva */
 h1, h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: 0.2px;         /* jemné, ne „airy“ */
 }
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;               /* zmenšeno (bylo ~10–16px) */
+}
+h2 {
+  font-size: 18px;
+  margin: 16px 0 6px;            /* zmenšeno vertikální odsazení */
+}
+
 .meta {
   color: var(--muted);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
+  font-size: .95rem;
 }
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));  /* trošku širší karty => méně sloupců */
+  gap: 18px;
 }
+
 .card {
   background: var(--panel);
-  padding: 20px;
+  padding: 18px 18px 16px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -46,6 +67,7 @@ h1, h2 {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -53,19 +75,44 @@ h1, h2 {
   border-radius: 4px;
   font-size: 0.8em;
   margin-bottom: 6px;
+  font-weight: 600;
 }
+
 .article {
   font-family: Georgia, 'Times New Roman', serif;
   background: var(--panel);
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-  /* LinkedIn blocks */
-  .li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-  .li-heading { margin-bottom: 6px; }
-  .li-body { line-height: 1.7; }
+.article p { margin: 12px 0; }
 
+/* LinkedIn blocks */
+.li-post { margin: 14px 0 18px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+.li-heading { margin-bottom: 6px; }
+.li-body { line-height: 1.7; }
+
+/* ===== Mobile tuning =====
+   - 1 sloupec na malých displejích
+   - větší písmo pro čitelnost
+   - vydechlé okraje a paddingy
+*/
+@media (max-width: 640px) {
+  html { font-size: 17px; }      /* celé UI malinko zvětšit */
+  body { font-size: 17px; line-height: 1.75; }
+  .wrap { padding: 20px 14px 36px; }
+
+  .grid {
+    grid-template-columns: 1fr;  /* vždy JEDEN sloupec na mobilech */
+    gap: 14px;
+  }
+  .card {
+    padding: 16px;
+  }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 12px 0 4px; }
+  .meta { font-size: .95rem; }
+}
 </style>
 </head>
 <body>
@@ -78,25 +125,24 @@ h1, h2 {
 </header>
 <article class="article">
 <h3>Ústavní soud se postavil proti nízkým kompenzacím za nezákonné trestní stíhání</h3>
-<p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů týkající se nároku akademika a vědce na náhradu nemajetkové újmy, která mu byla způsobena téměř desetiletým trestním stíháním pro daňovou trestnou činnost. Stíhání, které nakonec skončilo zproštěním, vyvolalo otázky o tom, jakým způsobem by měly soudy přistupovat k odškodnění obětí nezákonných trestních stíhání. Soudy totiž přiznaly stěžovateli kompenzaci ve výši 85 000 Kč, což Ústavní soud označil za neústavní a bagatelizující závažnost situace.</p>
-<h3>Spravedlnost a její cena</h3>
-<p>Ústavní soud zdůraznil, že obecné soudy nedostatečně zvážily specifické okolnosti případu, což vedlo k podcenění utrpení, které stěžovatel prožil. Trestní stíhání trvající téměř deset let má nepochybně vážné dopady na osobní i profesní život jednotlivce. Tato situace ukazuje, jak důležité je, aby soudy braly v úvahu individuální okolnosti a závažnost porušení práv, když rozhodují o výši odškodnění.</p>
-<p>Pokud se i vy ocitnete v situaci, kdy potřebujete právní poradenství, neváhejte se obrátit na odborníky z <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právního poradenství Spring Walk</a>. Jejich zkušenosti vám mohou pomoci najít správnou cestu v komplikovaných právních záležitostech.</p>
-<p>Pro více informací o tomto případu a jeho důsledcích můžete navštívit <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">zdroj</a>.</p>
+<p>Ústavní soud nedávno zrušil rozhodnutí obecných soudů, které se týkalo nároku akademika a vědce na náhradu nemajetkové újmy. Tento případ se týkal téměř desetiletého trestního stíhání pro daňovou trestnou činnost, které nakonec skončilo zproštěním obvinění. Soudy však přiznaly stěžovateli kompenzaci ve výši pouze 85 000 Kč, což Ústavní soud označil za neústavní bagatelizaci tak vážného problému, jako je nezákonné trestní stíhání.</p>
+<h3>Nezákonné stíhání a jeho následky</h3>
+<p>Dlouhé a stresující období trestního stíhání může mít na jednotlivce devastující dopady. Ztráta pověsti, stres, psychické problémy a další negativní důsledky jsou často nezměrné. Ústavní soud zdůraznil, že obecné soudy nedostatečně zvážily specifické okolnosti případu, a tím zlehčily vážnost situace stěžovatele. Tato rozhodnutí mají dalekosáhlé důsledky pro budoucí případy a signalizují, že je důležité brát v úvahu individuální okolnosti každého případu.</p>
+<p>Pokud se někdo ocitne v podobné situaci, je důležité vyhledat odbornou pomoc. Právní poradenství může poskytnout potřebné informace a podporu. Například <a href="https://www.springwalk.cz/pravni-poradenstvi/" target="_blank" rel="noopener">právní poradenství Spring Walk</a> nabízí služby, které mohou pomoci lidem orientovat se v právních otázkách a získat spravedlivou kompenzaci za utrpěné újmy. Pro více informací o rozhodnutí Ústavního soudu můžete navštívit <a href="https://advokatnidenik.cz/2025/08/13/us-priznanim-nizke-kompenzace-soudy-bagatelizovaly-nezakonne-trestni-stihani/" target="_blank" rel="noopener">zdroj</a>.</p>
 <hr>
 <h2>Tipy na LinkedIn</h2>
 <ul><li><div class="li-post">
   <div class="li-heading"><strong>Společnost Spring Walk:</strong></div>
-  <div class="li-body">V nedávném rozhodnutí Ústavního soudu došlo k zásadnímu posunu v oblasti ochrany práv jednotlivců, kteří čelí nezákonnému trestnímu stíhání. Soud zrušil rozhodnutí obecných soudů, které nedostatečně posoudily nárok stěžovatele na náhradu nemajetkové újmy. Přiznaná kompenzace 85 000 Kč byla shledána jako neústavní, neboť nedostatečně reflektovala závažnost situace a dopad na život a kariéru akademika. Tento případ zdůrazňuje důležitost individuálního přístupu k posuzování takovýchto nároků a nutnost zohlednit specifické okolnosti každého jednotlivého případu. Ve Spring Walk se vždy snažíme podporovat spravedlnost a ochranu práv našich klientů a tento verdikt nám dává prostor pro další diskuzi o tom, jak lépe chránit ty, kteří byli nespravedlivě obviněni.</div>
+  <div class="li-body">V poslední době se stále více hovoří o důsledcích nezákonného trestního stíhání a potřebě spravedlivého odškodnění. Nedávné rozhodnutí Ústavního soudu, které zrušilo kompenzaci za nemajetkovou újmu pro stěžovatele, ukazuje, jak zásadní je důkladné posouzení všech faktorů ve složitých právních případech. Akademik a vědec, který byl téměř deset let stíhán, se nyní dočkal spravedlnosti, ale otázka zůstává: jakým způsobem můžeme zajistit, aby se podobné situace v budoucnu neopakovaly? Je důležité, aby soudy braly v úvahu nejen právní aspekty, ale také lidský rozměr každého případu. Tato kauza nám připomíná, že spravedlnost by měla být nejen na papíře, ale především v praxi.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (formální):</strong></div>
-  <div class="li-body">Ústavní soud v nedávném rozhodnutí potvrdil, že přiznání nízké kompenzace za nemajetkovou újmu může představovat bagatelizaci závažného porušení práv jednotlivce. V daném případě, kdy akademik čelil téměř desetiletému trestnímu stíhání, bylo přiznané zadostiučinění ve výši 85 000 Kč označeno za neústavní. Tento krok je jasným signálem pro soudy, že je třeba brát v úvahu kontext a důsledky nezákonných trestních stíhání. Jako právní odborníci bychom měli usilovat o to, aby rozhodnutí soudů byla v souladu s principy spravedlnosti a respektovala důstojnost jednotlivců. Tento případ nám připomíná, jak důležité je mít na paměti lidský rozměr právních sporů a potřebu spravedlivého odškodnění.</div>
+  <div class="li-body">V nedávném rozhodnutí Ústavního soudu byla zrušena rozhodnutí obecných soudů, které se týkaly nároku na náhradu nemajetkové újmy po téměř desetiletém nezákonném trestním stíhání. Soud poukázal na to, že přiznaná částka 85 000 Kč představuje bagatelizaci vážného porušení práv stěžovatele. Toto rozhodnutí zdůrazňuje potřebu pečlivého zvažování specifických okolností v každém jednotlivém případě a naznačuje, že soudy by měly být citlivější k individuálním traumatům, která mohou taková stíhání způsobit. Důsledky nezákonného stíhání mohou mít vážné dopady na kariéru a osobní život jednotlivce. Je nezbytné, aby systém spravedlnosti reflektoval tuto realitu a zajistil adekvátní ochranu práv občanů.</div>
 </div></li><li><div class="li-post">
   <div class="li-heading"><strong>Jednatel (hravý):</strong></div>
-  <div class="li-body">Když se Ústavní soud rozhodl zrušit kompenzaci za nemajetkovou újmu ve výši 85 000 Kč, připadalo mi to jako scéna z právnického thrilleru! Akademik, který se téměř deset let bránil proti trestnímu stíhání, dostal od soudů odměnu, která se rovná spíše za ztracený klobouk než za vážnou újmu. Je to jako kdyby vám někdo za pět let strávených v bludném kruhu nabídl bonbón jako odškodnění! Tento verdikt nám ukazuje, že spravedlnost by měla být víc než jen číslo na papíře. V naší společnosti se snažíme, aby každý měl nejen svou pravdu, ale i spravedlivé odškodnění, jak si zaslouží. Děkuji, Ústavní soude, že jste nám připomněli, že spravedlnost by měla být nejen spravedlivá, ale i lidská!</div>
+  <div class="li-body">Představte si, že jste akademik, který se téměř deset let potýká s trestním stíháním pro daňovou trestnou činnost, a nakonec jste zproštěn viny. A teď si představte, že vám soud přizná kompenzaci, která je tak nízká, že byste ji mohli snadno zahlédnout na dně kapsy! To je přesně to, co se stalo v nedávném rozhodnutí Ústavního soudu, kde byla částka 85 000 Kč označena jako bagatelizace vážného problému. Je to jako dostat odměnu za měsíc dřiny v práci v podobě jednoho kousku cukrovinky. Přitom spravedlnost by měla být sladká a poctivá. Tato kauza nám připomíná, že musíme více dbát na to, jak se v právním systému vyrovnáváme s lidskými příběhy a osobními ztrátami.</div>
 </div></li></ul>
 </article>
-<div class="meta">Odhad nákladů: $0.0204 (~0.50 Kč) · Input 23680 · Output 28037 · Model gpt-4o-mini</div>
+<div class="meta">Odhad nákladů: $0.0078 (~0.19 Kč) · Input 8918 · Output 10798 · Model gpt-4o-mini</div>
 </div>
 </body>
 </html>
