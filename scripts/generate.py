@@ -7,7 +7,9 @@
 # - článek VŽDY rozdělí do 2–3 sekcí s H2/H3 nadpisy
 # - používá externí CSS: assets/style.css
 # - délky: článek max_tokens=1280, LI posty max_tokens=650
-# - dole na indexu zobrazuje odhad nákladů (model) + reálné usage z API
+# - index: odhad nákladů (model) + reálné usage z API
+# - výstupy detailů ukládá do: posts/post_*.html
+# - INDEX JE ŘAZEN PODLE DATA VYDÁNÍ (nejnovější nahoře)
 # -----------------------------------------
 
 from datetime import datetime, timedelta
@@ -18,6 +20,7 @@ import re
 
 import feedparser
 from openai import OpenAI
+
 
 # ===== Konfigurace =====
 OPENAI_MODEL = os.getenv("MODEL_NAME", "gpt-4o-mini")
@@ -249,16 +252,71 @@ Anotace: {summary or "(bez anotace)"}
     return out
 
 
+# ===== Kategorie: extrakce + filtrace =====
+GENERIC_CATS = {
+    "článek", "články", "clanek", "clanky",
+    "aktualita", "aktuality",
+    "news", "novinky", "rubrika", "rubriky"
+}
+
+def normalize_category_label(label: str) -> str:
+    if not label:
+        return ""
+    s = label.strip()
+    return "" if s.lower() in GENERIC_CATS else s
+
+def extract_categories(entry) -> list[str]:
+    """
+    Vrať seznam kategorií z RSS položky:
+    - preferuje e.tags[*].term
+    - fallback: e.category (může obsahovat čárkou oddělené položky)
+    - odfiltruje generické výrazy (Články, Aktuality, …)
+    - odstraní duplicity, zachová pořadí
+    """
+    out = []
+    seen = set()
+
+    tags = getattr(entry, "tags", None)
+    if tags and isinstance(tags, list):
+        for t in tags:
+            term = ""
+            if isinstance(t, dict):
+                term = (t.get("term") or "").strip()
+            else:
+                term = getattr(t, "term", "") or ""
+                term = term.strip()
+            term = normalize_category_label(term)
+            key = term.lower()
+            if term and key not in seen:
+                seen.add(key)
+                out.append(term)
+    else:
+        raw = (getattr(entry, "category", "") or "").strip()
+        if raw:
+            for part in [p.strip() for p in raw.split(",") if p.strip()]:
+                part = normalize_category_label(part)
+                key = part.lower()
+                if part and key not in seen:
+                    seen.add(key)
+                    out.append(part)
+
+    return out
+
+
 # ===== HTML render =====
 def render_index_html(articles, start_date: str, end_date: str, usage_real: dict, usage_est: dict) -> str:
     """Vytvoř HTML přehledu článků + patička s odhadem a měřením."""
     cards = []
     for a in articles:
-        badge_topic = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
+        badges_topic = ''.join(
+            f'<div class="badge">{escape_html(cat)}</div>'
+            for cat in a.get("categories", []) if cat
+        )
         badge_rating = f'<div class="badge">Poutavost {int(a.get("rating", 0))}/5</div>'
+
         cards.append(f"""
 <a class="card" href="{escape_html(a['file_name'])}">
-  {badge_topic}
+  {badges_topic}
   {badge_rating}
   <h2>{escape_html(a['title'])}</h2>
   <div class="meta">{escape_html(a['source'])} — {a['published'].strftime('%d.%m.%Y')}</div>
@@ -299,7 +357,11 @@ def render_index_html(articles, start_date: str, end_date: str, usage_real: dict
 
 def render_post_html(a: dict) -> str:
     """Vytvoř HTML detailu článku (soubor je v posts/, proto ../ cesty)."""
-    badge = f'<div class="badge">{escape_html(a["category"])}</div>' if a.get("category") else ""
+    badges = ''.join(
+        f'<div class="badge">{escape_html(cat)}</div>'
+        for cat in a.get("categories", []) if cat
+    )
+
     return f"""<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -311,7 +373,7 @@ def render_post_html(a: dict) -> str:
 <body>
 <div class="wrap">
   <a href="../index.html" class="meta">← Zpět na přehled</a>
-  {badge}
+  {badges}
   <h1>{escape_html(a['title'])}</h1>
   <div class="meta">{escape_html(a['source'])} — {a['published'].strftime('%d.%m.%Y')}</div>
 
@@ -326,42 +388,35 @@ def render_post_html(a: dict) -> str:
 </html>"""
 
 
-
 # ===== Hlavní běh =====
-def normalize_category(topic: str) -> str:
-    """Vrať prázdný řetězec pro generické štítky (článek/aktualita), jinak původní text."""
-    if not topic:
-        return ""
-    t = topic.strip().lower()
-    generics = {"článek", "clanek", "aktualita", "aktuality", "news"}
-    return "" if t in generics else topic.strip()
-
-
 def fetch_articles():
     """Načti položky z RSS, filtruj duplicitní a staré záznamy, obohať o metadata."""
     cutoff = datetime.now() - timedelta(days=DAYS_BACK)
     out = []
     seen = set()
+
     for feed_url in RSS_FEEDS:
         parsed = feedparser.parse(feed_url)
         source_name = getattr(parsed.feed, "title", urlparse(feed_url).netloc)
+
         for e in parsed.entries:
             link = getattr(e, "link", "") or ""
             if not link or link in seen:
                 continue
+
             pub = parse_pub_date(e)
             if pub and pub < cutoff:
                 continue
+
             title = (getattr(e, "title", "") or "").strip()
             if not title:
                 continue
+
             summary = getattr(e, "summary", "") or getattr(e, "description", "") or ""
-            topic = ""
-            tags = getattr(e, "tags", None)
-            if tags and isinstance(tags, list) and len(tags) and "term" in tags[0]:
-                topic = tags[0]["term"] or ""
-            else:
-                topic = getattr(e, "category", "") or ""
+
+            # kategorie: více položek, odfiltrované od generik
+            categories = extract_categories(e)
+
             seen.add(link)
             out.append({
                 "title": title,
@@ -369,8 +424,10 @@ def fetch_articles():
                 "summary": summary,
                 "published": pub or datetime.now(),
                 "source": source_name,
-                "category": normalize_category(topic),  # nově přes normalizaci
+                "categories": categories,                # list
+                "category": ", ".join(categories) or "", # zpětná kompatibilita (string)
             })
+
     return out
 
 
@@ -406,6 +463,8 @@ def main():
         slug = slugify(a["title"])[:60]
         a["file_name"] = f"posts/post_{slug}.html"
 
+    # *** NOVÉ ***: seřaď vybrané články podle data (nejnovější první)
+    selected.sort(key=lambda x: x["published"], reverse=True)
 
     # Časový rozsah na index
     if selected:
