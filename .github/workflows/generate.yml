@@ -34,7 +34,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           MODEL_NAME: gpt-4o-mini
-          DAYS_BACK: '1'   # pro test
+          DAYS_BACK: '2'   # pro test
         run: python scripts/generate.py
 
       - name: Commit and push changes
